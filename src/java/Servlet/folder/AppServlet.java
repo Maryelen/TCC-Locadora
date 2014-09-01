@@ -6,7 +6,6 @@
 package Servlet.folder;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,9 +31,6 @@ public class AppServlet extends HttpServlet {
         String classificacaoIndicativaFilme = req.getParameter("classificacaoFilme");
         String valorFilmePagoLocadora = req.getParameter("valorFilmePagoLocadora");
         String classificacaoValorFilme = req.getParameter("classificacaoValorFilme");
-
-        
-        
         
     }
 
