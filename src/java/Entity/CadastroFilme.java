@@ -18,13 +18,13 @@ public class CadastroFilme {
     private Date anoFilme;
     private String diretorFilme;
     private int codigoFilme;
-    private Enum midiaFilme;
+    private String midiaFilme;
     private String sinopseFilme;
     private String produtoraFilme;
-    private Enum classificacaoIndicativaFilme;
+    private String classificacaoIndicativaFilme;
     private double valorPagoLocadora;
-    private Enum classificacaoValorFilme;
-    private Enum generoFilme;
+    private String classificacaoValorFilme;
+    private String generoFilme;
 
     public void setId(int id) {
         this.id = id;
@@ -46,7 +46,7 @@ public class CadastroFilme {
         this.codigoFilme = codigoFilme;
     }
 
-    public void setMidiaFilme(Enum midiaFilme) {
+    public void setMidiaFilme(String midiaFilme) {
         this.midiaFilme = midiaFilme;
     }
 
@@ -58,7 +58,7 @@ public class CadastroFilme {
         this.produtoraFilme = produtoraFilme;
     }
 
-    public void setClassificacaoIndicativaFilme(Enum classificacaoIndicativaFilme) {
+    public void setClassificacaoIndicativaFilme(String classificacaoIndicativaFilme) {
         this.classificacaoIndicativaFilme = classificacaoIndicativaFilme;
     }
 
@@ -66,11 +66,11 @@ public class CadastroFilme {
         this.valorPagoLocadora = valorPagoLocadora;
     }
 
-    public void setClassificacaoValorFilme(Enum classificacaoValorFilme) {
+    public void setClassificacaoValorFilme(String classificacaoValorFilme) {
         this.classificacaoValorFilme = classificacaoValorFilme;
     }
 
-    public void setGeneroFilme(Enum generoFilme) {
+    public void setGeneroFilme(String generoFilme) {
         this.generoFilme = generoFilme;
     }
 
@@ -94,7 +94,7 @@ public class CadastroFilme {
         return codigoFilme;
     }
 
-    public Enum getMidiaFilme() {
+    public String getMidiaFilme() {
         return midiaFilme;
     }
 
@@ -106,7 +106,7 @@ public class CadastroFilme {
         return produtoraFilme;
     }
 
-    public Enum getClassificacaoIndicativaFilme() {
+    public String getClassificacaoIndicativaFilme() {
         return classificacaoIndicativaFilme;
     }
 
@@ -114,11 +114,11 @@ public class CadastroFilme {
         return valorPagoLocadora;
     }
 
-    public Enum getClassificacaoValorFilme() {
+    public String getClassificacaoValorFilme() {
         return classificacaoValorFilme;
     }
 
-    public Enum getGeneroFilme() {
+    public String getGeneroFilme() {
         return generoFilme;
     }
 

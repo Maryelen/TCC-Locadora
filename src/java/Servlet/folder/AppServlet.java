@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AppServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String nomeFilme = req.getParameter("nomeFilme");
         String anoFilme = req.getParameter("anoFilme");
@@ -35,7 +35,7 @@ public class AppServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
     }
 
