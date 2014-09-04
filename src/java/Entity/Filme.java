@@ -11,11 +11,11 @@ import java.util.Date;
  *
  * @author maryelen_cassia
  */
-public class CadastroFilme {
+public class Filme {
 
     private int id;
     private String nomeFilme;
-    private Date anoFilme;
+    private int anoFilme;
     private String diretorFilme;
     private int codigoFilme;
     private String midiaFilme;
@@ -34,7 +34,7 @@ public class CadastroFilme {
         this.nomeFilme = nomeFilme;
     }
 
-    public void setAnoFilme(Date anoFilme) {
+    public void setAnoFilme(int anoFilme) {
         this.anoFilme = anoFilme;
     }
 
@@ -82,7 +82,7 @@ public class CadastroFilme {
         return nomeFilme;
     }
 
-    public Date getAnoFilme() {
+    public int getAnoFilme() {
         return anoFilme;
     }
 
