@@ -21,7 +21,8 @@ public class FilmeDaoMySql implements FilmeDao {
     public void salvar(Filme filme) {
 
         try {
-            Connection conex = DriverManager.getConnection("jdbc:mysql://localhost/mydb", "root", "");
+            Class.forName("org.gjt.mm.mysql.Driver");
+            Connection conex = DriverManager.getConnection("jdbc:mysql://localhost/bdreservalocadora", "root", "");
             String sql
                     = "insert into Filme (nomeFilme, anoFilme,generoFilme,diretorFilme,codigoFilme,"
                     + "midiaFilme,sinopseFilme,produtoraFilme,classificacaoIndicativaFilme,"
@@ -42,7 +43,7 @@ public class FilmeDaoMySql implements FilmeDao {
             stmt.execute();
             conex.close();
 
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
 
         }

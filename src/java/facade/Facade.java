@@ -8,7 +8,6 @@ package facade;
 import DAO.FilmeDao;
 import DAO.FilmeDaoMySql;
 import Entity.Filme;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +16,7 @@ import javax.swing.JOptionPane;
 public class Facade {
 
     public void Salvar(Filme filme) {
-        
+
         if ((filme.getNomeFilme() != null)
                 || (filme.getNomeFilme() != "")) {
 
@@ -70,7 +69,7 @@ public class Facade {
         }
         FilmeDaoMySql dao = new FilmeDaoMySql();
         dao.salvar(filme);
-        JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+
 
     }
 }
