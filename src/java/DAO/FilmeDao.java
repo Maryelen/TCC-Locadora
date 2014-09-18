@@ -6,6 +6,7 @@
 package DAO;
 
 import Entity.Filme;
+import java.util.List;
 
 /**
  *
@@ -15,6 +16,6 @@ public interface FilmeDao {
 
     public void salvar(Filme filme);
     
-    public void getAll();
+    public List<Filme> getAll();
 
 }
