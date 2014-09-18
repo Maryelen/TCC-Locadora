@@ -8,6 +8,7 @@ package facade;
 import DAO.FilmeDao;
 import DAO.FilmeDaoMySql;
 import Entity.Filme;
+import java.util.List;
 
 /**
  *
@@ -71,11 +72,12 @@ public class Facade {
         dao.salvar(filme);
     }
 
-    public void Editar(Filme filme) {
-
     }
-
-    public void Excluir(Filme filme) {
-
-    }
+    
+    
+//    public List<Filme> getAll() {
+//        FilmeDao dao = new FilmeDaoMySql();
+//        return dao.getAll();
+//    }
+    
 }

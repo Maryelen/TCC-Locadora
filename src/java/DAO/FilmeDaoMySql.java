@@ -49,4 +49,9 @@ public class FilmeDaoMySql implements FilmeDao {
         }
 
     }
+
+    @Override
+    public void getAll() {
+       
+    }
 }

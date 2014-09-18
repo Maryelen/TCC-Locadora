@@ -14,5 +14,7 @@ import Entity.Filme;
 public interface FilmeDao {
 
     public void salvar(Filme filme);
+    
+    public void getAll();
 
 }
