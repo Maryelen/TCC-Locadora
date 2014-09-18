@@ -11,6 +11,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>TESTE6</servlet-name>
-        <url-pattern>/AppServlet</url-pattern>
+        <url-pattern>/servlet</url-pattern>
     </servlet-mapping>
 </web-app>
