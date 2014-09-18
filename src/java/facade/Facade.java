@@ -72,12 +72,8 @@ public class Facade {
         dao.salvar(filme);
     }
 
+    public List<Filme> getAll() {
+        FilmeDao dao = new FilmeDaoMySql();
+        return dao.getAll();
     }
-    
-    
-//    public List<Filme> getAll() {
-//        FilmeDao dao = new FilmeDaoMySql();
-//        return dao.getAll();
-//    }
-    
-
+}

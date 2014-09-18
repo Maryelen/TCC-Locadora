@@ -16,6 +16,6 @@ public interface FilmeDao {
 
     public void salvar(Filme filme);
     
-    public List<Filme> getAll(Filme filme);
+    public List<Filme> getAll();
 
 }

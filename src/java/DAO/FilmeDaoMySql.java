@@ -52,7 +52,7 @@ public class FilmeDaoMySql implements FilmeDao {
         }
     }
 
-    public List<Filme> getAll(Filme filme) {
+    public List<Filme> getAll() {
 
         List<Filme> lista = new ArrayList<Filme>();
         try {
