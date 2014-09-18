@@ -9,7 +9,10 @@ import Entity.Filme;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -47,11 +50,43 @@ public class FilmeDaoMySql implements FilmeDao {
             ex.printStackTrace();
 
         }
-
     }
 
-    @Override
-    public void getAll() {
-       
+    public List<Filme> getAll(Filme filme) {
+
+        List<Filme> lista = new ArrayList<Filme>();
+        try {
+            Class.forName("org.gjt.mm.mysql.Driver");
+            Connection conex = DriverManager.getConnection("jdbc:mysql://localhost/senai", "root", "");
+            String sql = "select * from filme";
+            PreparedStatement stmt = conex.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Filme f = new Filme();
+                f.setId(rs.getInt("id"));
+                f.setNomeFilme(rs.getString("nomeFilme"));
+                f.setAnoFilme(rs.getInt("anoFilme"));
+                f.setClassificacaoIndicativaFilme(rs.getString("classificacaoIndicativaFilme"));
+                f.setClassificacaoValorFilme(rs.getString("classificacaoValorFilme"));
+                f.setCodigoFilme(rs.getInt("codigoFilme"));
+                f.setGeneroFilme(rs.getString("generoFilme"));
+                f.setProdutoraFilme(rs.getString("produtoraFilme"));
+                f.setMidiaFilme(rs.getString("midiaFilme"));
+                f.setDiretorFilme(rs.getString("diretorFilme"));
+                f.setSinopseFilme(rs.getString("sinopseFilme"));
+                f.setValorPagoLocadora(rs.getDouble("valorPagoLocadora"));
+                lista.add(f);
+            }
+            conex.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return lista;
     }
+
+   
+
 }
+
+
