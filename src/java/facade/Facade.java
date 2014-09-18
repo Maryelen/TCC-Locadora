@@ -69,7 +69,13 @@ public class Facade {
         }
         FilmeDaoMySql dao = new FilmeDaoMySql();
         dao.salvar(filme);
+    }
 
+    public void Editar(Filme filme) {
+
+    }
+
+    public void Excluir(Filme filme) {
 
     }
 }
