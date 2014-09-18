@@ -52,6 +52,59 @@ public class FilmeDaoMySql implements FilmeDao {
         }
     }
 
+    public void editar(Filme filme) {
+
+        try {
+            Class.forName("org.gjt.mm.mysql.Driver");
+            Connection conex = DriverManager.getConnection("jdbc:mysql://localhost/bdreservalocadora", "root", "");
+            String sql
+                    = "update into Filme nomeFilme = ?, anoFilme = ?,generoFilme = ?,diretorFilme = ?,codigoFilme = ?,"
+                    + "midiaFilme = ?,sinopseFilme = ?,produtoraFilme = ?,classificacaoIndicativaFilme = ?,"
+                    + "valorPagoLocadora = ?,classificacaoValorFilme = ? "
+                    + " WHERE id = ? ";
+            PreparedStatement stmt = conex.prepareStatement(sql);
+            stmt.setString(1, filme.getNomeFilme());
+            stmt.setInt(2, filme.getAnoFilme());
+            stmt.setString(3, filme.getGeneroFilme());
+            stmt.setString(4, filme.getDiretorFilme());
+            stmt.setInt(5, filme.getCodigoFilme());
+            stmt.setString(6, filme.getMidiaFilme());
+            stmt.setString(7, filme.getSinopseFilme());
+            stmt.setString(8, filme.getProdutoraFilme());
+            stmt.setString(9, filme.getClassificacaoIndicativaFilme());
+            stmt.setDouble(10, filme.getValorPagoLocadora());
+            stmt.setString(11, filme.getClassificacaoValorFilme());
+
+            stmt.execute();
+            conex.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+    }
+
+    public void excluir (int id) {
+
+        try {
+            Class.forName("org.gjt.mm.mysql.Driver");
+            Connection conex = DriverManager.getConnection("jdbc:mysql://localhost/bdreservalocadora", "root", "");
+            String sql
+                    = "DELETE FROM Filme "
+                    + "WHERE id = ?";
+            PreparedStatement stmt = conex.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            stmt.execute();
+            conex.close();
+          
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+      
+
+    }
+
     public List<Filme> getAll() {
 
         List<Filme> lista = new ArrayList<Filme>();
@@ -85,8 +138,4 @@ public class FilmeDaoMySql implements FilmeDao {
         return lista;
     }
 
-   
-
 }
-
-

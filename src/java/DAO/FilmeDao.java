@@ -17,5 +17,9 @@ public interface FilmeDao {
     public void salvar(Filme filme);
     
     public List<Filme> getAll();
+    
+    public void excluir (int id);
+    
+    public void editar (Filme filme);
 
 }
