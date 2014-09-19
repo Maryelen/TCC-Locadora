@@ -61,7 +61,7 @@ public class FilmeDaoMySql implements FilmeDao {
                     = "update into Filme nomeFilme = ?, anoFilme = ?,generoFilme = ?,diretorFilme = ?,codigoFilme = ?,"
                     + "midiaFilme = ?,sinopseFilme = ?,produtoraFilme = ?,classificacaoIndicativaFilme = ?,"
                     + "valorPagoLocadora = ?,classificacaoValorFilme = ? "
-                    + " WHERE id = ? ";
+                    + " WHERE idFilme = ? ";
             PreparedStatement stmt = conex.prepareStatement(sql);
             stmt.setString(1, filme.getNomeFilme());
             stmt.setInt(2, filme.getAnoFilme());
@@ -91,7 +91,7 @@ public class FilmeDaoMySql implements FilmeDao {
             Connection conex = DriverManager.getConnection("jdbc:mysql://localhost/bdreservalocadora", "root", "");
             String sql
                     = "DELETE FROM Filme "
-                    + "WHERE id = ?";
+                    + "WHERE idFilme = ?";
             PreparedStatement stmt = conex.prepareStatement(sql);
             stmt.setInt(1, idFilme);
 
@@ -116,7 +116,7 @@ public class FilmeDaoMySql implements FilmeDao {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Filme f = new Filme();
-                f.setId(rs.getInt("id"));
+                f.setId(rs.getInt("idFilme"));
                 f.setNomeFilme(rs.getString("nomeFilme"));
                 f.setAnoFilme(rs.getInt("anoFilme"));
                 f.setClassificacaoIndicativaFilme(rs.getString("classificacaoIndicativaFilme"));
