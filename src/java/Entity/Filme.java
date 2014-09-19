@@ -26,7 +26,7 @@ public class Filme {
     private String classificacaoValorFilme;
     private String generoFilme;
 
-    public void setId(int id) {
+    public void setIdFilme(int id) {
         this.idFilme = id;
     }
 
@@ -74,7 +74,7 @@ public class Filme {
         this.generoFilme = generoFilme;
     }
 
-    public int getId() {
+    public int getIdFilme() {
         return idFilme;
     }
 
