@@ -116,7 +116,7 @@ public class FilmeDaoMySql implements FilmeDao {
             ResultSet rs = stmt.executeQuery();
 
             Filme f = new Filme();
-            f.setId(rs.getInt("idFilme"));
+            f.setIdFilme(rs.getInt("idFilme"));
             f.setNomeFilme(rs.getString("nomeFilme"));
             f.setAnoFilme(rs.getInt("anoFilme"));
             f.setClassificacaoIndicativaFilme(rs.getString("classificacaoIndicativaFilme"));
@@ -162,7 +162,7 @@ public class FilmeDaoMySql implements FilmeDao {
             PreparedStatement stmt = conex.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
-            f.setId(rs.getInt("idFilme"));
+            f.setIdFilme(rs.getInt("idFilme"));
             f.setNomeFilme(rs.getString("nomeFilme"));
             f.setAnoFilme(rs.getInt("anoFilme"));
             f.setDiretorFilme(rs.getString("diretorFilme"));

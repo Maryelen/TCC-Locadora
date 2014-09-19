@@ -82,6 +82,7 @@ public class Facade {
     }
 
     public void editar(Filme filme) {
-        
+        FilmeDao dao = new FilmeDaoMySql();
+        dao.editar(filme);
     }
 }
