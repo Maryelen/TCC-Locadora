@@ -116,7 +116,7 @@ public class FilmeDaoMySql implements FilmeDao {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Filme f = new Filme();
-                f.setId(rs.getInt("idFilme"));
+                f.setIdFilme(rs.getInt("idFilme"));
                 f.setNomeFilme(rs.getString("nomeFilme"));
                 f.setAnoFilme(rs.getInt("anoFilme"));
                 f.setClassificacaoIndicativaFilme(rs.getString("classificacaoIndicativaFilme"));

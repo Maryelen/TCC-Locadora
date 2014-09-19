@@ -50,10 +50,22 @@ public class Servlet extends HttpServlet {
         }
         if (acao.equals("listar")) {
             Facade facade = new Facade();
-            //List<Filme> lista = facade.getAll();
-            //req.setAttribute("listaFilme", lista);
+            List<Filme> lista = facade.getAll();
+            req.setAttribute("listaFilme", lista);
             RequestDispatcher rd = req.getRequestDispatcher("/listarFilme.jsp");
             rd.forward(req, resp);
+        }
+        
+        if (acao.equals("excluir")) {
+            Facade facade = new Facade();
+            
+        }
+        
+        if (acao.equals("editarFilme")){
+            Facade facade = new Facade();
+            Filme editFilme = new Filme();
+            req.setAttribute("Filme", editFilme);
+            facade.editar(editFilme);
         }
 
     }
