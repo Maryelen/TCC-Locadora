@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Filme {
 
-    private int id;
+    private int idFilme;
     private String nomeFilme;
     private int anoFilme;
     private String diretorFilme;
@@ -27,7 +27,7 @@ public class Filme {
     private String generoFilme;
 
     public void setId(int id) {
-        this.id = id;
+        this.idFilme = id;
     }
 
     public void setNomeFilme(String nomeFilme) {
@@ -75,7 +75,7 @@ public class Filme {
     }
 
     public int getId() {
-        return id;
+        return idFilme;
     }
 
     public String getNomeFilme() {

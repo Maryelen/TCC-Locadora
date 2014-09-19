@@ -18,7 +18,7 @@ public interface FilmeDao {
     
     public List<Filme> getAll();
     
-    public void excluir (int id);
+    public void excluir (int idFilme);
     
     public void editar (Filme filme);
 

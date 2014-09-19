@@ -84,7 +84,7 @@ public class FilmeDaoMySql implements FilmeDao {
         }
     }
 
-    public void excluir (int id) {
+    public void excluir (int idFilme) {
 
         try {
             Class.forName("org.gjt.mm.mysql.Driver");
@@ -93,7 +93,7 @@ public class FilmeDaoMySql implements FilmeDao {
                     = "DELETE FROM Filme "
                     + "WHERE id = ?";
             PreparedStatement stmt = conex.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, idFilme);
 
             stmt.execute();
             conex.close();
