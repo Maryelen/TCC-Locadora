@@ -27,9 +27,9 @@ public class FilmeDaoMySql implements FilmeDao {
             Class.forName("org.gjt.mm.mysql.Driver");
             Connection conex = DriverManager.getConnection("jdbc:mysql://localhost/bdreservalocadora", "root", "");
             String sql
-                    = "insert into Filme (nomeFilme, anoFilme,generoFilme,diretorFilme,codigoFilme,"
-                    + "midiaFilme,sinopseFilme,produtoraFilme,classificacaoIndicativaFilme,"
-                    + "valorPagoLocadora,classificacaoValorFilme) values (?,?,?,?,?,?,?,?,?,?,?)";
+                    = "insert into Filme (nomeFilme, anoFilme,generoFilme, diretorFilme, codigoFilme,"
+                    + " midiaFilme, sinopseFilme, produtoraFilme, classificacaoIndicativaFilme,"
+                    + " valorPagoLocadora, classificacaoValorFilme) values (?,?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement stmt = conex.prepareStatement(sql);
 
@@ -60,9 +60,9 @@ public class FilmeDaoMySql implements FilmeDao {
             Class.forName("org.gjt.mm.mysql.Driver");
             Connection conex = DriverManager.getConnection("jdbc:mysql://localhost/bdreservalocadora", "root", "");
             String sql
-                    = "update into Filme nomeFilme = ?, anoFilme = ?,generoFilme = ?,diretorFilme = ?,codigoFilme = ?,"
-                    + "midiaFilme = ?,sinopseFilme = ?,produtoraFilme = ?,classificacaoIndicativaFilme = ?,"
-                    + "valorPagoLocadora = ?,classificacaoValorFilme = ? "
+                    = "update into Filme nomeFilme = ?, anoFilme = ?,generoFilme = ?, diretorFilme = ?, codigoFilme = ?,"
+                    + " midiaFilme = ?,sinopseFilme = ?, produtoraFilme = ?,classificacaoIndicativaFilme = ?,"
+                    + "valorPagoLocadora = ?, classificacaoValorFilme = ? "
                     + " WHERE idFilme = ? ";
             PreparedStatement stmt = conex.prepareStatement(sql);
             stmt.setString(1, filme.getNomeFilme());

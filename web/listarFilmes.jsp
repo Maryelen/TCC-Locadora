@@ -38,5 +38,7 @@
             <%
                 }
             %>
+            
+             <a href="servlet?acao=novo">Novo filme</a>
     </body>
 </html>
