@@ -21,5 +21,7 @@ public interface FilmeDao {
     public void excluir (int idFilme);
     
     public void editar (Filme filme);
+    
+    public Filme getById(int id) throws ClassNotFoundException;
 
 }

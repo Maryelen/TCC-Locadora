@@ -9,6 +9,8 @@ import Entity.Filme;
 import facade.Facade;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +30,7 @@ public class Servlet extends HttpServlet {
         String acao = req.getParameter("acao");
         System.out.println(acao);
         if (acao.equals("novo")) {
-            RequestDispatcher rd = req.getRequestDispatcher("/editFilme.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/cadastrarFilme.jsp");
             rd.forward(req, resp);
         }
         if (acao.equals("salvar")) {
@@ -52,21 +54,44 @@ public class Servlet extends HttpServlet {
             Facade facade = new Facade();
             List<Filme> lista = facade.getAll();
             req.setAttribute("listaFilme", lista);
-            RequestDispatcher rd = req.getRequestDispatcher("/listarFilme.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/listarFilmes.jsp");
             rd.forward(req, resp);
         }
 
         if (acao.equals("excluir")) {
             Facade facade = new Facade();
-
+            RequestDispatcher rd = req.getRequestDispatcher("/listarFilmes.jsp");
         }
 
         if (acao.equals("editarFilme")) {
             Facade facade = new Facade();
+            Filme edit = new Filme();
             Integer id = Integer.parseInt(req.getParameter("idFilme"));
-            req.setAttribute("idFilme", id);
-            //Filme editFilme = facade.getById(id);
-            //facade.editar(editFilme);
+            try {
+                edit = facade.getById(id);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            req.setAttribute("editFilme", edit);
+            RequestDispatcher rd = req.getRequestDispatcher("/editarFilme.jsp");
+        }
+
+        if (acao.equals("editar")) {
+            filme.setNomeFilme(req.getParameter("nomeFilme"));
+            filme.setAnoFilme(Integer.parseInt(req.getParameter("anoFilme")));
+            filme.setGeneroFilme(req.getParameter("generoFilme"));
+            filme.setDiretorFilme(req.getParameter("diretorFilme"));
+            filme.setCodigoFilme(Integer.parseInt(req.getParameter("codigoFilme")));
+            filme.setMidiaFilme(req.getParameter("midiaFilme"));
+            filme.setSinopseFilme(req.getParameter("sinopseFilme"));
+            filme.setProdutoraFilme(req.getParameter("produtoraFilme"));
+            filme.setClassificacaoIndicativaFilme(req.getParameter("classificacaoFilme"));
+            filme.setValorPagoLocadora(Double.parseDouble(req.getParameter("valorFilmePagoLocadora")));
+            filme.setClassificacaoValorFilme(req.getParameter("classificacaoValorFilme"));
+            Facade facade = new Facade();
+            facade.Salvar(filme);
+            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listar");
+            rd.forward(req, resp);
         }
 
     }
