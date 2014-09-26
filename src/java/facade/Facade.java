@@ -81,10 +81,7 @@ public class Facade {
 
     }
 
-    public void editar(Filme filme) {
-        FilmeDao dao = new FilmeDaoMySql();
-        dao.editar(filme);
-    }
+  
     
     public Filme getById(int id) throws ClassNotFoundException{
         FilmeDao dao = new FilmeDaoMySql();
