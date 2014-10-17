@@ -12,7 +12,7 @@ package Entity;
  */
 public class Acesso {
     
-    private String idAcesso;
+    private Integer idAcesso;
     private String login;
     private String senha;
 
@@ -32,13 +32,16 @@ public class Acesso {
         this.senha = senha;
     }
 
-    public String getIdAcesso() {
+    public Integer getIdAcesso() {
         return idAcesso;
     }
 
-    public void setIdAcesso(String idAcesso) {
+    public void setIdAcesso(Integer idAcesso) {
         this.idAcesso = idAcesso;
     }
+
+   
+  
     
     
 }
