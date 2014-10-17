@@ -34,6 +34,7 @@ public class Servlet extends HttpServlet {
             rd.forward(req, resp);
         }
         if (acao.equals("salvar")) {
+            filme.setIdFilme(Integer.parseInt(req.getParameter("idFilme")));
             filme.setNomeFilme(req.getParameter("nomeFilme"));
             filme.setAnoFilme(Integer.parseInt(req.getParameter("anoFilme")));
             filme.setGeneroFilme(req.getParameter("generoFilme"));
@@ -46,7 +47,7 @@ public class Servlet extends HttpServlet {
             filme.setValorPagoLocadora(Double.parseDouble(req.getParameter("valorFilmePagoLocadora")));
             filme.setClassificacaoValorFilme(req.getParameter("classificacaoValorFilme"));
             Facade facade = new Facade();
-            facade.Salvar(filme);
+            facade.salvar(filme);
             RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listar");
             rd.forward(req, resp);
         }
@@ -60,7 +61,10 @@ public class Servlet extends HttpServlet {
 
         if (acao.equals("excluir")) {
             Facade facade = new Facade();
-            RequestDispatcher rd = req.getRequestDispatcher("/listarFilmes.jsp");
+            Integer id = Integer.parseInt(req.getParameter("idFilme"));
+            facade.deletar(id);
+            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listar");
+            rd.forward(req, resp);
         }
 
         if (acao.equals("editarFilme")) {
@@ -74,23 +78,6 @@ public class Servlet extends HttpServlet {
             }
             req.setAttribute("editFilme", edit);
             RequestDispatcher rd = req.getRequestDispatcher("/editarFilme.jsp");
-        }
-
-        if (acao.equals("editar")) {
-            filme.setNomeFilme(req.getParameter("nomeFilme"));
-            filme.setAnoFilme(Integer.parseInt(req.getParameter("anoFilme")));
-            filme.setGeneroFilme(req.getParameter("generoFilme"));
-            filme.setDiretorFilme(req.getParameter("diretorFilme"));
-            filme.setCodigoFilme(Integer.parseInt(req.getParameter("codigoFilme")));
-            filme.setMidiaFilme(req.getParameter("midiaFilme"));
-            filme.setSinopseFilme(req.getParameter("sinopseFilme"));
-            filme.setProdutoraFilme(req.getParameter("produtoraFilme"));
-            filme.setClassificacaoIndicativaFilme(req.getParameter("classificacaoFilme"));
-            filme.setValorPagoLocadora(Double.parseDouble(req.getParameter("valorFilmePagoLocadora")));
-            filme.setClassificacaoValorFilme(req.getParameter("classificacaoValorFilme"));
-            Facade facade = new Facade();
-            facade.Salvar(filme);
-            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listar");
             rd.forward(req, resp);
         }
 

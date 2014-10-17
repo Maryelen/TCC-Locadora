@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Facade {
 
-    public void Salvar(Filme filme) {
+    public void salvar(Filme filme) {
 
         if ((filme.getNomeFilme() != null)
                 || (filme.getNomeFilme() != "")) {
@@ -77,8 +77,9 @@ public class Facade {
         return dao.getAll();
     }
 
-    public void excluir(int id) {
-
+    public void deletar(int id) {
+        FilmeDao dao = new FilmeDaoMySql();
+        dao.deletar(id);
     }
 
   
