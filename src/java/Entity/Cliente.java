@@ -23,8 +23,9 @@ public class Cliente {
     private String cidade;
     private String bairro;
     private String estado;
-    private String login;
-    private String senha;
+    private String complemento;
+    private Acesso acesso;
+
 
     public Integer getIdCliente() {
         return idCliente;
@@ -44,6 +45,14 @@ public class Cliente {
 
     public String getCpf() {
         return Cpf;
+    }
+
+    public Acesso getAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(Acesso acesso) {
+        this.acesso = acesso;
     }
 
     public String getCidade() {
@@ -114,22 +123,13 @@ public class Cliente {
         this.estado = estado;
     }
 
-    public String getLogin() {
-        return login;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    
-    
-    
+ 
 }
