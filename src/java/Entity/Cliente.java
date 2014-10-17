@@ -20,6 +20,7 @@ public class Cliente {
     private String telefoneRecado;
     private String email;
     private String Endereco;
+    private String cidade;
     private String bairro;
     private String estado;
     private String login;
@@ -43,6 +44,14 @@ public class Cliente {
 
     public String getCpf() {
         return Cpf;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public void setCpf(String Cpf) {
