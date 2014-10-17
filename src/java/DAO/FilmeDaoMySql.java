@@ -26,9 +26,9 @@ public class FilmeDaoMySql implements FilmeDao {
     private static final String GET_BY_ID = "SELECT * FROM Filme WHERE idFilme = ?";
     private static final String GET_ALL = "select * from filme";
     private static final String DELETAR = "delete from filme where idFilme = ? ";
-    private static final String UPDATE = "update into Filme nomeFilme = ?, anoFilme = ?,generoFilme = ?, diretorFilme = ?, codigoFilme = ?,"
+    private static final String UPDATE = "update Filme set nomeFilme = ?, anoFilme = ?,generoFilme = ?, diretorFilme = ?, codigoFilme = ?,"
             + " midiaFilme = ?,sinopseFilme = ?, produtoraFilme = ?,classificacaoIndicativaFilme = ?,"
-            + "valorPagoLocadora = ?, classificacaoValorFilme = ? "
+            + " valorPagoLocadora = ?, classificacaoValorFilme = ? "
             + " WHERE idFilme = ? ";
 
     ;
@@ -37,8 +37,7 @@ public class FilmeDaoMySql implements FilmeDao {
     public void salvar(Filme filme) {
         Connection con = null;
         PreparedStatement ps = null;
-        
-
+  
         if (filme.getIdFilme() == 0  ) {
             try {
                 con = Conexao.conectar();
@@ -56,7 +55,7 @@ public class FilmeDaoMySql implements FilmeDao {
                 ps.setDouble(10, filme.getValorPagoLocadora());
                 ps.setString(11, filme.getClassificacaoValorFilme());
 
-                ps.execute();
+                ps.executeUpdate();
                 con.close();
 
             } catch (Exception ex) {
