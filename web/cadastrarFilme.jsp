@@ -14,6 +14,7 @@
     <body>
         <form action="servlet" method="get">
             <input type="hidden" name="acao" value="salvar">
+            <input type="hidden" name="idFilme" value="0"/>
             Nome: <input type="text" name="nomeFilme" value="${filme.nomeFilme}" /><br />
             Ano: <input type="text" name="anoFilme" value="${filme.anoFilme}" /><br />
             Genero: <input type="text" name="generoFilme" value="${filme.generoFilme}" /><br />
