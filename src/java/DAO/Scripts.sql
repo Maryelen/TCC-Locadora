@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `bdReservaLocadora`.`Cliente` (
   `telefoneRecado` VARCHAR(45) NULL,
   `email` VARCHAR(150) NULL,
   `endereco` VARCHAR(150) NULL,
-  `bairro` VARCHAR(45) NOT NULL,
+  `bairro` VARCHAR(45) NULL,
   `cidade` VARCHAR(45) NULL,
   `estado` VARCHAR(45) NULL,
   `login` VARCHAR(150) NULL,
