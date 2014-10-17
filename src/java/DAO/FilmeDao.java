@@ -18,7 +18,7 @@ public interface FilmeDao {
     
     public List<Filme> getAll();
     
-    public void excluir (int idFilme);
+    public void deletar(int idFilme);
     
    
     public Filme getById(int id) throws ClassNotFoundException;
