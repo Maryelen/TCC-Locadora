@@ -37,7 +37,7 @@ public class FilmeDaoMySql implements FilmeDao {
     public void salvar(Filme filme) {
         Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
+        
 
         if (filme.getIdFilme() == 0  ) {
             try {
@@ -96,7 +96,7 @@ public class FilmeDaoMySql implements FilmeDao {
     public void deletar(int idFilme) {
         Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
+    
         try {
             con = Conexao.conectar();
             ps = (PreparedStatement) con.prepareStatement(DELETAR);
