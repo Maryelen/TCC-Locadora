@@ -14,7 +14,7 @@ public class Cliente {
     
     private Integer idCliente;
     private String nomeCliente;
-    private String Cpf;
+    private String cpf;
     private String telefoneResidencial;
     private String telefoneCelular;
     private String telefoneRecado;
@@ -44,7 +44,7 @@ public class Cliente {
     }
 
     public String getCpf() {
-        return Cpf;
+        return cpf;
     }
 
     public Acesso getAcesso() {
@@ -64,7 +64,7 @@ public class Cliente {
     }
 
     public void setCpf(String Cpf) {
-        this.Cpf = Cpf;
+        this.cpf = Cpf;
     }
 
     public String getTelefoneResidencial() {

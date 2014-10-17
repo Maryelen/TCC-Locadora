@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -85,7 +87,7 @@ public class ClienteDaoMySql {
     public void deletar(int idCliente) {
         Connection con = null;
         PreparedStatement ps = null;
-    
+
         try {
             con = Conexao.conectar();
             ps = (PreparedStatement) con.prepareStatement(DELETAR);
@@ -96,6 +98,77 @@ public class ClienteDaoMySql {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+    }
+
+    public List<Cliente> getAll() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Cliente> lista = new ArrayList<Cliente>();
+        try {
+            con = Conexao.conectar();
+
+            ps = (PreparedStatement) con.prepareStatement(GET_ALL);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Cliente c = new Cliente();
+                c.setIdCliente(rs.getInt("idCliente"));
+                c.setNomeCliente(rs.getString("nomeCliente"));
+                c.setCpf(rs.getString("cpf"));
+                c.setEmail(rs.getString("email"));
+                c.setEndereco(rs.getString("endereco"));
+                c.setTelefoneCelular(rs.getString("telefoneCelular"));
+                c.setTelefoneResidencial(rs.getString("telefoneCelular"));
+                c.setTelefoneRecado(rs.getString("telefoneRecado"));
+                c.setBairro(rs.getString("bairro"));
+                c.setComplemento(rs.getString("complemento"));
+                c.setEstado(rs.getString("estado"));
+                c.setCidade(rs.getString("cidade"));
+                lista.add(c);
+            }
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return lista;
+    }
+
+    public Cliente getById(int id) throws ClassNotFoundException {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Cliente c = new Cliente();
+        try {
+            con = Conexao.conectar();
+            ps = (PreparedStatement) con.prepareStatement(GET_BY_ID);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                c.setIdCliente(rs.getInt("idCliente"));
+                c.setNomeCliente(rs.getString("nomeCliente"));
+                c.setCpf(rs.getString("cpf"));
+                c.setEmail(rs.getString("email"));
+                c.setEndereco(rs.getString("endereco"));
+                c.setTelefoneCelular(rs.getString("telefoneCelular"));
+                c.setTelefoneResidencial(rs.getString("telefoneCelular"));
+                c.setTelefoneRecado(rs.getString("telefoneRecado"));
+                c.setBairro(rs.getString("bairro"));
+                c.setComplemento(rs.getString("complemento"));
+                c.setEstado(rs.getString("estado"));
+                c.setCidade(rs.getString("cidade"));
+
+            }
+            con.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return c;
 
     }
 }
