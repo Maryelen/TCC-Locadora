@@ -24,9 +24,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Servlet extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        
         Filme filme = new Filme();
         String acao = req.getParameter("acao");
         System.out.println(acao);
@@ -88,5 +88,5 @@ public class Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
-
 }
+
