@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author maryelen_cassia
  */
-public class ClienteDaoMySql {
+public class ClienteDaoMySql implements ClienteDao {
 
     private static final String INSERT = "insert into Cliente (nomeCliente, cpf, telefoneResidencial, telefoneCelular, telefoneRecado,"
             + " email, endereco, bairro, cidade, estado, complemento) values (?,?,?,?,?,?,?,?,?,?,?,?)";

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package facade;
 
 import DAO.ClienteDao;
@@ -16,58 +15,58 @@ import java.util.List;
  * @author maryelen_cassia
  */
 public class FacadeCliente {
-      
-    
-     public void salvar(Cliente cliente) {
-         
-if ((cliente.getNomeCliente() != null)
+
+    public void salvar(Cliente cliente) {
+
+        if ((cliente.getNomeCliente() != null)
                 || (cliente.getNomeCliente() != "")) {
+        }
+
+        if ((cliente.getCpf() != null)
+                || (cliente.getCpf() != "")) {
+        }
+
+        if ((cliente.getEmail() != null)
+                || (cliente.getEmail() != "")) {
 
         }
 
-        if (cliente.getCpf()!= null) {
-
-        }
-        if ((cliente.getEmail()!= null)
-                || (cliente.getEmail()!= "")) {
+        if ((cliente.getEndereco() != null)
+                || (cliente.getEndereco() != "")) {
 
         }
 
-        if ((cliente.getEndereco()!= null)
-                || (cliente.getEndereco()!= "")) {
-
-        }
-     
-        if ((cliente.getEstado()!= null)
-                || (cliente.getEstado()!= "")) {
+        if ((cliente.getEstado() != null)
+                || (cliente.getEstado() != "")) {
 
         }
 
-      /*  if ((cliente.get() != null)
-                || (cliente.getSinopseCliente() != "")) {
+        if ((cliente.getTelefoneCelular() != null)
+                || (cliente.getTelefoneCelular() != "")) {
 
         }
 
-        if ((cliente.getProdutoraCliente() != null)
-                || (cliente.getProdutoraCliente() != "")) {
+        if ((cliente.getTelefoneRecado() != null)
+                || (cliente.getTelefoneRecado() != "")) {
 
         }
-        if ((cliente.getClassificacaoIndicativaCliente()
-                != null) || (cliente.getClassificacaoIndicativaCliente() != "")) {
+        if ((cliente.getTelefoneResidencial()
+                != null) || (cliente.getTelefoneResidencial() != "")) {
 
         }
-        if (cliente.getValorPagoLocadora()
-                != 0) {
+
+        if ((cliente.getCidade() != null)
+                || (cliente.getCidade() != "")) {
 
         }
-        if ((cliente.getClassificacaoIndicativaCliente() != null)
-                || (cliente.getClassificacaoIndicativaCliente() != "")) {
+        if ((cliente.getBairro() != null)
+                || (cliente.getBairro() != "")) {
 
         }
-        if ((cliente.getClassificacaoValorCliente() != null)
-                || (cliente.getClassificacaoValorCliente() != "")) {
-
+        if ((cliente.getComplemento() != null)
+                || (cliente.getComplemento() != "")) {
         }
+
         ClienteDaoMySql dao = new ClienteDaoMySql();
         dao.salvar(cliente);
     }
@@ -82,10 +81,8 @@ if ((cliente.getNomeCliente() != null)
         dao.deletar(id);
     }
 
-  
-    
-    public Cliente getById(int id) throws ClassNotFoundException{
+    public Cliente getById(int id) throws ClassNotFoundException {
         ClienteDao dao = new ClienteDaoMySql();
         return dao.getById(id);
- */   }
+    }
 }
