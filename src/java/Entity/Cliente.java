@@ -24,7 +24,7 @@ public class Cliente {
     private String bairro;
     private String estado;
     private String complemento;
-    private Acesso acesso;
+   private int fk_acesso;
 
 
     public Integer getIdCliente() {
@@ -47,13 +47,15 @@ public class Cliente {
         return cpf;
     }
 
-    public Acesso getAcesso() {
-        return acesso;
+    public int getFk_acesso() {
+        return fk_acesso;
     }
 
-    public void setAcesso(Acesso acesso) {
-        this.acesso = acesso;
+    public void setFk_acesso(int fk_acesso) {
+        this.fk_acesso = fk_acesso;
     }
+
+
 
     public String getCidade() {
         return cidade;
