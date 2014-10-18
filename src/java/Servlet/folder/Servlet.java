@@ -5,6 +5,7 @@
  */
 package Servlet.folder;
 
+import Entity.Acesso;
 import Entity.Filme;
 import facade.Facade;
 import java.io.IOException;
