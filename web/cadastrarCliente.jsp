@@ -26,7 +26,7 @@
             Telefone Residencial: <input type="text" name="telefoneResidencial" value="${cliente.telefoneResidencial}" /><br />
             Telefone Celular: <input type="text" name="telefoneCelular" value="${cliente.telefoneCelular}" /><br />
             Telefone Recado: <input type="text" name="telefoneRecado:" value="${cliente.telefoneRecado}" />
-            <a href="servlet?acao=salvar"</a>
+            <a href="servlet?acao=validaAcesso"</a>
             <br />
             <br />
             <input type="submit" value="Enviar" />

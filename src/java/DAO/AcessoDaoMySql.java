@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAO;
 
 import Entity.Acesso;
@@ -16,26 +15,52 @@ import java.sql.SQLException;
  *
  * @author maryelen_cassia
  */
-public class AcessoDaoMySql {
-   
+public class AcessoDaoMySql implements AcessoDao{
 
+    private static final String VALIDA_ACESSO = "select * from acesso where login = ? and senha = ?";
     private static final String INSERT = "insert into Acesso(login, senha) values (?,?)";
     private static final String GET_BY_ID = "SELECT * FROM Acesso WHERE idAcesso = ?";
     private static final String DELETAR = "DELETE FROM Acesso WHERE idAcesso = ?";
     private static final String UPDATE = "update Acesso set login = ?, senha = ?"
             + " WHERE idAcesso = ? ";
+
+    public boolean validarAcesso(Acesso acesso){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Acesso a = new Acesso();
+        try {
+            con = Conexao.conectar();
+            ps = (PreparedStatement) con.prepareStatement(VALIDA_ACESSO);
+            ps.setString(1, acesso.getLogin());
+            ps.setString(2, acesso.getSenha());
+            
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+            con.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return false;
+
+    }
     
-     public void salvar(Acesso acesso) {
+    
+    public void salvar(Acesso acesso) {
         Connection con = null;
         PreparedStatement ps = null;
 
-        if (acesso.getIdAcesso() == 0){
+        if (acesso.getIdAcesso() == 0) {
             try {
                 con = Conexao.conectar();
                 ps = (PreparedStatement) con.prepareStatement(INSERT,
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 ps.setString(1, acesso.getLogin());
-                ps.setString(2, acesso.getSenha());                     
+                ps.setString(2, acesso.getSenha());
 
                 ps.execute();
                 con.close();
@@ -52,7 +77,6 @@ public class AcessoDaoMySql {
                 ps = (PreparedStatement) con.prepareStatement(UPDATE);
                 ps.setString(1, acesso.getLogin());
                 ps.setString(2, acesso.getSenha());
-                
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -60,9 +84,9 @@ public class AcessoDaoMySql {
                 Conexao.desconectar(con);
             }
         }
-     }
-        
-        public void deletar(int idAcesso) {
+    }
+
+    public void deletar(int idAcesso) {
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -76,9 +100,10 @@ public class AcessoDaoMySql {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    
+
     }
-        public Acesso getById(int id) throws ClassNotFoundException {
+
+    public Acesso getById(int id) throws ClassNotFoundException {
 
         Connection con = null;
         PreparedStatement ps = null;
@@ -94,7 +119,6 @@ public class AcessoDaoMySql {
                 a.setIdAcesso(rs.getInt("idAcesso"));
                 a.setLogin(rs.getString("login"));
                 a.setSenha(rs.getString("senha"));
-               
 
             }
             con.close();
@@ -105,5 +129,5 @@ public class AcessoDaoMySql {
         return a;
 
     }
-    
+
 }

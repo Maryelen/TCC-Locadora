@@ -8,6 +8,7 @@ package Servlet.folder;
 import Entity.Acesso;
 import Entity.Filme;
 import facade.Facade;
+import facade.FacadeAcesso;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,9 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Servlet extends HttpServlet {
 
-     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
-        
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Filme filme = new Filme();
         String acao = req.getParameter("acao");
         System.out.println(acao);
@@ -82,6 +82,21 @@ public class Servlet extends HttpServlet {
             rd.forward(req, resp);
         }
 
+        if (acao.equals("validaAcesso")) {
+            Acesso acesso = new Acesso();
+            FacadeAcesso facade = new FacadeAcesso();
+            acesso.setLogin(req.getParameter("login"));
+            acesso.setSenha(req.getParameter("senha"));
+            boolean resposta = facade.validarAcesso(acesso);
+            if (resposta == false) {
+                req.setAttribute("erroMensagem", "Login ou senha invalido");
+                RequestDispatcher rd = req.getRequestDispatcher("/telaDeAcesso.jsp");
+                rd.forward(req, resp);
+            } else {
+                RequestDispatcher rd = req.getRequestDispatcher("/index.html");
+                rd.forward(req, resp);
+            }
+        }
     }
 
     @Override
@@ -89,4 +104,3 @@ public class Servlet extends HttpServlet {
         doPost(req, resp);
     }
 }
-

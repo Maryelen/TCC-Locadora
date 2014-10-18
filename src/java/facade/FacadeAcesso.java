@@ -18,10 +18,12 @@ import java.util.List;
  */
 public class FacadeAcesso {
 
-    public void validarAcesso(Acesso acesso) {
+    public boolean validarAcesso(Acesso acesso) {
         if ((acesso.getLogin() != null) && (acesso.getSenha() != null)) {
             AcessoDaoMySql dao = new AcessoDaoMySql();
-            
+            return dao.validarAcesso(acesso);
+        }else{
+            return false;
         }
     }
 }
