@@ -33,7 +33,7 @@
                 <td><%=umFilme.getValorPagoLocadora()%></td>
                 <td><%=umFilme.getClassificacaoValorFilme()%></td>
                 <td><a href="servlet?acao=editarFilme&idFilme=<%=umFilme.getIdFilme()%>">EDITAR</a></td>
-                <td><a href="servlet?acao=excluir&idFilme=<%=umFilme.getIdFilme()%>">EXCLUIR</a></td>
+                <td><a href="servlet?acao=excluirFilme&idFilme=<%=umFilme.getIdFilme()%>">EXCLUIR</a></td>
             </tr> 
             <%
                 }

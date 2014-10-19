@@ -6,9 +6,11 @@
 package Servlet.folder;
 
 import Entity.Acesso;
+import Entity.Cliente;
 import Entity.Filme;
 import facade.Facade;
 import facade.FacadeAcesso;
+import facade.FacadeCliente;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -60,7 +62,7 @@ public class Servlet extends HttpServlet {
             rd.forward(req, resp);
         }
 
-        if (acao.equals("excluir")) {
+        if (acao.equals("excluirFilme")) {
             Facade facade = new Facade();
             Integer id = Integer.parseInt(req.getParameter("idFilme"));
             facade.deletar(id);
@@ -97,10 +99,66 @@ public class Servlet extends HttpServlet {
                 rd.forward(req, resp);
             }
         }
-    }
+    
+ Cliente cliente = new Cliente();
+        String acaoCliente = req.getParameter("acaoCliente");
+        System.out.println(acao);
+        if (acaoCliente.equals("novoCliente")) {
+            RequestDispatcher rd = req.getRequestDispatcher("/cadastrarCliente.jsp");
+            rd.forward(req, resp);
+        }
+        if (acaoCliente.equals("salvarCliente")) {
+            cliente.setIdCliente(Integer.parseInt(req.getParameter("idCliente")));
+            cliente.setNomeCliente(req.getParameter("nomeCliente"));
+            cliente.setBairro(req.getParameter("bairro"));
+            cliente.setCidade(req.getParameter("cidade"));
+            cliente.setComplemento(req.getParameter("complemento"));
+            cliente.setCpf(req.getParameter("cpf"));
+            cliente.setEmail(req.getParameter("email"));
+            cliente.setTelefoneCelular(req.getParameter("telefoneCelular"));
+            cliente.setTelefoneRecado(req.getParameter("telefoneRecado"));
+            cliente.setTelefoneResidencial(req.getParameter("telefoneResidencial"));
+            cliente.setEndereco(req.getParameter("endereco"));
+           
+            FacadeCliente facade = new FacadeCliente();
+            facade.salvar(cliente);
+            RequestDispatcher rd = req.getRequestDispatcher("servlet?acaoCliente=listarCliente");
+            rd.forward(req, resp);
+        }
+        if (acaoCliente.equals("listarCliente")) {
+            FacadeCliente facade = new FacadeCliente();
+            List<Cliente> lista = facade.getAll();
+            req.setAttribute("listaCliente", lista);
+            RequestDispatcher rd = req.getRequestDispatcher("/listarClientes.jsp");
+            rd.forward(req, resp);
+        }
 
+        if (acaoCliente.equals("excluirCliente")) {
+            Facade facade = new Facade();
+            Integer id = Integer.parseInt(req.getParameter("idCliente"));
+            facade.deletar(id);
+            RequestDispatcher rd = req.getRequestDispatcher("servlet?acaoCliente=listarCliente");
+            rd.forward(req, resp);
+        }
+
+        if (acaoCliente.equals("editarCliente")) {
+            FacadeCliente facade = new FacadeCliente();
+            Cliente edit = new Cliente();
+            Integer id = Integer.parseInt(req.getParameter("idCliente"));
+            try {
+                edit = facade.getById(id);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            req.setAttribute("editCliente", edit);
+            RequestDispatcher rd = req.getRequestDispatcher("/editarCliente.jsp");
+            rd.forward(req, resp);
+        }
+
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
 }
+              

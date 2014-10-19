@@ -13,7 +13,7 @@
     </head>
     <body>
         <form action="servlet" method="get">
-            <input type="hidden" name="acao" value="salvar">
+            <input type="hidden" name="acaoCliente" value="salvarCliente">
             <input type="hidden" name="idCliente" value="0"/>
             Nome: <input type="text" name="nomeCliente" value="${cliente.nomeCliente}" /><br />
             Email: <input type="text" name="email" value="${cliente.email}" /><br />
@@ -27,6 +27,7 @@
             Telefone Celular: <input type="text" name="telefoneCelular" value="${cliente.telefoneCelular}" /><br />
             Telefone Recado: <input type="text" name="telefoneRecado:" value="${cliente.telefoneRecado}" />
             <a href="servlet?acao=validaAcesso"</a>
+            <a href="servlet?acaoCliente=salvarCliente"</a>
             <br />
             <br />
             <input type="submit" value="Enviar" />
