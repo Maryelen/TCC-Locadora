@@ -40,6 +40,6 @@
             %>
         </table>
         <br/>
-        <a href="servlet?acao=novo">Novo filme</a>
+        <a href="servlet?acao=novoFilme">Novo filme</a>
     </body>
 </html>

@@ -13,7 +13,7 @@
             <fieldset>
                 <legend>Editar Filme</legend>
                 
-                <input type="hidden" name="acao" value="salvar"/>
+                <input type="hidden" name="acao" value="salvarFilme"/>
                 
                 <input type="hidden" name="idFilme" 
                        value="${editFilme.idFilme}" /> 
@@ -64,7 +64,7 @@
                 <input type="text" 
                        name="classificacaoValorFilme"  value="${editFilme.classificacaoValorFilme}" /> 
             </fieldset>
-            <input type='submit' value="salvar"/>
+            <input type='submit' value="salvarFilme"/>
         </form>
     </body>
 </html>

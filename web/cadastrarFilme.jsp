@@ -13,7 +13,7 @@
     </head>
     <body>
         <form action="servlet" method="get">
-            <input type="hidden" name="acao" value="salvar">
+            <input type="hidden" name="acao" value="salvarFilme">
             <input type="hidden" name="idFilme" value="0"/>
             Nome: <input type="text" name="nomeFilme" value="${filme.nomeFilme}" /><br />
             Ano: <input type="text" name="anoFilme" value="${filme.anoFilme}" /><br />
@@ -26,7 +26,7 @@
             Classificacao Indicativa: <input type="text" name="classificacaoFilme" value="${filme.classificacaoFilme}" /><br />
             Valor Pago: <input type="text" name="valorFilmePagoLocadora" value="${filme.valorFilmePagoLocadora}" /><br />
             Classificacao: <input type="text" name="classificacaoValorFilme" value="${filme.classificacaoValorFilme}" />
-            <a href="servlet?acao=salvar"</a>
+            <a href="servlet?acao=salvarFilme"</a>
             <br />
             <br />
             <input type="submit" value="Enviar" />

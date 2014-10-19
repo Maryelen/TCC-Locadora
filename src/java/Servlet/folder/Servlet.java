@@ -30,11 +30,11 @@ public class Servlet extends HttpServlet {
         Filme filme = new Filme();
         String acao = req.getParameter("acao");
         System.out.println(acao);
-        if (acao.equals("novo")) {
+        if (acao.equals("novoFilme")) {
             RequestDispatcher rd = req.getRequestDispatcher("/cadastrarFilme.jsp");
             rd.forward(req, resp);
         }
-        if (acao.equals("salvar")) {
+        if (acao.equals("salvarFilme")) {
             filme.setIdFilme(Integer.parseInt(req.getParameter("idFilme")));
             filme.setNomeFilme(req.getParameter("nomeFilme"));
             filme.setAnoFilme(Integer.parseInt(req.getParameter("anoFilme")));
@@ -49,10 +49,10 @@ public class Servlet extends HttpServlet {
             filme.setClassificacaoValorFilme(req.getParameter("classificacaoValorFilme"));
             Facade facade = new Facade();
             facade.salvar(filme);
-            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listar");
+            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listarFilme");
             rd.forward(req, resp);
         }
-        if (acao.equals("listar")) {
+        if (acao.equals("listarFilme")) {
             Facade facade = new Facade();
             List<Filme> lista = facade.getAll();
             req.setAttribute("listaFilme", lista);
@@ -64,7 +64,7 @@ public class Servlet extends HttpServlet {
             Facade facade = new Facade();
             Integer id = Integer.parseInt(req.getParameter("idFilme"));
             facade.deletar(id);
-            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listar");
+            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listarFilme");
             rd.forward(req, resp);
         }
 
