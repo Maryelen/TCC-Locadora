@@ -42,7 +42,7 @@ public class UsuarioDaoMySql implements UsuarioDao {
                 ps.setString(1, usuario.getLogin());
                 ps.setString(2, usuario.getSenha());
                 ps.setString(3, usuario.getPerguntaDeSeguranca());
-                ps.setInt(4,usuario.getId());
+                ps.setInt(4, usuario.getId());
             }
             ps.execute();
             con.close();
@@ -111,12 +111,13 @@ public class UsuarioDaoMySql implements UsuarioDao {
             ps.setInt(1, id);
             rs = ps.executeQuery();
 
-            usuario = new Usuario();
-            usuario.setId(rs.getInt("id"));
-            usuario.setLogin(rs.getString("login"));
-            usuario.setSenha(rs.getString("senha"));
-            usuario.setPerguntaDeSeguranca(rs.getString("perguntaDeSeguranca"));
-
+            while (rs.next()) {
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setPerguntaDeSeguranca(rs.getString("perguntaDeSeguranca"));
+            }
             con.close();
         } catch (SQLException ex) {
             ex.printStackTrace();

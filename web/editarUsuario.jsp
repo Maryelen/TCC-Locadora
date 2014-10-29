@@ -18,19 +18,19 @@
                 <input type="hidden" name="id" 
                        value="${editarUsuario.id}" /> 
 
-                <label for="nome">Nome:</label>
+                <label for="nome">Login:</label>
                 <input type="text" 
                        name="login" value="${editarUsuario.login}"/>
 
-                <label for="nome">Ano:</label>
-                <input type="text" 
+                <label for="nome">Senha:</label>
+                <input type="password" 
                        name="senha" value="${editarUsuario.senha}"/>
 
-                <label for="nome">Genero:</label>
+                <label for="nome">Pergunta De Seguranca</label>
                 <input type="text" 
                        name="perguntaDeSeguranca" value="${editarUsuario.perguntaDeSeguranca}"/>
             </fieldset>
-            <input type='submit' value="editarUsuario"/>
+            <input type='submit' value="Editar"/>
         </form>
     </body>
 </html>

@@ -25,8 +25,8 @@
                 <td><%=umUsuario.getLogin()%></td>
                 <td><%=umUsuario.getSenha()%></td>
                 <td><%=umUsuario.getPerguntaDeSeguranca()%></td>
-                <td><a href="servlet?acao=editarFilme&idFilme=<%=umUsuario.getId()%>">EDITAR</a></td>
-                <td><a href="servlet?acao=excluirFilme&idFilme=<%=umUsuario.getId()%>">EXCLUIR</a></td>
+                <td><a href="servlet?acao=editarUsuario&id=<%=umUsuario.getId()%>">EDITAR</a></td>
+                <td><a href="servlet?acao=excluirUsuario&id=<%=umUsuario.getId()%>">EXCLUIR</a></td>
             </tr> 
             <%
                 }

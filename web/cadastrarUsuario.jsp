@@ -16,7 +16,7 @@
             <input type="hidden" name="acao" value="salvarUsuario">
             <input type="hidden" name="id" value="0"/>
             Login: <input type="text" name="login" value="${usuario.login}" /><br />
-            Senha: <input type="text" name="senha" value="${usuario.senha}" /><br />
+            Senha: <input type="password" name="senha" value="${usuario.senha}" /><br />
             Pergunta de seguranção: <input type="text" name="perguntaDeSeguranca" value="${usuario.perguntaDeSeguranca}" /><br />
             <a href="Servlet?acao=salvarUsuario"</a>
             <br />

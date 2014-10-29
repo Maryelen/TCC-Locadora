@@ -45,15 +45,14 @@ public class Servlet extends HttpServlet {
 
             FacadeUsuario facade = new FacadeUsuario();
             facade.salvar(usuario);
-            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listarUsuario");
+            RequestDispatcher rd = req.getRequestDispatcher("servlet?acao=listarUsuarios");
             rd.forward(req, resp);
         }
 
-        if (acaoUsuario.equals(
-                "listarUsuarios")) {
+        if (acaoUsuario.equals("listarUsuarios")) {
             FacadeUsuario facade = new FacadeUsuario();
             List<Usuario> lista = facade.getAll();
-            req.setAttribute("listarUsuarios", lista);
+            req.setAttribute("listarUsuario", lista);
             RequestDispatcher rd = req.getRequestDispatcher("/listarUsuarios.jsp");
             rd.forward(req, resp);
         }
@@ -74,7 +73,7 @@ public class Servlet extends HttpServlet {
             Integer id = Integer.parseInt(req.getParameter("id"));
                 edit = facade.getById(id);
             
-            req.setAttribute("editarUsuario", edit);
+            req.setAttribute("editarUsuario", edit);    
             RequestDispatcher rd = req.getRequestDispatcher("/editarUsuario.jsp");
             rd.forward(req, resp);
         }
