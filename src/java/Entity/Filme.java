@@ -14,114 +14,103 @@ import java.util.Date;
 public class Filme {
 
     private int idFilme;
-    private String nomeFilme;
-    private int anoFilme;
-    private String diretorFilme;
-    private int codigoFilme;
-    private String midiaFilme;
-    private String sinopseFilme;
-    private String produtoraFilme;
-    private String classificacaoIndicativaFilme;
-    private double valorPagoLocadora;
-    private String classificacaoValorFilme;
+    private String titulo;
+    private int ano;
+    private String diretor;
+    private String midia;
+    private String sinopse;
+    private String produtora;
+    private String classificacaoIndicativa;
+    private double valor;
+    private String tipoFilme;
     private String generoFilme;
 
-    public void setIdFilme(int idFilme) {
-        this.idFilme = idFilme;
+    public int getIdFilme() {
+        return idFilme;
     }
 
- 
-
-    public void setNomeFilme(String nomeFilme) {
-        this.nomeFilme = nomeFilme;
+    public String getMidia() {
+        return midia;
     }
 
-    public void setAnoFilme(int anoFilme) {
-        this.anoFilme = anoFilme;
+    public void setMidia(String midia) {
+        this.midia = midia;
     }
 
-    public void setDiretorFilme(String diretorFilme) {
-        this.diretorFilme = diretorFilme;
+    public String getSinopse() {
+        return sinopse;
     }
 
-    public void setCodigoFilme(int codigoFilme) {
-        this.codigoFilme = codigoFilme;
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
     }
 
-    public void setMidiaFilme(String midiaFilme) {
-        this.midiaFilme = midiaFilme;
+    public String getProdutora() {
+        return produtora;
     }
 
-    public void setSinopseFilme(String sinopseFilme) {
-        this.sinopseFilme = sinopseFilme;
+    public void setProdutora(String produtora) {
+        this.produtora = produtora;
     }
 
-    public void setProdutoraFilme(String produtoraFilme) {
-        this.produtoraFilme = produtoraFilme;
+    public String getClassificacaoIndicativa() {
+        return classificacaoIndicativa;
     }
 
-    public void setClassificacaoIndicativaFilme(String classificacaoIndicativaFilme) {
-        this.classificacaoIndicativaFilme = classificacaoIndicativaFilme;
+    public void setClassificacaoIndicativa(String classificacaoIndicativa) {
+        this.classificacaoIndicativa = classificacaoIndicativa;
     }
 
-    public void setValorPagoLocadora(double valorPagoLocadora) {
-        this.valorPagoLocadora = valorPagoLocadora;
+    public double getValor() {
+        return valor;
     }
 
-    public void setClassificacaoValorFilme(String classificacaoValorFilme) {
-        this.classificacaoValorFilme = classificacaoValorFilme;
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public String getTipoFilme() {
+        return tipoFilme;
+    }
+
+    public void setTipoFilme(String tipoFilme) {
+        this.tipoFilme = tipoFilme;
+    }
+
+    public String getGeneroFilme() {
+        return generoFilme;
     }
 
     public void setGeneroFilme(String generoFilme) {
         this.generoFilme = generoFilme;
     }
 
-    public int getIdFilme() {
-        return idFilme;
+    public void setIdFilme(int idFilme) {
+        this.idFilme = idFilme;
     }
 
-    public String getNomeFilme() {
-        return nomeFilme;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public int getAnoFilme() {
-        return anoFilme;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getDiretorFilme() {
-        return diretorFilme;
+    public int getAno() {
+        return ano;
     }
 
-    public int getCodigoFilme() {
-        return codigoFilme;
+    public void setAno(int ano) {
+        this.ano = ano;
     }
 
-    public String getMidiaFilme() {
-        return midiaFilme;
+    public String getDiretor() {
+        return diretor;
     }
 
-    public String getSinopseFilme() {
-        return sinopseFilme;
-    }
-
-    public String getProdutoraFilme() {
-        return produtoraFilme;
-    }
-
-    public String getClassificacaoIndicativaFilme() {
-        return classificacaoIndicativaFilme;
-    }
-
-    public double getValorPagoLocadora() {
-        return valorPagoLocadora;
-    }
-
-    public String getClassificacaoValorFilme() {
-        return classificacaoValorFilme;
-    }
-
-    public String getGeneroFilme() {
-        return generoFilme;
+    public void setDiretor(String diretor) {
+        this.diretor = diretor;
     }
 
 }

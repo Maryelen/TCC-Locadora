@@ -17,7 +17,7 @@ import java.sql.Statement;
  */
 public class Conexao {
   
-    private static final String BANCO = "bdreservalocadora";
+    private static final String BANCO = "bdreserveaqui";
     private static final String USER = "root";
     private static final String PASSWD = "";
     private static final String DRIVER = "com.mysql.jdbc.Driver";

@@ -14,7 +14,7 @@ public class Reserva {
     
     private Integer idReserva;
     private Filme filme;
-    private Cliente cliente;
+    private Usuario cliente;
 
     public Integer getIdReserva() {
         return idReserva;
@@ -32,11 +32,11 @@ public class Reserva {
         this.filme = filme;
     }
 
-    public Cliente getCliente() {
+    public Usuario getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Usuario cliente) {
         this.cliente = cliente;
     }
     

@@ -3,21 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAO;
 
-import Entity.Acesso;
+import Entity.Usuario;
+import java.util.List;
 
 /**
  *
  * @author maryelen_cassia
  */
-public interface AcessoDao {
-    
-    public void salvar(Acesso acesso);
+public interface UsuarioDao {
 
-    public void deletar(int idAcesso);
+    public void salvar(Usuario cliente);
 
-    public Acesso getById(int idAcesso)throws ClassNotFoundException;
-    
+    public List<Usuario> getAll();
+
+    public void deletar(int idCliente);
+
+    public Usuario getById(int idCliente);
+
 }
