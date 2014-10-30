@@ -79,7 +79,11 @@ public class Servlet extends HttpServlet {
         }
 
     }
+    
+    /************************VALIDACAO PESQUISA FILME*********************************************************/
 
+    Filme filme = new Filme();
+   
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
