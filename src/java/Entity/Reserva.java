@@ -3,18 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
+
+import java.util.Date;
 
 /**
  *
  * @author maryelen_cassia
  */
 public class Reserva {
-    
+
     private Integer idReserva;
-    private Filme filme;
-    private Usuario cliente;
+    private Integer idUsuario;
+    private Integer idFilmeLocadora;
+    private String situacao;
+    private Date dtReserva;
+    private Date dtConfirmacao;
+    private Date dtConcluido;
+    private Date dtCancelado;
+    private String motivo;
 
     public Integer getIdReserva() {
         return idReserva;
@@ -24,21 +31,67 @@ public class Reserva {
         this.idReserva = idReserva;
     }
 
-    public Filme getFilme() {
-        return filme;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setFilme(Filme filme) {
-        this.filme = filme;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Usuario getCliente() {
-        return cliente;
+    public Integer getIdFilmeLocadora() {
+        return idFilmeLocadora;
     }
 
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
+    public void setIdFilmeLocadora(Integer idFilmeLocadora) {
+        this.idFilmeLocadora = idFilmeLocadora;
     }
-    
-    
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
+    public Date getDtReserva() {
+        return dtReserva;
+    }
+
+    public void setDtReserva(Date dtReserva) {
+        this.dtReserva = dtReserva;
+    }
+
+    public Date getDtConfirmacao() {
+        return dtConfirmacao;
+    }
+
+    public void setDtConfirmacao(Date dtConfirmacao) {
+        this.dtConfirmacao = dtConfirmacao;
+    }
+
+    public Date getDtConcluido() {
+        return dtConcluido;
+    }
+
+    public void setDtConcluido(Date dtConcluido) {
+        this.dtConcluido = dtConcluido;
+    }
+
+    public Date getDtCancelado() {
+        return dtCancelado;
+    }
+
+    public void setDtCancelado(Date dtCancelado) {
+        this.dtCancelado = dtCancelado;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
 }

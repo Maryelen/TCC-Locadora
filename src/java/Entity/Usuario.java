@@ -14,7 +14,8 @@ public class Usuario {
     private Integer id;
     private String login;
     private String senha;
-    private String perguntaDeSeguranca;
+    private String email;
+    private String nome;
 
     public Integer getId() {
         return id;
@@ -40,12 +41,19 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getPerguntaDeSeguranca() {
-        return perguntaDeSeguranca;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPerguntaDeSeguranca(String perguntaDeSeguranca) {
-        this.perguntaDeSeguranca = perguntaDeSeguranca;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

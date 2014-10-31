@@ -5,11 +5,13 @@
  */
 package DAO;
 
+import Interface.IUsuarioDao;
 import Entity.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,113 +19,185 @@ import java.util.List;
  *
  * @author maryelen_cassia
  */
-public class UsuarioDaoMySql implements UsuarioDao {
+public class UsuarioDaoMySql implements IUsuarioDao {
 
-    private static final String INSERT = "insert into usuario (login, senha, perguntaDeSeguranca) values (?,?,?)";
-    private static final String GET_BY_ID = "SELECT * FROM usuario WHERE id = ?";
-    private static final String GET_ALL = "select * from usuario";
-    private static final String DELETAR = "DELETE FROM usuario WHERE id = ?";
-    private static final String UPDATE = "update usuario set login = ?, senha = ?,perguntaDeSeguranca = ?"
-            + " WHERE id = ? ";
+    public int salvar(Usuario usuario) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
 
-    public void salvar(Usuario usuario) {
-        Connection con = null;
-        PreparedStatement ps = null;
+        int resultado = -1;
 
         try {
-            con = Conexao.conectar();
-            if (usuario.getId() == 0) {
-                ps = (PreparedStatement) con.prepareStatement(INSERT);
-                ps.setString(1, usuario.getLogin());
-                ps.setString(2, usuario.getSenha());
-                ps.setString(3, usuario.getPerguntaDeSeguranca());
-            } else {
-                ps = (PreparedStatement) con.prepareStatement(UPDATE);
-                ps.setString(1, usuario.getLogin());
-                ps.setString(2, usuario.getSenha());
-                ps.setString(3, usuario.getPerguntaDeSeguranca());
-                ps.setInt(4, usuario.getId());
-            }
-            ps.execute();
-            con.close();
+            conn = Conexao.conectar();
+            String QUERY_INSERT = "insert into usuario (nome, email, login, senha)values(?, ?, ?, ?)";
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getLogin());
+            stmt.setString(4, usuario.getSenha());
+
+            stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            resultado = rs.getInt(1);
+
+            conn.close();
+
+        } catch (SQLException ex) {
+
+            //ex.printStackTrace();
+
+            resultado = -1;
 
         } finally {
-            Conexao.desconectar(con);
+
+            return resultado;
         }
     }
 
-    public void deletar(int id) {
-        Connection con = null;
+    public boolean deletar(int id) {
+        Connection conn = null;
         PreparedStatement ps = null;
+        boolean resultado = false;
 
         try {
-            con = Conexao.conectar();
-            ps = (PreparedStatement) con.prepareStatement(DELETAR);
-            ps.setInt(1, id);
-            ps.execute();
-            con.close();
+            conn = Conexao.conectar();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            String QUERY_DELETE = "delete from usuario where idUsuario = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DELETE);
+            stmt.setInt(1, id);
+
+            stmt.executeUpdate();
+            conn.close();
+
+            resultado = true;
+
+            return resultado;
+        } catch (SQLException ex) {
+
+            //ex.printStackTrace();
+            resultado = false;
+
+        } finally {
+
+            return resultado;
         }
 
     }
 
     public List<Usuario> getAll() {
-        Connection con = null;
-        PreparedStatement ps = null;
+        Connection conn = null;
         ResultSet rs = null;
-        List<Usuario> lista = new ArrayList<Usuario>();
+        List<Usuario> lista = null;
         try {
-            con = Conexao.conectar();
+            conn = Conexao.conectar();
 
-            ps = (PreparedStatement) con.prepareStatement(GET_ALL);
-            rs = ps.executeQuery();
+            String QUERY_DETALHE = "select idcoordenador, nome, email from coordenador ";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
+            rs = stmt.executeQuery();
+
+            lista = new ArrayList<Usuario>();
 
             while (rs.next()) {
-                Usuario c = new Usuario();
-                c.setId(rs.getInt("id"));
-                c.setLogin(rs.getString("login"));
-                c.setSenha(rs.getString("senha"));
-                c.setPerguntaDeSeguranca(rs.getString("perguntaDeSeguranca"));
-                lista.add(c);
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("idUsuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
+
+                lista.add(usuario);
             }
-            con.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+
+            conn.close();
+
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+        } finally {
+
+            return lista;
         }
 
-        return lista;
     }
 
     public Usuario getById(int id) {
 
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        Connection conn = null;
         Usuario usuario = null;
         try {
-            con = Conexao.conectar();
-            ps = (PreparedStatement) con.prepareStatement(GET_BY_ID);
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
+            conn = Conexao.conectar();
+
+
+            String QUERY_DETALHE = "select idUsuario, nome, email, login, senha from usuario where idUsuario = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setInt(1, id);
+
+            ResultSet rs = null;
+
+            rs = stmt.executeQuery();
 
             while (rs.next()) {
-                usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
-                usuario.setLogin(rs.getString("login"));
-                usuario.setSenha(rs.getString("senha"));
-                usuario.setPerguntaDeSeguranca(rs.getString("perguntaDeSeguranca"));
-            }
-            con.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
 
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("idUsuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setEmail(rs.getString("login"));
+                usuario.setEmail(rs.getString("senha"));
+
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+        } finally {
+
+            return usuario;
         }
-        return usuario;
+    }
+
+    public boolean update(Usuario usuario) {
+
+        boolean resultado = false;
+
+        try {
+            PreparedStatement stmt = null;
+            Connection conn = Conexao.conectar();
+            String QUERY_UPDATE = "update coordenador set nome = ?, email = ?"
+                    + " login = ?, senha = ? where idcoordenador = ?";
+
+            stmt = conn.prepareStatement(QUERY_UPDATE);
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getLogin());
+            stmt.setString(4, usuario.getSenha());
+
+            if (usuario.getId() == null) {
+                stmt.setString(5, null);
+            } else {
+                stmt.setInt(5, usuario.getId());
+            }
+
+            stmt.executeUpdate();
+            conn.close();
+
+            resultado = true;
+
+        } catch (SQLException ex) {
+
+            //ex.printStackTrace();
+
+            resultado = false;
+
+        } finally {
+
+            return resultado;
+        }
 
     }
 }

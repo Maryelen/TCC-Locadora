@@ -13,104 +13,40 @@ import java.util.Date;
  */
 public class Filme {
 
-    private int idFilme;
-    private String titulo;
-    private int ano;
-    private String diretor;
-    private String midia;
-    private String sinopse;
-    private String produtora;
-    private String classificacaoIndicativa;
-    private double valor;
-    private String tipoFilme;
-    private String generoFilme;
+    private Integer idFilme;
+    private String nome;
+    private String descricao;
+    private String foto;
 
-    public int getIdFilme() {
+    public Integer getIdFilme() {
         return idFilme;
     }
 
-    public String getMidia() {
-        return midia;
-    }
-
-    public void setMidia(String midia) {
-        this.midia = midia;
-    }
-
-    public String getSinopse() {
-        return sinopse;
-    }
-
-    public void setSinopse(String sinopse) {
-        this.sinopse = sinopse;
-    }
-
-    public String getProdutora() {
-        return produtora;
-    }
-
-    public void setProdutora(String produtora) {
-        this.produtora = produtora;
-    }
-
-    public String getClassificacaoIndicativa() {
-        return classificacaoIndicativa;
-    }
-
-    public void setClassificacaoIndicativa(String classificacaoIndicativa) {
-        this.classificacaoIndicativa = classificacaoIndicativa;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public String getTipoFilme() {
-        return tipoFilme;
-    }
-
-    public void setTipoFilme(String tipoFilme) {
-        this.tipoFilme = tipoFilme;
-    }
-
-    public String getGeneroFilme() {
-        return generoFilme;
-    }
-
-    public void setGeneroFilme(String generoFilme) {
-        this.generoFilme = generoFilme;
-    }
-
-    public void setIdFilme(int idFilme) {
+    public void setIdFilme(Integer idFilme) {
         this.idFilme = idFilme;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public int getAno() {
-        return ano;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getDiretor() {
-        return diretor;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setDiretor(String diretor) {
-        this.diretor = diretor;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
-
 }
