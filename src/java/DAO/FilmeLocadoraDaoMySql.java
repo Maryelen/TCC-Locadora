@@ -32,12 +32,13 @@ public class FilmeLocadoraDaoMySql implements IFilmeLocadoraDao {
 
         try {
             conn = Conexao.conectar();
-            String QUERY_INSERT = "insert into filmeLocadora (idFilme, dtCadastramento)values(?, ?)";
+            String QUERY_INSERT = "insert into filmeLocadora (idFilme, dtCadastramento, idLocadora)values(?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, filmeLocadora.getIdFilme());
             stmt.setDate(2, (Date) filmeLocadora.getDtCadastramento());
-
+            stmt.setInt(3, filmeLocadora.getIdLocadora());
+            
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
@@ -96,7 +97,7 @@ public class FilmeLocadoraDaoMySql implements IFilmeLocadoraDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idFilmeLocadora, idFilme, dtCadastramento from filmeLocadora ";
+            String QUERY_DETALHE = "select idFilmeLocadora, idFilme, dtCadastramento, idLocadora from filmeLocadora ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             rs = stmt.executeQuery();
@@ -108,6 +109,7 @@ public class FilmeLocadoraDaoMySql implements IFilmeLocadoraDao {
                 filmeLocadora.setIdFilmeLocadora(rs.getInt("idFilmeLocadora"));
                 filmeLocadora.setIdFilme(rs.getInt("idFilme"));
                 filmeLocadora.setDtCadastramento(rs.getDate("dtCadastramento"));
+                filmeLocadora.setIdLocadora(rs.getInt("idLocadora"));
 
 
                 lista.add(filmeLocadora);
@@ -132,7 +134,7 @@ public class FilmeLocadoraDaoMySql implements IFilmeLocadoraDao {
             conn = Conexao.conectar();
 
 
-            String QUERY_DETALHE = "select idFilmeLocadora, idFilme, dtCadastramento from filmeLocadora "
+            String QUERY_DETALHE = "select idFilmeLocadora, idFilme, dtCadastramento, idLocadora from filmeLocadora "
                     + " where idfilmeLocadora = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
@@ -148,6 +150,7 @@ public class FilmeLocadoraDaoMySql implements IFilmeLocadoraDao {
                 filmeLocadora.setIdFilmeLocadora(rs.getInt("idFilmeLocadora"));
                 filmeLocadora.setIdFilme(rs.getInt("idFilme"));
                 filmeLocadora.setDtCadastramento(rs.getDate("dtCadastramento"));
+                filmeLocadora.setIdLocadora(rs.getInt("idLocadora"));
 
             }
 
@@ -168,12 +171,13 @@ public class FilmeLocadoraDaoMySql implements IFilmeLocadoraDao {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
             String QUERY_UPDATE = "update filmeLocadora set idFilme = ?, dtCadastramento = ?"
-                    + " where idFilmeLocadora = ?";
+                    + " idLocadora = ? where idFilmeLocadora = ?";
 
             stmt = conn.prepareStatement(QUERY_UPDATE);
             stmt.setInt(1, filmeLocadora.getIdFilme());
             stmt.setDate(2, (Date) filmeLocadora.getDtCadastramento());
-            stmt.setInt(3, filmeLocadora.getIdFilmeLocadora());
+            stmt.setInt(3, filmeLocadora.getIdLocadora());
+            stmt.setInt(4, filmeLocadora.getIdFilmeLocadora());
 
             if (filmeLocadora.getIdFilmeLocadora() == null) {
                 stmt.setString(4, null);

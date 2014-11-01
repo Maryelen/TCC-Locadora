@@ -15,6 +15,15 @@ public class FilmeLocadora {
     private Integer idFilmeLocadora;
     private Integer idFilme;
     private Date dtCadastramento;
+    private Integer idLocadora;
+
+    public Integer getIdLocadora() {
+        return idLocadora;
+    }
+
+    public void setIdLocadora(Integer idLocadora) {
+        this.idLocadora = idLocadora;
+    }
 
     public Integer getIdFilmeLocadora() {
         return idFilmeLocadora;

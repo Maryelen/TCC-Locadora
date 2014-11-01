@@ -11,8 +11,6 @@ package Entity;
 public class Locadora {
 
     private Integer id;
-    private Integer idUsuario;
-    private Integer idFilmeLocadora;
     private String nome;
     private String cnpj;
     private String rua;
@@ -33,22 +31,6 @@ public class Locadora {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Integer getIdFilmeLocadora() {
-        return idFilmeLocadora;
-    }
-
-    public void setIdFilmeLocadora(Integer idFilmeLocadora) {
-        this.idFilmeLocadora = idFilmeLocadora;
     }
 
     public String getNome() {

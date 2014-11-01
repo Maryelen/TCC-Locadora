@@ -19,13 +19,6 @@ CREATE TABLE filme (
 	foto VARCHAR(100) NULL
 );
 
-CREATE TABLE filmelocadora (
-	idfilmelocadora INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	idfilme INT NOT NULL,
-	dtcadastro DATE NULL,
-	CONSTRAINT fk_fimelocadora_filme FOREIGN KEY (idfilme) REFERENCES filme(idfilme) ON DELETE NO ACTION ON UPDATE CASCADE
-);
-
 CREATE TABLE locadora (
 	idlocadora INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	idusuario INT NOT NULL,
@@ -43,8 +36,17 @@ CREATE TABLE locadora (
 	telefonecontato VARCHAR(15) NULL,
 	email VARCHAR(100) NULL,
 	site VARCHAR(100) NULL,
-	CONSTRAINT fk_locadora_usuario FOREIGN KEY (idusuario) REFERENCES usuario (idusuario) ON DELETE NO ACTION ON UPDATE CASCADE,
-	CONSTRAINT fk_locadora_fimelocadora FOREIGN KEY (idfimelocadora) REFERENCES filmelocadora (idfilmelocadora) ON DELETE NO ACTION ON UPDATE CASCADE
+	CONSTRAINT fk_locadora_usuario FOREIGN KEY (idusuario) REFERENCES usuario (idusuario) ON DELETE NO ACTION ON UPDATE CASCADE
+	
+);
+
+CREATE TABLE filmelocadora (
+	idfilmelocadora INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	idfilme INT NOT NULL,
+	idlocadora INT NOT NULL,
+	dtcadastro DATE NULL,
+	CONSTRAINT fk_fimelocadora_filme FOREIGN KEY (idfilme) REFERENCES filme(idfilme) ON DELETE NO ACTION ON UPDATE CASCADE,
+    CONSTRAINT fk_filmelocadora_locadora FOREIGN KEY (idlocadora) REFERENCES locadora (idlocadora) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 CREATE TABLE reserva (

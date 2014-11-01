@@ -30,28 +30,26 @@ public class LocadoraDaoMySql implements ILocadoraDao {
         try {
             conn = Conexao.conectar();
             String QUERY_INSERT = "insert into locadora "
-                    + "(idUsuario, idFilmeLocadora"
-                    + ",nome, cnpj, rua, numero,complemento,bairro"
+                    + "( nome, cnpj, rua, numero,complemento,bairro"
                     + ", cidade, estado, cep, telefonecomercial, telefonecontato"
                     + ", email, site)"
-                    + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, locadora.getIdUsuario());
-            stmt.setInt(2, locadora.getIdFilmeLocadora());
-            stmt.setString(3, locadora.getNome());
-            stmt.setString(4, locadora.getCnpj());
-            stmt.setString(5, locadora.getRua());
-            stmt.setInt(6, locadora.getNumero());
-            stmt.setString(7, locadora.getComplemento());
-            stmt.setString(8, locadora.getBairro());
-            stmt.setString(9, locadora.getCidade());
-            stmt.setString(10, locadora.getEstado());
-            stmt.setString(11, locadora.getCep());
-            stmt.setString(12, locadora.getTelefoneComercial());
-            stmt.setString(13, locadora.getTelefoneContato());
-            stmt.setString(14, locadora.getEmail());
-            stmt.setString(15, locadora.getSite());
+            
+            stmt.setString(1, locadora.getNome());
+            stmt.setString(2, locadora.getCnpj());
+            stmt.setString(3, locadora.getRua());
+            stmt.setInt(4, locadora.getNumero());
+            stmt.setString(5, locadora.getComplemento());
+            stmt.setString(6, locadora.getBairro());
+            stmt.setString(7, locadora.getCidade());
+            stmt.setString(8, locadora.getEstado());
+            stmt.setString(9, locadora.getCep());
+            stmt.setString(10, locadora.getTelefoneComercial());
+            stmt.setString(11, locadora.getTelefoneContato());
+            stmt.setString(12, locadora.getEmail());
+            stmt.setString(13, locadora.getSite());
 
             stmt.executeUpdate();
 
@@ -111,7 +109,7 @@ public class LocadoraDaoMySql implements ILocadoraDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idLocadora, dUsuario, idFilmeLocadora"
+            String QUERY_DETALHE = "select idLocadora "
                     + ",nome, cnpj, rua, numero,complemento,bairro"
                     + ", cidade, estado, cep, telefonecomercial, telefonecontato"
                     + ", email, site from locadora ";
@@ -124,8 +122,6 @@ public class LocadoraDaoMySql implements ILocadoraDao {
             while (rs.next()) {
                 Locadora locadora = new Locadora();
                 locadora.setId(rs.getInt("idLocadora"));
-                locadora.setIdUsuario(rs.getInt("idUsuario"));
-                locadora.setIdFilmeLocadora(rs.getInt("idFilmeLocadora"));
                 locadora.setNome(rs.getString("nome"));
                 locadora.setCnpj(rs.getString("cnpj"));
                 locadora.setRua(rs.getString("rua"));
@@ -162,7 +158,7 @@ public class LocadoraDaoMySql implements ILocadoraDao {
             conn = Conexao.conectar();
 
 
-            String QUERY_DETALHE = "select idLocadora, dUsuario, idFilmeLocadora"
+            String QUERY_DETALHE = "select idLocadora "
                     + ",nome, cnpj, rua, numero,complemento,bairro"
                     + ", cidade, estado, cep, telefonecomercial, telefonecontato"
                     + ", email, site from locadora where idUsuario = ?";
@@ -178,8 +174,6 @@ public class LocadoraDaoMySql implements ILocadoraDao {
 
                 locadora = new Locadora();
                 locadora.setId(rs.getInt("idLocadora"));
-                locadora.setIdUsuario(rs.getInt("idUsuario"));
-                locadora.setIdFilmeLocadora(rs.getInt("idFilmeLocadora"));
                 locadora.setNome(rs.getString("nome"));
                 locadora.setCnpj(rs.getString("cnpj"));
                 locadora.setRua(rs.getString("rua"));
@@ -212,33 +206,25 @@ public class LocadoraDaoMySql implements ILocadoraDao {
         try {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
-            String QUERY_UPDATE = "update locadora set dUsuario = ?, idFilmeLocadora = ?"
-                    + ",nome = ?, cnpj = ?, rua = ?, numero = ?,complemento = ?,bairro = ?"
+            String QUERY_UPDATE = "update locadora set  "
+                    + " nome = ?, cnpj = ?, rua = ?, numero = ?,complemento = ?,bairro = ?"
                     + ", cidade = ?, estad = ?, cep = ?, telefonecomercial = ?, telefonecontato = ?"
                     + ", email = ?, site = ? where idLocadora = ?";
 
-            stmt.setInt(1, locadora.getIdUsuario());
-            stmt.setInt(2, locadora.getIdFilmeLocadora());
-            stmt.setString(3, locadora.getNome());
-            stmt.setString(4, locadora.getCnpj());
-            stmt.setString(5, locadora.getRua());
-            stmt.setInt(6, locadora.getNumero());
-            stmt.setString(7, locadora.getComplemento());
-            stmt.setString(8, locadora.getBairro());
-            stmt.setString(9, locadora.getCidade());
-            stmt.setString(10, locadora.getEstado());
-            stmt.setString(11, locadora.getCep());
-            stmt.setString(12, locadora.getTelefoneComercial());
-            stmt.setString(13, locadora.getTelefoneContato());
-            stmt.setString(14, locadora.getEmail());
-            stmt.setString(15, locadora.getSite());
-            stmt.setInt(16, locadora.getId());
-
-            if (locadora.getId()== null) {
-                stmt.setString(6, null);
-            } else {
-                stmt.setInt(5, locadora.getId());
-            }
+            stmt.setString(1, locadora.getNome());
+            stmt.setString(2, locadora.getCnpj());
+            stmt.setString(3, locadora.getRua());
+            stmt.setInt(4, locadora.getNumero());
+            stmt.setString(5, locadora.getComplemento());
+            stmt.setString(6, locadora.getBairro());
+            stmt.setString(7, locadora.getCidade());
+            stmt.setString(8, locadora.getEstado());
+            stmt.setString(9, locadora.getCep());
+            stmt.setString(10, locadora.getTelefoneComercial());
+            stmt.setString(11, locadora.getTelefoneContato());
+            stmt.setString(12, locadora.getEmail());
+            stmt.setString(13, locadora.getSite());
+            stmt.setInt(14, locadora.getId());
 
             stmt.executeUpdate();
             conn.close();

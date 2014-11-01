@@ -31,8 +31,8 @@ public class ReservaDaoMySql implements IReservaDao {
         try {
             conn = Conexao.conectar();
             String QUERY_INSERT = "insert into reserva (idUsuario, idFilmeLocadora"
-                    + ",situacao, dtCancelamento, dtConcluido, dtConfirmado,dtReserva,motivo)"
-                    + " values(?, ?, ?, ?, ?, ?, ?, ?)";
+                    + ",situacao, dtCancelamento, dtConcluido, dtConfirmado,motivo, dtReserva)"
+                    + " values(?, ?, ?, ?, ?, ?, ?, getDate())";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, reserva.getIdUsuario());
@@ -41,8 +41,7 @@ public class ReservaDaoMySql implements IReservaDao {
             stmt.setDate(4, (Date) reserva.getDtCancelado());
             stmt.setDate(5, (Date) reserva.getDtConcluido());
             stmt.setDate(6, (Date) reserva.getDtConfirmacao());
-            stmt.setDate(7, (Date) reserva.getDtReserva());
-            stmt.setString(8, reserva.getMotivo());
+            stmt.setString(7, reserva.getMotivo());
 
             stmt.executeUpdate();
 
@@ -144,7 +143,7 @@ public class ReservaDaoMySql implements IReservaDao {
             conn = Conexao.conectar();
 
 
-            String QUERY_DETALHE = "\"select idReserva, idUsuario, idFilmeLocadora, situacao,"
+            String QUERY_DETALHE = "select idReserva, idUsuario, idFilmeLocadora, situacao,"
                     + " dtReserva, dtConfirmado, dtConcluido, dtCancelado, motivo "
                     + "from reserva where idUsuario = ?";
 
@@ -186,8 +185,9 @@ public class ReservaDaoMySql implements IReservaDao {
         try {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
-            String QUERY_UPDATE = "update coordenador set nome = ?, email = ?"
-                    + " login = ?, senha = ? where idcoordenador = ?";
+            String QUERY_UPDATE = "update reserva set idUsuario = ?, idFilmeLocadora = ?"
+                    + " situacao = ?, dtCancelamento = ?, dtConcluido =?, dtConfirmacao = ?,"
+                    + " dtReserva = ? , motivo = ? where idReserva = ?";
 
             stmt = conn.prepareStatement(QUERY_UPDATE);
             stmt.setInt(1, reserva.getIdUsuario());
@@ -198,6 +198,7 @@ public class ReservaDaoMySql implements IReservaDao {
             stmt.setDate(6, (Date) reserva.getDtConfirmacao());
             stmt.setDate(7, (Date) reserva.getDtReserva());
             stmt.setString(8, reserva.getMotivo());
+            stmt.setInt(9, reserva.getIdReserva());
 
             if (reserva.getIdReserva()== null) {
                 stmt.setString(5, null);
