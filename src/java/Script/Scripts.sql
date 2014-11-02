@@ -21,8 +21,6 @@ CREATE TABLE filme (
 
 CREATE TABLE locadora (
 	idlocadora INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	idusuario INT NOT NULL,
-	idfimelocadora INT NOT NULL,
 	nome VARCHAR(255) NOT NULL,
 	cnpj VARCHAR(16) NOT NULL,
 	rua VARCHAR(150) NULL,
@@ -36,7 +34,6 @@ CREATE TABLE locadora (
 	telefonecontato VARCHAR(15) NULL,
 	email VARCHAR(100) NULL,
 	site VARCHAR(100) NULL,
-	CONSTRAINT fk_locadora_usuario FOREIGN KEY (idusuario) REFERENCES usuario (idusuario) ON DELETE NO ACTION ON UPDATE CASCADE
 	
 );
 

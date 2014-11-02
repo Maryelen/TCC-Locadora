@@ -58,46 +58,54 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Bairro</label>
-                                <input class="form-control" placeholder="Informe o Bairro" type="text" id="txtBairro" name="txtBairro">
+                                <label>Cep</label>
+                                <input class="form-control" placeholder="Informe o Cep" type="text" id="txtCep" name="txtCep">
                             </div>
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Bairro</label>
+                                <input class="form-control" placeholder="Informe o Bairro" type="text" id="txtBairro" name="txtBairro">
+                            </div>
+                        </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Cidade</label>
                                 <input class="form-control" placeholder="Informe a Cidade" type="text" id="txtCidade" name="txtCidade">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Estado</label>
                                 <input class="form-control" placeholder="Informe o Estado" type="text" id="txtEstado" name="txtEstado">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Telefone Comercial</label>
                                 <input class="form-control" placeholder="Informe o Telefone Comercial" type="text" id="txtTelefoneComercial" name="txtTelefoneComercial">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Telefone de Contato</label>
                                 <input class="form-control" placeholder="Informe o Telefone de Contato" type="text" id="txtTelefoneContato" name="txtTelefoneContato">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input class="form-control" placeholder="Informe o Email" type="text" id="txtEmail" name="txtEmail">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Site</label>
@@ -154,6 +162,7 @@
                     , txtTelefoneContato: document.forms["formAtual"].elements["txtTelefoneContato"].value
                     , txtEmail: document.forms["formAtual"].elements["txtEmail"].value
                     , txtSite: document.forms["formAtual"].elements["txtSite"].value
+
         }, function(responseTxt, statusTxt, xhr) {
             if (statusTxt == "error")
                 alert("Error: " + xhr.status + ": " + xhr.statusText);
