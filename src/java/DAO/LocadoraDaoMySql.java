@@ -110,8 +110,8 @@ public class LocadoraDaoMySql implements ILocadoraDao {
             conn = Conexao.conectar();
 
             String QUERY_DETALHE = "select idLocadora "
-                    + ",nome, cnpj, rua, numero,complemento,bairro"
-                    + ", cidade, estado, cep, telefonecomercial, telefonecontato"
+                    + ",nome, cnpj, rua, numero,complemento,bairro "
+                    + ", cidade, estado, cep, telefonecomercial, telefonecontato "
                     + ", email, site from locadora ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
@@ -208,7 +208,7 @@ public class LocadoraDaoMySql implements ILocadoraDao {
             Connection conn = Conexao.conectar();
             String QUERY_UPDATE = "update locadora set  "
                     + " nome = ?, cnpj = ?, rua = ?, numero = ?,complemento = ?,bairro = ?"
-                    + ", cidade = ?, estad = ?, cep = ?, telefonecomercial = ?, telefonecontato = ?"
+                    + ", cidade = ?, estado = ?, cep = ?, telefonecomercial = ?, telefonecontato = ?"
                     + ", email = ?, site = ? where idLocadora = ?";
 
             stmt.setString(1, locadora.getNome());

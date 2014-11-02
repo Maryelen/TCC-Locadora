@@ -95,7 +95,7 @@ public class UsuarioDaoMySql implements IUsuarioDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idcoordenador, nome, email from coordenador ";
+            String QUERY_DETALHE = "select idUsuario, nome, email,login,senha from usuario ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             rs = stmt.executeQuery();
@@ -147,8 +147,8 @@ public class UsuarioDaoMySql implements IUsuarioDao {
                 usuario.setId(rs.getInt("idUsuario"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
-                usuario.setEmail(rs.getString("login"));
-                usuario.setEmail(rs.getString("senha"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
 
             }
 
@@ -164,12 +164,11 @@ public class UsuarioDaoMySql implements IUsuarioDao {
     public boolean update(Usuario usuario) {
 
         boolean resultado = false;
-
+        
         try {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
-            String QUERY_UPDATE = "update coordenador set nome = ?, email = ?"
-                    + " login = ?, senha = ? where idcoordenador = ?";
+            String QUERY_UPDATE = "update usuario set nome = ?, email = ?, login = ?, senha = ? where idUsuario = ?";
 
             stmt = conn.prepareStatement(QUERY_UPDATE);
             stmt.setString(1, usuario.getNome());
