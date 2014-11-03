@@ -71,7 +71,7 @@ public class ControllerFilme implements Controller {
         Filme retorno = new Filme();
 
         if (pRequest.getParameter("txtId") != null) {
-            retorno.setIdFilme(Integer.parseInt(pRequest.getParameter("txtId")));
+            retorno.setId(Integer.parseInt(pRequest.getParameter("txtId")));
         }
 
         if (pRequest.getParameter("txtNome") != null) {
@@ -133,7 +133,7 @@ public class ControllerFilme implements Controller {
         FilmeDaoMySql filmeDao = new FilmeDaoMySql();
         Filme filme = requestForm(pRequest);
 
-        boolean retorno = filmeDao.deletar(filme.getIdFilme());
+        boolean retorno = filmeDao.deletar(filme.getId());
 
         if (retorno) {
             mostraAlertMsg(pRequest, pResponse, "OK", "Excluir de Filme", "Registro excluido com sucesso!", "filme", "listar");
@@ -155,7 +155,7 @@ public class ControllerFilme implements Controller {
             for (Filme filme : lista) {
 
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("id", (filme.getIdFilme()) + "");
+                map.put("id", (filme.getId()) + "");
                 map.put("nome", filme.getNome());
                 map.put("descricao", filme.getDescricao());
                 map.put("foto", filme.getFoto());
@@ -179,12 +179,12 @@ public class ControllerFilme implements Controller {
 
         FilmeDaoMySql filmeDao = new FilmeDaoMySql();
 
-        Filme filme = filmeDao.getById(requestForm(pRequest).getIdFilme());
+        Filme filme = filmeDao.getById(requestForm(pRequest).getId());
 
         if (filme != null) {
 
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put("id", (filme.getIdFilme()) + "");
+            map.put("id", (filme.getId()) + "");
             map.put("nome", filme.getNome());
             map.put("descricao", filme.getDescricao());
             map.put("foto", filme.getFoto());

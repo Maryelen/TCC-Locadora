@@ -5,7 +5,7 @@
  */
 package Entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -13,9 +13,9 @@ import java.util.Date;
  */
 public class Reserva {
 
-    private Integer idReserva;
-    private Integer idUsuario;
-    private Integer idFilmeLocadora;
+    private Integer id;
+    private Usuario usuario;
+    private FilmeLocadora filmeLocadora;
     private String situacao;
     private Date dtReserva;
     private Date dtConfirmacao;
@@ -23,28 +23,28 @@ public class Reserva {
     private Date dtCancelado;
     private String motivo;
 
-    public Integer getIdReserva() {
-        return idReserva;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdReserva(Integer idReserva) {
-        this.idReserva = idReserva;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Integer getIdFilmeLocadora() {
-        return idFilmeLocadora;
+    public FilmeLocadora getFilmeLocadora() {
+        return filmeLocadora;
     }
 
-    public void setIdFilmeLocadora(Integer idFilmeLocadora) {
-        this.idFilmeLocadora = idFilmeLocadora;
+    public void setFilmeLocadora(FilmeLocadora filmeLocadora) {
+        this.filmeLocadora = filmeLocadora;
     }
 
     public String getSituacao() {
@@ -94,4 +94,5 @@ public class Reserva {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
+
 }

@@ -4,7 +4,7 @@
  */
 package Entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -12,33 +12,33 @@ import java.util.Date;
  */
 public class FilmeLocadora {
 
-    private Integer idFilmeLocadora;
-    private Integer idFilme;
+    private Integer id;
+    private Filme filme;
+    private Locadora locadora;
     private Date dtCadastramento;
-    private Integer idLocadora;
 
-    public Integer getIdLocadora() {
-        return idLocadora;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdLocadora(Integer idLocadora) {
-        this.idLocadora = idLocadora;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getIdFilmeLocadora() {
-        return idFilmeLocadora;
+    public Filme getFilme() {
+        return filme;
     }
 
-    public void setIdFilmeLocadora(Integer idFilmeLocadora) {
-        this.idFilmeLocadora = idFilmeLocadora;
+    public void setFilme(Filme filme) {
+        this.filme = filme;
     }
 
-    public Integer getIdFilme() {
-        return idFilme;
+    public Locadora getLocadora() {
+        return locadora;
     }
 
-    public void setIdFilme(Integer idFilme) {
-        this.idFilme = idFilme;
+    public void setLocadora(Locadora locadora) {
+        this.locadora = locadora;
     }
 
     public Date getDtCadastramento() {

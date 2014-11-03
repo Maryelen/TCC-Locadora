@@ -31,6 +31,8 @@
                                 <th>Nome</th>
                                 <th>Descrição</th>
                                 <th>Foto</th>
+                                <th>Locadora</th>
+
                                 <th width="160px">Acao</th>
                             </tr>
                         </thead>

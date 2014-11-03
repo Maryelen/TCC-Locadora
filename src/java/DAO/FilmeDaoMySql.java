@@ -103,7 +103,7 @@ public class FilmeDaoMySql implements IFilmeDao {
 
             while (rs.next()) {
                 Filme filme = new Filme();
-                filme.setIdFilme(rs.getInt("idFilme"));
+                filme.setId(rs.getInt("idFilme"));
                 filme.setNome(rs.getString("nome"));
                 filme.setDescricao(rs.getString("descricao"));
                 filme.setFoto(rs.getString("foto"));
@@ -142,7 +142,7 @@ public class FilmeDaoMySql implements IFilmeDao {
             while (rs.next()) {
 
                 filme = new Filme();
-                filme.setIdFilme(rs.getInt("idFilme"));
+                filme.setId(rs.getInt("idFilme"));
                 filme.setNome(rs.getString("nome"));
                 filme.setDescricao(rs.getString("descricao"));
                 filme.setFoto(rs.getString("foto"));
@@ -172,10 +172,10 @@ public class FilmeDaoMySql implements IFilmeDao {
             stmt.setString(2, filme.getDescricao());
             stmt.setString(3, filme.getFoto());
 
-            if (filme.getIdFilme() == null) {
+            if (filme.getId() == null) {
                 stmt.setString(4, null);
             } else {
-                stmt.setInt(4, filme.getIdFilme());
+                stmt.setInt(4, filme.getId());
             }
 
             stmt.executeUpdate();

@@ -19,6 +19,8 @@ public interface IFilmeLocadoraDao {
 
     public List<FilmeLocadora> getAll();
 
+    public List<FilmeLocadora> getAllByIdLocadora(int id);
+
     public boolean deletar(int id);
 
     public FilmeLocadora getById(int id);
