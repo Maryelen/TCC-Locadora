@@ -7,7 +7,9 @@ package servlet;
 
 
 import controller.Controller;
+import controller.ControllerFilme;
 import controller.ControllerLocadora;
+import controller.ControllerReserva;
 import controller.ControllerUsuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -26,10 +28,13 @@ public class servlet extends HttpServlet {
 
         Controller vObjeto = null;
         if (request.getParameter("txtObjeto").equals("usuario")) {
-
             vObjeto = new ControllerUsuario();
         }else if (request.getParameter("txtObjeto").equals("locadora")){
             vObjeto = new ControllerLocadora();
+        }else if (request.getParameter("txtObjeto").equals("filme")){
+            vObjeto = new ControllerFilme();
+        }else if (request.getParameter("txtObjeto").equals("reserva")){
+            vObjeto = new ControllerReserva();
         }
 
         if (request.getParameter("txtMetodo").equals("principal")) {
