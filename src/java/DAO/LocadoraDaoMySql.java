@@ -61,7 +61,7 @@ public class LocadoraDaoMySql implements ILocadoraDao {
 
         } catch (SQLException ex) {
 
-            //ex.printStackTrace();
+            ex.printStackTrace();
 
             resultado = -1;
 
@@ -161,7 +161,7 @@ public class LocadoraDaoMySql implements ILocadoraDao {
             String QUERY_DETALHE = "select idLocadora "
                     + ",nome, cnpj, rua, numero,complemento,bairro"
                     + ", cidade, estado, cep, telefonecomercial, telefonecontato"
-                    + ", email, site from locadora where idUsuario = ?";
+                    + ", email, site from locadora where idLocadora = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             stmt.setInt(1, id);
@@ -206,11 +206,12 @@ public class LocadoraDaoMySql implements ILocadoraDao {
         try {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
-            String QUERY_UPDATE = "update locadora set  "
-                    + " nome = ?, cnpj = ?, rua = ?, numero = ?,complemento = ?,bairro = ?"
-                    + ", cidade = ?, estado = ?, cep = ?, telefonecomercial = ?, telefonecontato = ?"
-                    + ", email = ?, site = ? where idLocadora = ?";
+            String QUERY_UPDATE = "update locadora set nome = ?, cnpj = ?, rua = ?, numero = ?"
+                    + ",complemento = ?,bairro = ?, cidade = ?, estado = ?, cep = ?"
+                    + ", telefonecomercial = ?, telefonecontato = ?, email = ?, site = ? "
+                    + " where idLocadora = ?";
 
+            stmt = conn.prepareStatement(QUERY_UPDATE);
             stmt.setString(1, locadora.getNome());
             stmt.setString(2, locadora.getCnpj());
             stmt.setString(3, locadora.getRua());

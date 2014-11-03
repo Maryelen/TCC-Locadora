@@ -77,42 +77,42 @@ public class ControllerLocadora implements Controller {
         }
 
         if (pRequest.getParameter("txtCnpj") != null) {
-            retorno.setEmail(pRequest.getParameter("txtCnpj"));
+            retorno.setCnpj(pRequest.getParameter("txtCnpj"));
         }
 
         if (pRequest.getParameter("txtRua") != null) {
-            retorno.setEmail(pRequest.getParameter("txtRua"));
+            retorno.setRua(pRequest.getParameter("txtRua"));
         }
 
         if (pRequest.getParameter("txtNumero") != null) {
-            retorno.setEmail(pRequest.getParameter("txtNumero"));
+            retorno.setNumero(Integer.parseInt(pRequest.getParameter("txtNumero")));
         }
 
         if (pRequest.getParameter("txtComplemento") != null) {
-            retorno.setEmail(pRequest.getParameter("txtComplemento"));
+            retorno.setComplemento(pRequest.getParameter("txtComplemento"));
         }
 
         if (pRequest.getParameter("txtBairro") != null) {
-            retorno.setEmail(pRequest.getParameter("txtBairro"));
+            retorno.setBairro(pRequest.getParameter("txtBairro"));
         }
 
         if (pRequest.getParameter("txtCidade") != null) {
-            retorno.setEmail(pRequest.getParameter("txtCidade"));
+            retorno.setCidade(pRequest.getParameter("txtCidade"));
         }
         if (pRequest.getParameter("txtEstado") != null) {
-            retorno.setEmail(pRequest.getParameter("txtEstado"));
+            retorno.setEstado(pRequest.getParameter("txtEstado"));
         }
 
         if (pRequest.getParameter("txtCep") != null) {
-            retorno.setEmail(pRequest.getParameter("txtCep"));
+            retorno.setCep(pRequest.getParameter("txtCep"));
         }
 
         if (pRequest.getParameter("txtTelefoneComercial") != null) {
-            retorno.setEmail(pRequest.getParameter("txtTelefoneComercial"));
+            retorno.setTelefoneComercial(pRequest.getParameter("txtTelefoneComercial"));
         }
 
         if (pRequest.getParameter("txtTelefoneContato") != null) {
-            retorno.setEmail(pRequest.getParameter("txtTelefoneContato"));
+            retorno.setTelefoneContato(pRequest.getParameter("txtTelefoneContato"));
         }
 
         if (pRequest.getParameter("txtEmail") != null) {
@@ -121,7 +121,7 @@ public class ControllerLocadora implements Controller {
 
 
         if (pRequest.getParameter("txtSite") != null) {
-            retorno.setEmail(pRequest.getParameter("txtSite"));
+            retorno.setSite(pRequest.getParameter("txtSite"));
         }
 
         return retorno;
@@ -193,7 +193,7 @@ public class ControllerLocadora implements Controller {
             for (Locadora locadora : lista) {
 
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("id", Integer.toString(locadora.getId()));
+                map.put("id", (locadora.getId())+"");
                 map.put("nome", locadora.getNome());
                 map.put("Cnpj", locadora.getCnpj());
                 map.put("rua", locadora.getRua());
@@ -211,7 +211,7 @@ public class ControllerLocadora implements Controller {
 
             }
 
-            pRequest.setAttribute("locadora", resultado);
+            pRequest.setAttribute("locadoras", resultado);
 
             RequestDispatcher rd = pRequest.getRequestDispatcher("/listarLocadoras.jsp");
             rd.forward(pRequest, pResponse);

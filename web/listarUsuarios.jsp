@@ -52,7 +52,6 @@
                                             <i class="fa fa-trash-o fa-fw"></i>Excluir
                                         </a>                        
                                     </td>
-
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -80,9 +79,9 @@
         $("#conteudoForm").load("servlet", {
             //variaveis de controle
             txtObjeto: 'usuario'
-            , txtMetodo: 'detalhe'
+                    , txtMetodo: 'detalhe'
                     //variaveis para o objeto
-            , txtId: this.id
+                    , txtId: this.id
         }, function(responseTxt, statusTxt, xhr) {
             if (statusTxt == "error")
                 alert("Error: " + xhr.status + ": " + xhr.statusText);
@@ -94,9 +93,9 @@
             $("#conteudoForm").load("servlet", {
                 //variaveis de controle
                 txtObjeto: 'usuario'
-                , txtMetodo: 'deletar'
+                        , txtMetodo: 'deletar'
                         //variaveis para o objeto
-                , txtId: this.id
+                        , txtId: this.id
             }, function(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "error")
                     alert("Error: " + xhr.status + ": " + xhr.statusText);

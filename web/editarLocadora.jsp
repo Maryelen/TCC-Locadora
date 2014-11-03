@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Usuário</h1>
+        <h1 class="page-header">Locadora</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -30,13 +30,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Nome</label>
-                                        <input class="form-control" placeholder="Informe o nome" type="text" id="txtNome" name="txtNome">
+                                        <input class="form-control" placeholder="Informe o nome" type="text" id="txtNome" name="txtNome" value="${locadora.nome}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Cnpj</label>
-                                        <input class="form-control" placeholder="Informe o Cnpj" type="text" id="txtCnpj" name="txtCnpj">
+                                        <input class="form-control" placeholder="Informe o Cnpj" type="text" id="txtCnpj" name="txtCnpj" value="${locadora.Cnpj}">
                                     </div>
                                 </div>
                             </div>
@@ -44,13 +44,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Rua</label>
-                                        <input class="form-control" placeholder="Informe a Rua" type="text" id="txtRua" name="txtRua">
+                                        <input class="form-control" placeholder="Informe a Rua" type="text" id="txtRua" name="txtRua" value="${locadora.rua}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Número</label>
-                                        <input class="form-control" placeholder="Informe o Número" type="text" id="txtNumero" name="txtNumero">
+                                        <input class="form-control" placeholder="Informe o Número" type="text" id="txtNumero" name="txtNumero" value="${locadora.numero}">
                                     </div>
                                 </div>
                             </div>
@@ -58,55 +58,63 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Complemento</label>
-                                        <input class="form-control" placeholder="Informe o Complemento" type="text" id="txtComplemento" name="txtComplemento">
+                                        <input class="form-control" placeholder="Informe o Complemento" type="text" id="txtComplemento" name="txtComplemento" value="${locadora.complemento}">
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Cep</label>
+                                        <input class="form-control" placeholder="Informe o Cep" type="text" id="txtCep" name="txtCep" value="${locadora.cep}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Bairro</label>
-                                        <input class="form-control" placeholder="Informe o Bairro" type="text" id="txtBairro" name="txtBairro">
+                                        <input class="form-control" placeholder="Informe o Bairro" type="text" id="txtBairro" name="txtBairro" value="${locadora.bairro}">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Cidade</label>
-                                        <input class="form-control" placeholder="Informe a Cidade" type="text" id="txtCidade" name="txtCidade">
+                                        <input class="form-control" placeholder="Informe a Cidade" type="text" id="txtCidade" name="txtCidade" value="${locadora.cidade}">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Estado</label>
-                                        <input class="form-control" placeholder="Informe o Estado" type="text" id="txtEstado" name="txtEstado">
+                                        <input class="form-control" placeholder="Informe o Estado" type="text" id="txtEstado" name="txtEstado" value="${locadora.estado}">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Telefone Comercial</label>
-                                        <input class="form-control" placeholder="Informe o Telefone Comercial" type="text" id="txtTelefoneComercial" name="txtTelefoneComercial">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Telefone de Contato</label>
-                                        <input class="form-control" placeholder="Informe o Telefone de Contato" type="text" id="txtTelefoneContato" name="txtTelefoneContato">
+                                        <input class="form-control" placeholder="Informe o Telefone Comercial" type="text" id="txtTelefoneComercial" name="txtTelefoneComercial" value="${locadora.telefoneComercial}">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" placeholder="Informe o Email" type="text" id="txtEmail" name="txtEmail">
+                                        <label>Telefone de Contato</label>
+                                        <input class="form-control" placeholder="Informe o Telefone de Contato" type="text" id="txtTelefoneContato" name="txtTelefoneContato" value="${locadora.telefoneContato}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
+                                        <label>Email</label>
+                                        <input class="form-control" placeholder="Informe o Email" type="text" id="txtEmail" name="txtEmail" value="${locadora.email}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
                                         <label>Site</label>
-                                        <input class="form-control" placeholder="Informe o Site" type="text" id="txtSite" name="txtSite">
+                                        <input class="form-control" placeholder="Informe o Site" type="text" id="txtSite" name="txtSite" value="${locadora.site}">
                                     </div>
                                 </div>
                             </div>
@@ -141,6 +149,7 @@
                 txtObjeto: document.forms["formAtual"].elements["txtObjeto"].value
                         , txtMetodo: document.forms["formAtual"].elements["txtMetodo"].value
                         //variaveis para o objeto locadora
+                        , txtId: document.forms["formAtual"].elements["txtId"].value
                         , txtNome: document.forms["formAtual"].elements["txtNome"].value
                         , txtCnpj: document.forms["formAtual"].elements["txtCnpj"].value
                         , txtRua: document.forms["formAtual"].elements["txtRua"].value

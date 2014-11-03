@@ -106,7 +106,7 @@ public class FilmeDaoMySql implements IFilmeDao {
                 filme.setIdFilme(rs.getInt("idFilme"));
                 filme.setNome(rs.getString("nome"));
                 filme.setDescricao(rs.getString("descricao"));
-                filme.setFoto(rs.getString("login"));
+                filme.setFoto(rs.getString("foto"));
 
                 lista.add(filme);
             }
@@ -144,7 +144,7 @@ public class FilmeDaoMySql implements IFilmeDao {
                 filme = new Filme();
                 filme.setIdFilme(rs.getInt("idFilme"));
                 filme.setNome(rs.getString("nome"));
-                filme.setDescricao(rs.getString("email"));
+                filme.setDescricao(rs.getString("descricao"));
                 filme.setFoto(rs.getString("foto"));
             }
 
@@ -164,7 +164,7 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
-            String QUERY_UPDATE = "update filme set nome = ?, descricao = ?"
+            String QUERY_UPDATE = "update filme set nome = ?, descricao = ?,"
                     + " foto = ? where idFilme = ?";
 
             stmt = conn.prepareStatement(QUERY_UPDATE);

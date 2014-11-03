@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Usuário</h1>
+        <h1 class="page-header">Locadora</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -44,23 +44,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="locadora" items="${locadora}">
+                            <c:forEach var="locadora" items="${locadoras}">
 
 
                                 <tr class="odd gradeX">
                                     <td>${locadora.id}</td>
                                     <td>${locadora.nome}</td>
                                     <td>${locadora.Cnpj}</td>
-                                    <td>${locadora.Rua}</td>
-                                    <td>${locadora.Numero}</td>
-                                    <td>${locadora.Complemento}</td>
-                                    <td>${locadora.Bairro}</td>
-                                    <td>${locadora.Cidade}</td>
-                                    <td>${locadora.Estado}</td>
-                                    <td>${locadora.TelefoneResidencial}</td>
-                                    <td>${locadora.TelefoneContato}</td>
-                                    <td>${locadora.TelefoneEmail}</td>
-                                    <td>${locadora.TelefoneSite}</td>
+                                    <td>${locadora.rua}</td>
+                                    <td>${locadora.numero}</td>
+                                    <td>${locadora.complemento}</td>
+                                    <td>${locadora.bairro}</td>
+                                    <td>${locadora.cidade}</td>
+                                    <td>${locadora.estado}</td>
+                                    <td>${locadora.telefoneComercial}</td>
+                                    <td>${locadora.telefoneContato}</td>
+                                    <td>${locadora.email}</td>
+                                    <td>${locadora.site}</td>
                                     <td>
                                         <a href="#" class="btnAlterar" id="${locadora.id}">
                                             <i class="fa fa-edit fa-fw"></i>Detalhe
@@ -70,7 +70,6 @@
                                             <i class="fa fa-trash-o fa-fw"></i>Excluir
                                         </a>                        
                                     </td>
-
                                 </tr>
                             </c:forEach>
                         </tbody>
