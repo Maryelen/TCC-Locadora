@@ -45,8 +45,6 @@
                         </thead>
                         <tbody>
                             <c:forEach var="locadora" items="${locadoras}">
-
-
                                 <tr class="odd gradeX">
                                     <td>${locadora.id}</td>
                                     <td>${locadora.nome}</td>

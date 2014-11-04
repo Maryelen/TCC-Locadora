@@ -45,8 +45,9 @@
                                     <td>${filme.nome}</td>
                                     <td>${filme.descricao}</td>
                                     <td>${filme.foto}</td>
+                                    <td>${locadora.nome}</td>
                                     <td>
-                                        <a href="#" class="btn" id="${filme.id}">
+                                        <a href="#" class="btnAlterar" id="${filme.id}">
                                             <i class="fa fa-plus-square-o fa-fw"></i>Add
                                         </a>
                                         &nbsp;
