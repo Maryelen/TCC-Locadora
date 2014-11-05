@@ -33,7 +33,7 @@ CREATE TABLE locadora (
 	telefonecomercial VARCHAR(15) NULL,
 	telefonecontato VARCHAR(15) NULL,
 	email VARCHAR(100) NULL,
-	site VARCHAR(100) NULL,
+	site VARCHAR(100) NULL
 	
 );
 
