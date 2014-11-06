@@ -7,6 +7,7 @@ package DAO;
 
 import Interface.IFilmeDao;
 import Entity.Filme;
+import Entity.Locadora;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,12 +30,13 @@ public class FilmeDaoMySql implements IFilmeDao {
 
         try {
             conn = Conexao.conectar();
-            String QUERY_INSERT = "insert into filme (nome, descricao, foto)values(?, ?, ?)";
+            String QUERY_INSERT = "insert into filme (idLocadora,nome, descricao, foto)values(?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, filme.getNome());
-            stmt.setString(2, filme.getDescricao());
-            stmt.setString(3, filme.getFoto());
+            stmt.setInt(1, filme.getLocadora().getId());
+            stmt.setString(2, filme.getNome());
+            stmt.setString(3, filme.getDescricao());
+            stmt.setString(4, filme.getFoto());
 
             stmt.executeUpdate();
 
@@ -47,7 +49,6 @@ public class FilmeDaoMySql implements IFilmeDao {
         } catch (SQLException ex) {
 
             //ex.printStackTrace();
-
             resultado = -1;
 
         } finally {
@@ -94,7 +95,7 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idFilme, nome, descricao, foto from filme ";
+            String QUERY_DETALHE = "select  ,idLocadora, nome, descricao, foto from filme ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             rs = stmt.executeQuery();
@@ -103,7 +104,11 @@ public class FilmeDaoMySql implements IFilmeDao {
 
             while (rs.next()) {
                 Filme filme = new Filme();
+                filme.setLocadora(new Locadora());
+                LocadoraDaoMySql locDao = new LocadoraDaoMySql();
+                
                 filme.setId(rs.getInt("idFilme"));
+                filme.setLocadora(locDao.getById(rs.getInt("idLocadora")));
                 filme.setNome(rs.getString("nome"));
                 filme.setDescricao(rs.getString("descricao"));
                 filme.setFoto(rs.getString("foto"));
@@ -129,8 +134,7 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             conn = Conexao.conectar();
 
-
-            String QUERY_DETALHE = "select idFilme, nome, descricao, foto from filme where idfilme = ?";
+            String QUERY_DETALHE = "select idFilme, idLocadora, nome, descricao, foto from filme where idfilme = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             stmt.setInt(1, id);
@@ -142,10 +146,15 @@ public class FilmeDaoMySql implements IFilmeDao {
             while (rs.next()) {
 
                 filme = new Filme();
+                filme.setLocadora(new Locadora());
+                LocadoraDaoMySql locDao = new LocadoraDaoMySql();
+
                 filme.setId(rs.getInt("idFilme"));
+                filme.setLocadora(locDao.getById(rs.getInt("idLocadora")));
                 filme.setNome(rs.getString("nome"));
                 filme.setDescricao(rs.getString("descricao"));
                 filme.setFoto(rs.getString("foto"));
+
             }
 
             conn.close();
@@ -164,13 +173,14 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
-            String QUERY_UPDATE = "update filme set nome = ?, descricao = ?,"
+            String QUERY_UPDATE = "update filme set idLocadora = ?, nome = ?, descricao = ?,"
                     + " foto = ? where idFilme = ?";
 
             stmt = conn.prepareStatement(QUERY_UPDATE);
-            stmt.setString(1, filme.getNome());
-            stmt.setString(2, filme.getDescricao());
-            stmt.setString(3, filme.getFoto());
+            stmt.setInt(1, filme.getLocadora().getId());
+            stmt.setString(2, filme.getNome());
+            stmt.setString(3, filme.getDescricao());
+            stmt.setString(4, filme.getFoto());
 
             if (filme.getId() == null) {
                 stmt.setString(4, null);
@@ -186,7 +196,6 @@ public class FilmeDaoMySql implements IFilmeDao {
         } catch (SQLException ex) {
 
             //ex.printStackTrace();
-
             resultado = false;
 
         } finally {

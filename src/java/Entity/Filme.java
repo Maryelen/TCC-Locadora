@@ -14,6 +14,7 @@ import java.util.Date;
 public class Filme {
 
     private Integer id;
+    private Locadora locadora;
     private String nome;
     private String descricao;
     private String foto;
@@ -26,12 +27,20 @@ public class Filme {
         this.id = id;
     }
 
+    public Locadora getLocadora() {
+        return locadora;
+    }
+
+    public void setLocadora(Locadora locadora) {
+        this.locadora = locadora;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
-      
+
         this.nome = nome;
     }
 

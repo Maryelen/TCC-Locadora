@@ -9,6 +9,7 @@ package servlet;
 import controller.Controller;
 import controller.ControllerFilme;
 import controller.ControllerLocadora;
+import controller.ControllerLocadoraFilme;
 import controller.ControllerReserva;
 import controller.ControllerUsuario;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class servlet extends HttpServlet {
             vObjeto = new ControllerFilme();
         }else if (request.getParameter("txtObjeto").equals("reserva")){
             vObjeto = new ControllerReserva();
+        }else if (request.getParameter("txtObjeto").equals("locadorafilme")){
+            vObjeto = new ControllerLocadoraFilme();
         }
 
         if (request.getParameter("txtMetodo").equals("principal")) {

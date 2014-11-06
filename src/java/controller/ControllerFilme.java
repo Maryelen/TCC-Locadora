@@ -74,6 +74,10 @@ public class ControllerFilme implements Controller {
             retorno.setId(Integer.parseInt(pRequest.getParameter("txtId")));
         }
 
+        if (pRequest.getParameter("txtIdLocadora") != null) {
+            retorno.getLocadora().setId(Integer.parseInt(pRequest.getParameter("txtIdLocadora")));
+        }
+
         if (pRequest.getParameter("txtNome") != null) {
             retorno.setNome(pRequest.getParameter("txtNome"));
         }
@@ -153,12 +157,13 @@ public class ControllerFilme implements Controller {
             List<Map> resultado = new ArrayList<Map>();
 
             for (Filme filme : lista) {
-
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("id", (filme.getId()) + "");
                 map.put("nome", filme.getNome());
                 map.put("descricao", filme.getDescricao());
                 map.put("foto", filme.getFoto());
+                map.put("nomeLocadora", filme.getLocadora().getNome());
+                map.put("telefoneComercial", filme.getLocadora().getTelefoneComercial());
                 resultado.add(map);
 
             }
@@ -188,6 +193,8 @@ public class ControllerFilme implements Controller {
             map.put("nome", filme.getNome());
             map.put("descricao", filme.getDescricao());
             map.put("foto", filme.getFoto());
+            map.put("nomeLocadora", filme.getLocadora().getNome());
+            map.put("telefoneComercial", filme.getLocadora().getTelefoneComercial());
 
             pRequest.setAttribute("filme", map);
 

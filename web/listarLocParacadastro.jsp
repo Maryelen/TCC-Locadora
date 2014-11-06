@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Selecione a Locadoras</h1>
+        <h1 class="page-header">Locadora</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -60,10 +60,7 @@
                                     <td>${locadora.email}</td>
                                     <td>${locadora.site}</td>
                                     <td>
-                                        <a href="#" class="checkbox" id="${locadora.id}">
-                                            <i class="fa fa-edit fa-fw"></i>
-                                        </a>
-                                        &nbsp;
+                                        <input href="#" class="checkbox" id="${locadora.id}">
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -88,7 +85,7 @@
         $('#dataTables-funcionarios').dataTable();
     });
 
-    $(".checkbox").click(function() {
+    $(".btnAlterar").click(function() {
         $("#conteudoForm").load("servlet", {
             //variaveis de controle
             txtObjeto: 'locadora'
@@ -100,4 +97,20 @@
                 alert("Error: " + xhr.status + ": " + xhr.statusText);
         });
     });
+
+    $(".btnExcluir").click(function() {
+        if (confirm('Deseja realmente excluir o registro?')) {
+            $("#conteudoForm").load("servlet", {
+                //variaveis de controle
+                txtObjeto: 'locadora'
+                , txtMetodo: 'deletar'
+                        //variaveis para o objeto
+                , txtId: this.id
+            }, function(responseTxt, statusTxt, xhr) {
+                if (statusTxt == "error")
+                    alert("Error: " + xhr.status + ": " + xhr.statusText);
+            });
+        }
+    });
+
 </script>
