@@ -29,17 +29,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nome</th>
-                                <th>Cnpj</th>
                                 <th>Rua</th>
-                                <th>Número</th>
-                                <th>Complemento</th>
-                                <th>Bairro</th>
                                 <th>Cidade</th>
-                                <th>Estado</th>
                                 <th>Telefone Comercial</th>
-                                <th>Telefone Contato</th>
-                                <th>Email</th>
-                                <th>Site</th>
                                 <th width="160px">Acao</th>
                             </tr>
                         </thead>
@@ -48,19 +40,11 @@
                                 <tr class="odd gradeX">
                                     <td>${locadora.id}</td>
                                     <td>${locadora.nome}</td>
-                                    <td>${locadora.Cnpj}</td>
                                     <td>${locadora.rua}</td>
-                                    <td>${locadora.numero}</td>
-                                    <td>${locadora.complemento}</td>
-                                    <td>${locadora.bairro}</td>
                                     <td>${locadora.cidade}</td>
-                                    <td>${locadora.estado}</td>
                                     <td>${locadora.telefoneComercial}</td>
-                                    <td>${locadora.telefoneContato}</td>
-                                    <td>${locadora.email}</td>
-                                    <td>${locadora.site}</td>
                                     <td>
-                                        <input href="#" class="checkbox" id="${locadora.id}">
+                                        <input href="#" type="checkbox" id="${locadora.id}">
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -85,10 +69,10 @@
         $('#dataTables-funcionarios').dataTable();
     });
 
-    $(".btnAlterar").click(function() {
+    $(".checkbox").click(function() {
         $("#conteudoForm").load("servlet", {
             //variaveis de controle
-            txtObjeto: 'locadora'
+            txtObjeto: 'locadorafilme'
             , txtMetodo: 'detalhe'
                     //variaveis para o objeto
             , txtId: this.id
@@ -97,20 +81,4 @@
                 alert("Error: " + xhr.status + ": " + xhr.statusText);
         });
     });
-
-    $(".btnExcluir").click(function() {
-        if (confirm('Deseja realmente excluir o registro?')) {
-            $("#conteudoForm").load("servlet", {
-                //variaveis de controle
-                txtObjeto: 'locadora'
-                , txtMetodo: 'deletar'
-                        //variaveis para o objeto
-                , txtId: this.id
-            }, function(responseTxt, statusTxt, xhr) {
-                if (statusTxt == "error")
-                    alert("Error: " + xhr.status + ": " + xhr.statusText);
-            });
-        }
-    });
-
 </script>
