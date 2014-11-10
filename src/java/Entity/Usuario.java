@@ -16,9 +16,18 @@ public class Usuario {
     private String senha;
     private String email;
     private String nome;
+    private String tipoUsuario;
 
     public Integer getId() {
         return id;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     public void setId(Integer id) {
