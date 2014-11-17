@@ -86,8 +86,12 @@ public class ControllerFilme implements Controller {
             retorno.setDescricao(pRequest.getParameter("txtDescricao"));
         }
 
-        if (pRequest.getParameter("txtFoto") != null) {
-            retorno.setFoto(pRequest.getParameter("txtFoto"));
+        if (pRequest.getParameter("txtAno") != null) {
+            retorno.setAno(Integer.parseInt(pRequest.getParameter("txtAno")));
+        }
+
+        if (pRequest.getParameter("txtAno") != null) {
+            retorno.setGenero(pRequest.getParameter("txtGenero"));
         }
 
         return retorno;
@@ -161,7 +165,8 @@ public class ControllerFilme implements Controller {
                 map.put("id", (filme.getId()) + "");
                 map.put("nome", filme.getNome());
                 map.put("descricao", filme.getDescricao());
-                map.put("foto", filme.getFoto());
+                map.put("Ano", filme.getAno()+"");
+                map.put("Genero", filme.getGenero());
                 map.put("nomeLocadora", filme.getLocadora().getNome());
                 map.put("telefoneComercial", filme.getLocadora().getTelefoneComercial());
                 resultado.add(map);
@@ -192,7 +197,8 @@ public class ControllerFilme implements Controller {
             map.put("id", (filme.getId()) + "");
             map.put("nome", filme.getNome());
             map.put("descricao", filme.getDescricao());
-            map.put("foto", filme.getFoto());
+            map.put("Ano", filme.getAno()+"");
+            map.put("Genero", filme.getGenero());
             map.put("nomeLocadora", filme.getLocadora().getNome());
             map.put("telefoneComercial", filme.getLocadora().getTelefoneComercial());
 

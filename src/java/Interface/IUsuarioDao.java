@@ -23,4 +23,5 @@ public interface IUsuarioDao {
     public Usuario getById(int idCliente);
 
     public boolean update(Usuario usuario);
+    
 }

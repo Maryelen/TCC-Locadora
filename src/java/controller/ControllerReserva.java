@@ -6,9 +6,11 @@
 package controller;
 
 import DAO.FilmeDaoMySql;
-import DAO.LocadoraDaoMySql;
+import DAO.ReservaDaoMySql;
 import Entity.Filme;
 import Entity.Locadora;
+import Entity.Reserva;
+import Entity.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,26 +68,23 @@ public class ControllerReserva implements Controller {
         rd.forward(pRequest, pResponse);
     }
 
-    private Filme requestForm(HttpServletRequest pRequest) {
+    private Reserva requestForm(HttpServletRequest pRequest) {
 
-        Filme retorno = new Filme();
+        Reserva retorno = new Reserva();
+        retorno.setLocadora(new Locadora());
+        retorno.setUsuario(new Usuario());
 
         if (pRequest.getParameter("txtId") != null) {
             retorno.setId(Integer.parseInt(pRequest.getParameter("txtId")));
         }
 
-        if (pRequest.getParameter("txtNome") != null) {
-            retorno.setNome(pRequest.getParameter("txtNome"));
+        if (pRequest.getParameter("txtIdLocadora") != null) {
+            retorno.getLocadora().setId(Integer.parseInt(pRequest.getParameter("txtIdLocadora")));
         }
 
-        if (pRequest.getParameter("txtDescricao") != null) {
-            retorno.setDescricao(pRequest.getParameter("txtDescricao"));
+        if (pRequest.getParameter("txtIdUsuario") != null) {
+            retorno.getUsuario().setId(Integer.parseInt(pRequest.getParameter("txtIdUsuario")));
         }
-
-        if (pRequest.getParameter("txtFoto") != null) {
-            retorno.setFoto(pRequest.getParameter("txtFoto"));
-        }
-
         return retorno;
     }
 
@@ -100,10 +99,10 @@ public class ControllerReserva implements Controller {
     @Override
     public void salvar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
-        FilmeDaoMySql filmeDao = new FilmeDaoMySql();
-        Filme filme = requestForm(pRequest);
+        ReservaDaoMySql dao = new ReservaDaoMySql();
+        Reserva reserva = requestForm(pRequest);
 
-        int retorno = filmeDao.salvar(filme);
+        int retorno = dao.salvar(reserva);
 
         if (retorno > 0) {
             mostraAlertMsg(pRequest, pResponse, "OK", "Cadastro de Filme", "Registro salvo com sucesso!", "filme", "listar");
@@ -114,10 +113,10 @@ public class ControllerReserva implements Controller {
 
     @Override
     public void alterar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
-        FilmeDaoMySql filmeDao = new FilmeDaoMySql();
-        Filme filme = requestForm(pRequest);
+        ReservaDaoMySql dao = new ReservaDaoMySql();
+        Reserva reserva = requestForm(pRequest);
 
-        boolean retorno = filmeDao.update(filme);
+        boolean retorno = dao.update(reserva);
 
         if (retorno) {
             mostraAlertMsg(pRequest, pResponse, "OK", "Alteração de Filme", "Registro salvo com sucesso!", "filme", "listar");
@@ -130,10 +129,10 @@ public class ControllerReserva implements Controller {
     @Override
     public void deletar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
-        FilmeDaoMySql filmeDao = new FilmeDaoMySql();
-        Filme filme = requestForm(pRequest);
+        ReservaDaoMySql dao = new ReservaDaoMySql();
+        Reserva reserva = requestForm(pRequest);
 
-        boolean retorno = filmeDao.deletar(filme.getId());
+        boolean retorno = dao.deletar(reserva.getId());
 
         if (retorno) {
             mostraAlertMsg(pRequest, pResponse, "OK", "Excluir de Filme", "Registro excluido com sucesso!", "filme", "listar");
@@ -145,20 +144,20 @@ public class ControllerReserva implements Controller {
     @Override
     public void listar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
-        FilmeDaoMySql filmeDao = new FilmeDaoMySql();
-        List<Filme> lista = filmeDao.getAll();
+        ReservaDaoMySql dao = new ReservaDaoMySql();
+        List<Reserva> lista = dao.getAll();
 
         if (lista != null) {
 
             List<Map> resultado = new ArrayList<Map>();
 
-            for (Filme filme : lista) {
+            for (Reserva reserva : lista) {
 
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("id", (filme.getId()) + "");
-                map.put("nome", filme.getNome());
-                map.put("descricao", filme.getDescricao());
-                map.put("foto", filme.getFoto());
+                map.put("id", (reserva.getId()) + "");
+                map.put("nomeFilme", reserva.getFilme().getNome());
+                map.put("nomeLocadora", reserva.getLocadora().getNome());
+                map.put("nomeUsuario", reserva.getUsuario().getNome());
                 resultado.add(map);
 
             }
@@ -177,17 +176,17 @@ public class ControllerReserva implements Controller {
     @Override
     public void detalhe(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
-        FilmeDaoMySql filmeDao = new FilmeDaoMySql();
+        ReservaDaoMySql dao = new ReservaDaoMySql();
 
-        Filme filme = filmeDao.getById(requestForm(pRequest).getId());
+        Reserva reserva = dao.getById(requestForm(pRequest).getId());
 
-        if (filme != null) {
+        if (reserva != null) {
 
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put("id", (filme.getId()) + "");
-            map.put("nome", filme.getNome());
-            map.put("descricao", filme.getDescricao());
-            map.put("foto", filme.getFoto());
+            map.put("id", (reserva.getId()) + "");
+            map.put("nomeFilme", reserva.getFilme().getNome());
+            map.put("nomeLocadora", reserva.getLocadora().getNome());
+            map.put("nomeUsuario", reserva.getUsuario().getNome());
 
             pRequest.setAttribute("filme", map);
 

@@ -6,6 +6,7 @@
 package servlet;
 
 
+import Entity.Usuario;
 import controller.Controller;
 import controller.ControllerFilme;
 import controller.ControllerLocadora;
@@ -28,6 +29,8 @@ public class servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Controller vObjeto = null;
+        ControllerUsuario usuario = null;
+        
         if (request.getParameter("txtObjeto").equals("usuario")) {
             vObjeto = new ControllerUsuario();
         }else if (request.getParameter("txtObjeto").equals("locadora")){
@@ -38,6 +41,8 @@ public class servlet extends HttpServlet {
             vObjeto = new ControllerReserva();
         }else if (request.getParameter("txtObjeto").equals("locadorafilme")){
             vObjeto = new ControllerLocadoraFilme();
+        }else if (request.getParameter("txtObjeto").equals("login")){
+            usuario = new ControllerUsuario();
         }
 
         if (request.getParameter("txtMetodo").equals("principal")) {
@@ -65,6 +70,10 @@ public class servlet extends HttpServlet {
         } else if (request.getParameter("txtMetodo").equals("detalhe")) {
 
             vObjeto.detalhe(request, response);
+
+        } else if (request.getParameter("txtMetodo").equals("validarAcesso")) {
+
+            usuario.validarAcesso(request, response);
 
         }
 

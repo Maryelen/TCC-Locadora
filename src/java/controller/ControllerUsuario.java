@@ -5,7 +5,6 @@
  */
 package controller;
 
-
 import DAO.UsuarioDaoMySql;
 import Entity.Usuario;
 import java.io.IOException;
@@ -13,10 +12,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.jms.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.jboss.weld.servlet.SessionHolder;
 
 /**
  *
@@ -95,7 +96,7 @@ public class ControllerUsuario implements Controller {
     @Override
     public void principal(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
-        RequestDispatcher rd = pRequest.getRequestDispatcher("/cadastrarUsuario.jsp");
+        RequestDispatcher rd = pRequest.getRequestDispatcher("/menu.jsp");
         rd.forward(pRequest, pResponse);
 
     }
@@ -154,9 +155,9 @@ public class ControllerUsuario implements Controller {
         if (usuarios != null) {
 
             List<Map> resultado = new ArrayList<Map>();
-            
+
             for (Usuario usuario : usuarios) {
-                
+
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("id", Integer.toString(usuario.getId()));
                 map.put("nome", usuario.getNome());
@@ -164,9 +165,9 @@ public class ControllerUsuario implements Controller {
                 map.put("login", usuario.getLogin());
                 map.put("senha", usuario.getSenha());
                 resultado.add(map);
-                
+
             }
-            
+
             pRequest.setAttribute("usuarios", resultado);
 
             RequestDispatcher rd = pRequest.getRequestDispatcher("/listarUsuarios.jsp");
@@ -182,7 +183,7 @@ public class ControllerUsuario implements Controller {
     public void detalhe(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
         UsuarioDaoMySql usuarioDao = new UsuarioDaoMySql();
-        
+
         Usuario usuario = usuarioDao.getById(requestForm(pRequest).getId());
 
         if (usuario != null) {
@@ -193,7 +194,7 @@ public class ControllerUsuario implements Controller {
             resultado.put("email", usuario.getEmail());
             resultado.put("login", usuario.getLogin());
             resultado.put("senha", usuario.getSenha());
-            
+
             pRequest.setAttribute("usuario", resultado);
 
             RequestDispatcher rd = pRequest.getRequestDispatcher("/editarUsuario.jsp");
@@ -201,6 +202,28 @@ public class ControllerUsuario implements Controller {
 
         } else {
             mostraAlertMsg(pRequest, pResponse, "ERRO", "Detalhe de Usuario", "Erro ao localizar o registro, por favor, tente novamente!", "usuario", "principal");
+        }
+
+    }
+
+    public void validarAcesso(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
+
+        Usuario retorno = new Usuario();
+        UsuarioDaoMySql dao = new UsuarioDaoMySql();
+
+        if (pRequest.getParameter("txtLogin") != null) {
+            retorno.setLogin(pRequest.getParameter("txtLogin"));
+        }
+
+        if (pRequest.getParameter("txtSenha") != null) {
+            retorno.setSenha(pRequest.getParameter("txtSenha"));
+        }
+
+        retorno = dao.getByLoginESenha(retorno);
+        if (retorno != null) {
+            mostraAlertMsg(pRequest, pResponse, "OK", "Login do Usuario", "Logado", "usuario", "principal");
+        } else {
+            mostraAlertMsg(pRequest, pResponse, "ERRO", "Login do Usuario", "Login ou senha invalido", "usuario", "login");
         }
 
     }

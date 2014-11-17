@@ -199,4 +199,41 @@ public class UsuarioDaoMySql implements IUsuarioDao {
         }
 
     }
+     public Usuario getByLoginESenha(Usuario usuario) {
+
+        Connection conn = null;
+        
+        try {
+            conn = Conexao.conectar();
+
+
+            String QUERY_DETALHE = "select idUsuario, nome, email, login, senha from usuario where login = ? and senha = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setString(1, usuario.getLogin());
+            stmt.setString(2, usuario.getSenha());
+            
+            ResultSet rs = null;
+
+            rs = stmt.executeQuery();
+            usuario = null;
+            while (rs.next()) {
+
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("idUsuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
+
+            }
+            
+            conn.close();
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+        } finally {
+
+            return usuario;
+        }
+    }
 }

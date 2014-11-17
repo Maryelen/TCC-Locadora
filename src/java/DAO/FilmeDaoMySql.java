@@ -30,13 +30,14 @@ public class FilmeDaoMySql implements IFilmeDao {
 
         try {
             conn = Conexao.conectar();
-            String QUERY_INSERT = "insert into filme (idLocadora,nome, descricao, foto)values(?, ?, ?)";
+            String QUERY_INSERT = "insert into filme (idLocadora,nome, descricao, ano,genero)values(?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, filme.getLocadora().getId());
             stmt.setString(2, filme.getNome());
             stmt.setString(3, filme.getDescricao());
-            stmt.setString(4, filme.getFoto());
+            stmt.setInt(4, filme.getAno());
+            stmt.setString(5, filme.getGenero());
 
             stmt.executeUpdate();
 
@@ -95,7 +96,7 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select  ,idLocadora, nome, descricao, foto from filme ";
+            String QUERY_DETALHE = "select  ,idLocadora, nome, descricao, ano, genero from filme ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             rs = stmt.executeQuery();
@@ -111,7 +112,8 @@ public class FilmeDaoMySql implements IFilmeDao {
                 filme.setLocadora(locDao.getById(rs.getInt("idLocadora")));
                 filme.setNome(rs.getString("nome"));
                 filme.setDescricao(rs.getString("descricao"));
-                filme.setFoto(rs.getString("foto"));
+                filme.setAno(rs.getInt("Ano"));
+                filme.setGenero(rs.getString("genero"));
 
                 lista.add(filme);
             }
@@ -134,7 +136,7 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idFilme, idLocadora, nome, descricao, foto from filme where idfilme = ?";
+            String QUERY_DETALHE = "select idFilme, idLocadora, nome, descricao, ano, genero from filme where idfilme = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             stmt.setInt(1, id);
@@ -153,7 +155,8 @@ public class FilmeDaoMySql implements IFilmeDao {
                 filme.setLocadora(locDao.getById(rs.getInt("idLocadora")));
                 filme.setNome(rs.getString("nome"));
                 filme.setDescricao(rs.getString("descricao"));
-                filme.setFoto(rs.getString("foto"));
+                filme.setAno(rs.getInt("ano"));
+                filme.setGenero(rs.getString("genero"));
 
             }
 
@@ -174,18 +177,19 @@ public class FilmeDaoMySql implements IFilmeDao {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
             String QUERY_UPDATE = "update filme set idLocadora = ?, nome = ?, descricao = ?,"
-                    + " foto = ? where idFilme = ?";
+                    + " ano = ?, genero = ? where idFilme = ?";
 
             stmt = conn.prepareStatement(QUERY_UPDATE);
             stmt.setInt(1, filme.getLocadora().getId());
             stmt.setString(2, filme.getNome());
             stmt.setString(3, filme.getDescricao());
-            stmt.setString(4, filme.getFoto());
+            stmt.setInt(4, filme.getAno());
+            stmt.setString(5, filme.getGenero());
 
             if (filme.getId() == null) {
-                stmt.setString(4, null);
+                stmt.setString(6, null);
             } else {
-                stmt.setInt(4, filme.getId());
+                stmt.setInt(6, filme.getId());
             }
 
             stmt.executeUpdate();

@@ -1,16 +1,4 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<div class="row">
-    <div class="col-lg-12">
-
-    </div>
-    <!-- /.col-lg-12 -->
-</div><!doctype html>
-<div class="row">
-    <div class="">
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
+<!doctype html>
 <html lang="pt-br">
 
     <head>
@@ -41,35 +29,33 @@
 
     <body>
         <div id="wrapper">
-            <div id="login-panel">
-                <form class="form-group">
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-5">
-                            Login<input type="text" class="form-control" placeholder="Digite seu login"  required autofocus>
-                        </div>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" >Reserve Aqui</a>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-5">
-                            Senha<input type="password" class="form-control" placeholder="Digite sua senha" required>
-                        </div>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li><a href="http://localhost:8080/TCC-Locadora/loginESenha.jsp">Espaço do Usuário</a></li>
+                            <li><a href="http://localhost:8080/TCC-Locadora/loginESenha.jsp">Espaço da Locadora</a></li>
+                            <li><a href="http://localhost:8080/TCC-Locadora/loginESenha.jsp">Espaço do Desenvolvedor</a></li>
+                        </ul>
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-5">
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">
-                                Acessar</button>
-                        </div>
+                </div>
+            </nav>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div id="conteudoForm">
+                        <image src="imagens/fundo.jpg"/>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-5">
-                            <a rel="stylesheet" href="naoSouCadastrado">Não Sou Cadastrado</a>
-                        </div>
-                    </div>
-
-                </form>
+                </div>
             </div>
         </div>
 
+        <!-- /#page-wrapper -->
+
+
+        <!-- /#wrapper -->
 
         <!-- Core Scripts - Include with every page -->
         <script src="include/js/jquery-1.10.2.js"></script>
@@ -86,34 +72,5 @@
 
         <!-- SB Admin Scripts - Include with every page -->
         <script src="include/js/sb-admin.js"></script>
-
-        <!-- Scripts de funcionario da pagina -->
-        <script type="text/javascript">
-            $(".linkForm").click(function() {
-                $("#conteudoForm").load("servlet", {
-                    //variaveis de controle
-                    txtObjeto: this.id
-                    , txtMetodo: 'principal'
-                }, function(responseTxt, statusTxt, xhr) {
-                    if (statusTxt == "error")
-                        alert("Error: " + xhr.status + ": " + xhr.statusText);
-                });
-            });
-
-            $(".linkLista").click(function() {
-                $("#conteudoForm").load("servlet", {
-                    //variaveis de controle
-                    txtObjeto: this.id
-                    , txtMetodo: 'listar'
-                }, function(responseTxt, statusTxt, xhr) {
-                    if (statusTxt == "error")
-                        alert("Error: " + xhr.status + ": " + xhr.statusText);
-                });
-            });
-
-        </script>
-
-
     </body>
-
 </html>

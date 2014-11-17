@@ -15,13 +15,30 @@ public class Reserva {
 
     private Integer id;
     private Usuario usuario;
-    private FilmeLocadora filmeLocadora;
+    private Locadora locadora;
+    private Filme filme;
     private String situacao;
     private Date dtReserva;
     private Date dtConfirmacao;
     private Date dtConcluido;
     private Date dtCancelado;
     private String motivo;
+
+    public Locadora getLocadora() {
+        return locadora;
+    }
+
+    public void setLocadora(Locadora locadora) {
+        this.locadora = locadora;
+    }
+
+    public Filme getFilme() {
+        return filme;
+    }
+
+    public void setFilme(Filme filme) {
+        this.filme = filme;
+    }
 
     public Integer getId() {
         return id;
@@ -37,14 +54,6 @@ public class Reserva {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public FilmeLocadora getFilmeLocadora() {
-        return filmeLocadora;
-    }
-
-    public void setFilmeLocadora(FilmeLocadora filmeLocadora) {
-        this.filmeLocadora = filmeLocadora;
     }
 
     public String getSituacao() {
