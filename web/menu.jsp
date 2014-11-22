@@ -69,7 +69,7 @@
                     <div class="sidebar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Principal </a>
+                                <a href="menu.jsp"><i class="fa fa-home fa-fw"></i> Principal </a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Usuários <span class="fa arrow"></span></a>

@@ -96,7 +96,7 @@ public class ControllerUsuario implements Controller {
     @Override
     public void principal(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
-        RequestDispatcher rd = pRequest.getRequestDispatcher("/menu.jsp");
+        RequestDispatcher rd = pRequest.getRequestDispatcher("/cadastrarUsuario.jsp");
         rd.forward(pRequest, pResponse);
 
     }
@@ -221,11 +221,13 @@ public class ControllerUsuario implements Controller {
 
         retorno = dao.getByLoginESenha(retorno);
         if (retorno != null) {
-            mostraAlertMsg(pRequest, pResponse, "OK", "Login do Usuario", "Logado", "usuario", "principal");
+            pRequest.getSession().setAttribute("usuarioLogin", retorno);
+            Usuario usuario = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
+            
+            mostraAlertMsg(pRequest, pResponse, "OK", "Olá, Seja bem vindo Sro "+usuario.getNome()+"!", "Logado", "usuario", "principalCadastro");
         } else {
-            mostraAlertMsg(pRequest, pResponse, "ERRO", "Login do Usuario", "Login ou senha invalido", "usuario", "login");
+            mostraAlertMsg(pRequest, pResponse, "ERRO", "Não foi possivel realizar o acesso.", " Login ou senha invalido", "usuario", "login");
         }
 
     }
-
 }
