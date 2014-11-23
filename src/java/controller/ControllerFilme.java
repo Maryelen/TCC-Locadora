@@ -69,6 +69,7 @@ public class ControllerFilme implements Controller {
     private Filme requestForm(HttpServletRequest pRequest) {
 
         Filme retorno = new Filme();
+        retorno.setLocadora(new Locadora());
 
         if (pRequest.getParameter("txtId") != null) {
             retorno.setId(Integer.parseInt(pRequest.getParameter("txtId")));
@@ -93,16 +94,35 @@ public class ControllerFilme implements Controller {
         if (pRequest.getParameter("txtAno") != null) {
             retorno.setGenero(pRequest.getParameter("txtGenero"));
         }
-
+        
+        
         return retorno;
     }
 
     @Override
     public void principal(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
-        RequestDispatcher rd = pRequest.getRequestDispatcher("/cadastrarFilme.jsp");
-        rd.forward(pRequest, pResponse);
+        LocadoraDaoMySql locadoraDao = new LocadoraDaoMySql();
+        List<Locadora> lista = locadoraDao.getAll();
 
+        if (lista != null) {
+
+            List<Map> resultado = new ArrayList<Map>();
+
+            for (Locadora locadora : lista) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("idLocadora", (locadora.getId()) + "");
+                map.put("nome", locadora.getNome());
+                map.put("descricao", locadora.getCnpj());
+                resultado.add(map);
+            }
+
+            pRequest.setAttribute("locadoras", resultado);
+
+            RequestDispatcher rd = pRequest.getRequestDispatcher("/cadastrarFilme.jsp");
+            rd.forward(pRequest, pResponse);
+
+        }
     }
 
     @Override
@@ -124,7 +144,6 @@ public class ControllerFilme implements Controller {
     public void alterar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
         FilmeDaoMySql filmeDao = new FilmeDaoMySql();
         Filme filme = requestForm(pRequest);
-
         boolean retorno = filmeDao.update(filme);
 
         if (retorno) {
@@ -165,7 +184,7 @@ public class ControllerFilme implements Controller {
                 map.put("id", (filme.getId()) + "");
                 map.put("nome", filme.getNome());
                 map.put("descricao", filme.getDescricao());
-                map.put("Ano", filme.getAno()+"");
+                map.put("Ano", filme.getAno() + "");
                 map.put("Genero", filme.getGenero());
                 map.put("nomeLocadora", filme.getLocadora().getNome());
                 map.put("telefoneComercial", filme.getLocadora().getTelefoneComercial());
@@ -197,7 +216,7 @@ public class ControllerFilme implements Controller {
             map.put("id", (filme.getId()) + "");
             map.put("nome", filme.getNome());
             map.put("descricao", filme.getDescricao());
-            map.put("Ano", filme.getAno()+"");
+            map.put("Ano", filme.getAno() + "");
             map.put("Genero", filme.getGenero());
             map.put("nomeLocadora", filme.getLocadora().getNome());
             map.put("telefoneComercial", filme.getLocadora().getTelefoneComercial());

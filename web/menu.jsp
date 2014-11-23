@@ -96,7 +96,7 @@
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Filmes <span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="#" class="linkLista" id="locadorafilme"><i class="fa fa-files-o fa-fw"></i> Cadastrar</a></li>
+                                    <li><a href="#" class="linkForm" id="filme"><i class="fa fa-files-o fa-fw"></i> Cadastrar</a></li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                                 <ul class="nav nav-second-level">

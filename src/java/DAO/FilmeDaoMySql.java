@@ -30,7 +30,7 @@ public class FilmeDaoMySql implements IFilmeDao {
 
         try {
             conn = Conexao.conectar();
-            String QUERY_INSERT = "insert into filme (idLocadora,nome, descricao, ano,genero)values(?, ?, ?, ?, ?)";
+            String QUERY_INSERT = "insert into filme (idLocadora, nome, descricao, ano, genero)values(?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, filme.getLocadora().getId());
