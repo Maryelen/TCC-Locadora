@@ -29,14 +29,15 @@ public class UsuarioDaoMySql implements IUsuarioDao {
 
         try {
             conn = Conexao.conectar();
-            String QUERY_INSERT = "insert into usuario (nome, email, login, senha)values(?, ?, ?, ?)";
+            String QUERY_INSERT = "insert into usuario (nome, email, login, senha, tipo)values(?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getEmail());
             stmt.setString(3, usuario.getLogin());
             stmt.setString(4, usuario.getSenha());
-
+            stmt.setString(5, usuario.getTipoUsuario());
+       
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
@@ -95,7 +96,7 @@ public class UsuarioDaoMySql implements IUsuarioDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idUsuario, nome, email,login,senha from usuario ";
+            String QUERY_DETALHE = "select idUsuario, nome, email,login,senha,tipo from usuario ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             rs = stmt.executeQuery();
@@ -109,6 +110,7 @@ public class UsuarioDaoMySql implements IUsuarioDao {
                 usuario.setEmail(rs.getString("email"));
                 usuario.setLogin(rs.getString("login"));
                 usuario.setSenha(rs.getString("senha"));
+                usuario.setTipoUsuario(rs.getString("tipo"));
 
                 lista.add(usuario);
             }
@@ -132,7 +134,7 @@ public class UsuarioDaoMySql implements IUsuarioDao {
             conn = Conexao.conectar();
 
 
-            String QUERY_DETALHE = "select idUsuario, nome, email, login, senha from usuario where idUsuario = ?";
+            String QUERY_DETALHE = "select idUsuario, nome, email, login, senha, tipo from usuario where idUsuario = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             stmt.setInt(1, id);
@@ -149,6 +151,7 @@ public class UsuarioDaoMySql implements IUsuarioDao {
                 usuario.setEmail(rs.getString("email"));
                 usuario.setLogin(rs.getString("login"));
                 usuario.setSenha(rs.getString("senha"));
+                usuario.setTipoUsuario(rs.getString("tipo"));
 
             }
 
@@ -168,18 +171,19 @@ public class UsuarioDaoMySql implements IUsuarioDao {
         try {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
-            String QUERY_UPDATE = "update usuario set nome = ?, email = ?, login = ?, senha = ? where idUsuario = ?";
+            String QUERY_UPDATE = "update usuario set nome = ?, email = ?, login = ?, senha = ?, tipo = ? where idUsuario = ?";
 
             stmt = conn.prepareStatement(QUERY_UPDATE);
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getEmail());
             stmt.setString(3, usuario.getLogin());
             stmt.setString(4, usuario.getSenha());
+            stmt.setString(5, usuario.getTipoUsuario());
 
             if (usuario.getId() == null) {
-                stmt.setString(5, null);
+                stmt.setString(6, null);
             } else {
-                stmt.setInt(5, usuario.getId());
+                stmt.setInt(6, usuario.getId());
             }
 
             stmt.executeUpdate();
@@ -207,7 +211,7 @@ public class UsuarioDaoMySql implements IUsuarioDao {
             conn = Conexao.conectar();
 
 
-            String QUERY_DETALHE = "select idUsuario, nome, email, login, senha from usuario where login = ? and senha = ?";
+            String QUERY_DETALHE = "select idUsuario, nome, email, login, senha, tipo from usuario where login = ? and senha = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             stmt.setString(1, usuario.getLogin());
@@ -225,6 +229,7 @@ public class UsuarioDaoMySql implements IUsuarioDao {
                 usuario.setEmail(rs.getString("email"));
                 usuario.setLogin(rs.getString("login"));
                 usuario.setSenha(rs.getString("senha"));
+                usuario.setTipoUsuario(rs.getString("tipo"));
 
             }
             

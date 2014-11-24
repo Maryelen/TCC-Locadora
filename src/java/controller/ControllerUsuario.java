@@ -89,6 +89,10 @@ public class ControllerUsuario implements Controller {
         if (pRequest.getParameter("txtSenha") != null) {
             retorno.setSenha(pRequest.getParameter("txtSenha"));
         }
+        
+        if (pRequest.getParameter("txtTipo") != null) {
+            retorno.setTipoUsuario(pRequest.getParameter("txtTipo"));
+        }
 
         return retorno;
     }
@@ -164,6 +168,7 @@ public class ControllerUsuario implements Controller {
                 map.put("email", usuario.getEmail());
                 map.put("login", usuario.getLogin());
                 map.put("senha", usuario.getSenha());
+                map.put("tipo", usuario.getTipoUsuario());
                 resultado.add(map);
 
             }
@@ -194,6 +199,7 @@ public class ControllerUsuario implements Controller {
             resultado.put("email", usuario.getEmail());
             resultado.put("login", usuario.getLogin());
             resultado.put("senha", usuario.getSenha());
+            resultado.put("tipo", usuario.getTipoUsuario());
 
             pRequest.setAttribute("usuario", resultado);
 

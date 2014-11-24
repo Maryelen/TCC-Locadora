@@ -53,6 +53,14 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <input class="form-control" placeholder="Informe o Tipo" type="text" id="txtTipo" name="txtTipo" value="${usuario.tipo}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12" align="right">
                             <input type="hidden" name="txtId" id="txtId" value="${usuario.id}" >
                             <input type="hidden" name="txtObjeto" id="txtObjeto" value="usuario" >
@@ -88,10 +96,11 @@
             , txtEmail: document.forms["formAtual"].elements["txtEmail"].value
             , txtLogin: document.forms["formAtual"].elements["txtLogin"].value
             , txtSenha: document.forms["formAtual"].elements["txtSenha"].value
+            , txtTipo: document.forms["formAtual"].elements["txtTipo"].value
         }, function(responseTxt, statusTxt, xhr) {
             if (statusTxt == "error")
                 alert("Error: " + xhr.status + ": " + xhr.statusText);
         });
     });
-    
+
 </script>

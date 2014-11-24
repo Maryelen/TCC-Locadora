@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12" align="right">
-                                        <input type="hidden" name="txtObjeto" id="txtObjeto" value="usuario" >
+                                        <input type="hidden" name="txtObjeto" id="txtObjeto" value="login" >
                                         <input type="hidden" name="txtMetodo" id="txtMetodo" value="validarAcesso">
                                         <button tabindex="5" type="button" class="btn btn-default" id="btnEnviar">Acessar</button>
                                     </div>

@@ -32,7 +32,7 @@ public class servlet extends HttpServlet {
         ControllerUsuario usuario = null;
 
         if (request.getParameter("txtObjeto").equals("usuario")) {
-            usuario = new ControllerUsuario();
+            vObjeto = new ControllerUsuario();
         } else if (request.getParameter("txtObjeto").equals("locadora")) {
             vObjeto = new ControllerLocadora();
         } else if (request.getParameter("txtObjeto").equals("filme")) {

@@ -34,8 +34,8 @@
                             <!-- Lista de opções -->
                             <ul id="ul-dropdown-menu" class="dropdown-menu" style="width: 400px;">
                                 <c:forEach var="locadora" items="${locadoras}">
-                                    <li id="${locadora.idLocadora}" name="txtLocadora"><a href="#" id="${locadora.idLocadora}">${locadora.nome}</a></li>
-                                </c:forEach>
+                                    <li id="txtNomeLocadora" name="txtNomeLocadora"><a href="#">${locadora.nome}</a></li>
+                                    </c:forEach>
                             </ul>
                         </div>
                     </div>
@@ -69,7 +69,6 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12" align="right">
-                            <input type="hidden" name="txtIdLocadora" id="txtIdLocadora" value="${locadora.idLocadora}">
                             <input type="hidden" name="txtObjeto" id="txtObjeto" value="filme" >
                             <input type="hidden" name="txtMetodo" id="txtMetodo" value="salvar">
                             <button tabindex="5" type="button" class="btn btn-default" id="btnEnviar">Salvar</button>
@@ -102,13 +101,13 @@
         $("#conteudoForm").load("servlet", {
             //variaveis de controle
             txtObjeto: document.forms["formAtual"].elements["txtObjeto"].value
-                    , txtMetodo: document.forms["formAtual"].elements["txtMetodo"].value
+            , txtMetodo: document.forms["formAtual"].elements["txtMetodo"].value
                     //variaveis para o objeto
-                    , txtNome: document.forms["formAtual"].elements["txtNome"].value
-                    , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
-                    , txtAno: document.forms["formAtual"].elements["txtAno"].value
-                    , txtGenero: document.forms["formAtual"].elements["txtGenero"].value
-                    , txtIdLocadora: document.forms["formAtual"].elements["txtIdLocadora"].value
+            , txtNome: document.forms["formAtual"].elements["txtNome"].value
+            , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
+            , txtAno: document.forms["formAtual"].elements["txtAno"].value
+            , txtGenero: document.forms["formAtual"].elements["txtGenero"].value
+            , txtIdLocadora: document.forms["formAtual"].elements["txtIdLocadora"].value
         }, function(responseTxt, statusTxt, xhr) {
             if (statusTxt == "error")
                 alert("Error: " + xhr.status + ": " + xhr.statusText);
