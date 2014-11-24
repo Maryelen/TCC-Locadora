@@ -34,8 +34,8 @@
                             <!-- Lista de opções -->
                             <ul id="ul-dropdown-menu" class="dropdown-menu" style="width: 400px;">
                                 <c:forEach var="locadora" items="${locadoras}">
-                                    <li id="txtNomeLocadora" name="txtNomeLocadora"><a href="#">${locadora.nome}</a></li>
-                                    </c:forEach>
+                                    <li id="txtIdLocadora" name="txtIdLocadora" value="${locadora.idLocadora}"><a href="#"> ${locadora.idLocadora} - ${locadora.nome}</a></li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
