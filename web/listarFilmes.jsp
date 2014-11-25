@@ -30,7 +30,9 @@
                                 <th>#</th>
                                 <th>Nome</th>
                                 <th>Descrição</th>
-                                <th>Foto</th>
+                                <th>Ano</th>
+                                <th>Genero</th>
+                                <th>Locadora</th>                                
                                 <th width="160px">Acao</th>
                             </tr>
                         </thead>
@@ -42,7 +44,9 @@
                                     <td>${filme.id}</td>
                                     <td>${filme.nome}</td>
                                     <td>${filme.descricao}</td>
-                                    <td>${filme.foto}</td>
+                                    <td>${filme.ano}</td>
+                                    <td>${filme.genero}</td>
+                                    <td>${filme.nomeLocadora}</td>
                                     <td>
                                         <a href="#" class="btnAlterar" id="${filme.id}">
                                             <i class="fa fa-edit fa-fw"></i>Detalhe

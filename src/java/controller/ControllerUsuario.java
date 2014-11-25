@@ -228,9 +228,9 @@ public class ControllerUsuario implements Controller {
         retorno = dao.getByLoginESenha(retorno);
         if (retorno != null) {
             pRequest.getSession().setAttribute("usuarioLogin", retorno);
-            Usuario usuario = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
             
-            mostraAlertMsg(pRequest, pResponse, "OK", "Olá, Seja bem vindo Sro "+usuario.getNome()+"!", "Logado", "usuario", "principalCadastro");
+            
+            mostraAlertMsg(pRequest, pResponse, "OK", "Olá, Seja bem vindo Sro "+retorno.getNome()+"!", "Logado", "usuario", "principalCadastro");
         } else {
             mostraAlertMsg(pRequest, pResponse, "ERRO", "Não foi possivel realizar o acesso.", " Login ou senha invalido", "usuario", "login");
         }

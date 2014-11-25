@@ -181,13 +181,12 @@ public class ControllerFilme implements Controller {
 
             for (Filme filme : lista) {
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("id", (filme.getId()) + "");
+                map.put("id", (filme.getId())+"");
                 map.put("nome", filme.getNome());
                 map.put("descricao", filme.getDescricao());
-                map.put("Ano", filme.getAno() + "");
-                map.put("Genero", filme.getGenero());
+                map.put("ano", filme.getAno()+"");
+                map.put("genero", filme.getGenero());
                 map.put("nomeLocadora", filme.getLocadora().getNome());
-                map.put("telefoneComercial", filme.getLocadora().getTelefoneComercial());
                 resultado.add(map);
 
             }
@@ -216,12 +215,12 @@ public class ControllerFilme implements Controller {
             map.put("id", (filme.getId()) + "");
             map.put("nome", filme.getNome());
             map.put("descricao", filme.getDescricao());
-            map.put("Ano", filme.getAno() + "");
-            map.put("Genero", filme.getGenero());
+            map.put("ano", filme.getAno() + "");
+            map.put("genero", filme.getGenero());
+            map.put("idLocadora", filme.getLocadora().getId()+"");
             map.put("nomeLocadora", filme.getLocadora().getNome());
-            map.put("telefoneComercial", filme.getLocadora().getTelefoneComercial());
-
-            pRequest.setAttribute("filme", map);
+            
+            pRequest.setAttribute("filmes", map);
 
             RequestDispatcher rd = pRequest.getRequestDispatcher("/editarFilme.jsp");
             rd.forward(pRequest, pResponse);

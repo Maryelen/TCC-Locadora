@@ -70,22 +70,23 @@ public class ControllerReserva implements Controller {
 
     private Reserva requestForm(HttpServletRequest pRequest) {
 
-        Reserva retorno = new Reserva();
-        retorno.setLocadora(new Locadora());
-        retorno.setUsuario(new Usuario());
-
+        Filme retorno = new Filme();
+        FilmeDaoMySql dao = new FilmeDaoMySql();
+        
         if (pRequest.getParameter("txtId") != null) {
             retorno.setId(Integer.parseInt(pRequest.getParameter("txtId")));
         }
-
-        if (pRequest.getParameter("txtIdLocadora") != null) {
-            retorno.getLocadora().setId(Integer.parseInt(pRequest.getParameter("txtIdLocadora")));
-        }
-
-        if (pRequest.getParameter("txtIdUsuario") != null) {
-            retorno.getUsuario().setId(Integer.parseInt(pRequest.getParameter("txtIdUsuario")));
-        }
-        return retorno;
+        
+        retorno = dao.getById(retorno.getId());
+        Usuario usuario = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
+        
+        Reserva reserva = new Reserva();
+        reserva.setFilme(retorno);
+        reserva.setUsuario(usuario);
+        reserva.setSituacao("Pendente");
+        reserva.setMotivo(" ");
+        
+        return reserva;
     }
 
     @Override
@@ -105,9 +106,9 @@ public class ControllerReserva implements Controller {
         int retorno = dao.salvar(reserva);
 
         if (retorno > 0) {
-            mostraAlertMsg(pRequest, pResponse, "OK", "Cadastro de Filme", "Registro salvo com sucesso!", "filme", "listar");
+            mostraAlertMsg(pRequest, pResponse, "OK", "Reserva", "Registro salvo com sucesso!", "reserva", "listar");
         } else {
-            mostraAlertMsg(pRequest, pResponse, "ERRO", "Cadastro de Filme", "Erro ao salvar o registro, por favor, tente novamente!", "filme", "listar");
+            mostraAlertMsg(pRequest, pResponse, "ERRO", "Reserva", "Erro ao salvar o registro, por favor, tente novamente!", "reserva", "listar");
         }
     }
 
@@ -144,20 +145,21 @@ public class ControllerReserva implements Controller {
     @Override
     public void listar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
-        ReservaDaoMySql dao = new ReservaDaoMySql();
-        List<Reserva> lista = dao.getAll();
+        FilmeDaoMySql dao = new FilmeDaoMySql();
+        List<Filme> lista = dao.getAll();
 
         if (lista != null) {
 
             List<Map> resultado = new ArrayList<Map>();
 
-            for (Reserva reserva : lista) {
-
+            for (Filme filme : lista) {
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("id", (reserva.getId()) + "");
-                map.put("nomeFilme", reserva.getFilme().getNome());
-                map.put("nomeLocadora", reserva.getLocadora().getNome());
-                map.put("nomeUsuario", reserva.getUsuario().getNome());
+                map.put("id", (filme.getId()) + "");
+                map.put("nome", filme.getNome());
+                map.put("descricao", filme.getDescricao());
+                map.put("ano", filme.getAno()+"");
+                map.put("genero", filme.getGenero());
+                map.put("nomeLocadora", filme.getLocadora().getNome());
                 resultado.add(map);
 
             }

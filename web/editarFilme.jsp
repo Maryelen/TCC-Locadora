@@ -14,7 +14,7 @@
 </div>
 <!-- /.row -->
 
-<c:set var="filme" value="${filme}" />
+<c:set var="filme" value="${filmes}" />
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -26,6 +26,9 @@
                 <form role="form" id="formAtual" name="formAtual">
                     <div class="panel-body">
                         <form role="form" id="formAtual" name="formAtual">
+                            <select id="lista" name="lista" style="width: 400px;">
+                                    <option id ="txtIdLocadora" name="txtIdLocadora" value="${filme.idLocadora}">${filme.idLocadora} - ${filme.nomeLocadora}</option>
+                            </select>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -43,8 +46,14 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Foto</label>
-                                        <input class="form-control" placeholder="Insira a Foto" type="text" id="txtFoto" name="txtFoto" value="${filme.foto}">
+                                        <label>Ano</label>
+                                        <input class="form-control" placeholder="Insira o ano" type="text" id="txtAno" name="txtAno" value="${filme.ano}">
+                                    </div>
+                                </div> 
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Genero</label>
+                                        <input class="form-control" placeholder="Insira o genero" type="text" id="txtGenero" name="txtGenero" value="${filme.genero}">
                                     </div>
                                 </div> 
                             </div>
@@ -77,12 +86,14 @@
             $("#conteudoForm").load("servlet", {
                 //variaveis de controle
                 txtObjeto: document.forms["formAtual"].elements["txtObjeto"].value
-                        , txtMetodo: document.forms["formAtual"].elements["txtMetodo"].value
+                , txtMetodo: document.forms["formAtual"].elements["txtMetodo"].value
                         //variaveis para o objeto locadora
-                        , txtId: document.forms["formAtual"].elements["txtId"].value
-                        , txtNome: document.forms["formAtual"].elements["txtNome"].value
-                        , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
-                        , txtFoto: document.forms["formAtual"].elements["txtFoto"].value
+                , txtId: document.forms["formAtual"].elements["txtId"].value
+                , txtNome: document.forms["formAtual"].elements["txtNome"].value
+                , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
+                , txtAno: document.forms["formAtual"].elements["txtAno"].value
+                , txtGenero: document.forms["formAtual"].elements["txtGenero"].value
+                , txtIdLocadora: document.forms["formAtual"].elements["lista"].value
             }, function(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "error")
                     alert("Error: " + xhr.status + ": " + xhr.statusText);

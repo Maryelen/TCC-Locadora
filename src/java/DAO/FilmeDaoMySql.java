@@ -96,7 +96,7 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select  ,idLocadora, nome, descricao, ano, genero from filme ";
+            String QUERY_DETALHE = "select idFilme,idLocadora, nome, descricao, ano, genero from filme ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             rs = stmt.executeQuery();
@@ -107,14 +107,13 @@ public class FilmeDaoMySql implements IFilmeDao {
                 Filme filme = new Filme();
                 filme.setLocadora(new Locadora());
                 LocadoraDaoMySql locDao = new LocadoraDaoMySql();
-                
+
                 filme.setId(rs.getInt("idFilme"));
                 filme.setLocadora(locDao.getById(rs.getInt("idLocadora")));
                 filme.setNome(rs.getString("nome"));
                 filme.setDescricao(rs.getString("descricao"));
                 filme.setAno(rs.getInt("Ano"));
                 filme.setGenero(rs.getString("genero"));
-
                 lista.add(filme);
             }
 
@@ -157,7 +156,7 @@ public class FilmeDaoMySql implements IFilmeDao {
                 filme.setDescricao(rs.getString("descricao"));
                 filme.setAno(rs.getInt("ano"));
                 filme.setGenero(rs.getString("genero"));
-
+             
             }
 
             conn.close();

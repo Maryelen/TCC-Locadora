@@ -30,19 +30,18 @@ public class ReservaDaoMySql implements IReservaDao {
 
         try {
             conn = Conexao.conectar();
-            String QUERY_INSERT = "insert into reserva (idUsuario, idFilmeLocadora"
-                    + ",situacao, dtCancelamento, dtConcluido, dtConfirmado,motivo, dtReserva)"
-                    + " values(?, ?, ?, ?, ?, ?, ?, ?)";
+            String QUERY_INSERT = "insert into reserva (idUsuario, idFilme"
+                    + ",situacao,dtReserva,dtCancelamento, dtConcluido, dtConfirmado, motivo)"
+                    + " values(?, ?, ?,CURRENT_DATE, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, reserva.getId());
-            stmt.setInt(2, reserva.getLocadora().getId());
-            stmt.setInt(2, reserva.getUsuario().getId());
+            stmt.setInt(1, reserva.getUsuario().getId());
+            stmt.setInt(2, reserva.getFilme().getId());
             stmt.setString(3, reserva.getSituacao());
-            stmt.setDate(4, (Date) reserva.getDtCancelado());
-            stmt.setDate(5, (Date) reserva.getDtConcluido());
-            stmt.setDate(6, (Date) reserva.getDtConfirmacao());
-            stmt.setString(7, reserva.getMotivo());
+            stmt.setDate(5, (Date) reserva.getDtCancelado());
+            stmt.setDate(6, (Date) reserva.getDtConcluido());
+            stmt.setDate(7, (Date) reserva.getDtConfirmacao());
+            stmt.setString(8, reserva.getMotivo());
 
             stmt.executeUpdate();
 

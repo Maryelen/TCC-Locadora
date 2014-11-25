@@ -24,20 +24,11 @@
                 <form role="form" id="formAtual" name="formAtual">
                     <div class="btn-toolbar">
                         <!-- Div para agrupar os botões com texto e com ícone -->
-                        <div class="btn-group">
-                            <button id="btn-selecione" class="btn btn-large dropdown-toggle span4" style="text-align: left;">
-                                Selecione
-                            </button>
-                            <button id="btn-caret" class="btn btn-large dropdown-toggle" data-toggle="dropdown">
-                                <i class="caret"></i>
-                            </button>
-                            <!-- Lista de opções -->
-                            <ul id="ul-dropdown-menu" class="dropdown-menu" style="width: 400px;">
-                                <c:forEach var="locadora" items="${locadoras}">
-                                    <li id="txtIdLocadora" name="txtIdLocadora" value="${locadora.idLocadora}"><a href="#"> ${locadora.idLocadora} - ${locadora.nome}</a></li>
-                                </c:forEach>
-                            </ul>
-                        </div>
+                        <select class="form-control" id="lista" name="lista" style="width: 400px;">
+                            <c:forEach var="locadora" items="${locadoras}">
+                                <option id ="txtIdLocadora" name="txtIdLocadora" value="${locadora.idLocadora}">${locadora.idLocadora} - ${locadora.nome}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
@@ -107,7 +98,7 @@
             , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
             , txtAno: document.forms["formAtual"].elements["txtAno"].value
             , txtGenero: document.forms["formAtual"].elements["txtGenero"].value
-            , txtIdLocadora: document.forms["formAtual"].elements["txtIdLocadora"].value
+            , txtIdLocadora: document.forms["formAtual"].elements["lista"].value
         }, function(responseTxt, statusTxt, xhr) {
             if (statusTxt == "error")
                 alert("Error: " + xhr.status + ": " + xhr.statusText);

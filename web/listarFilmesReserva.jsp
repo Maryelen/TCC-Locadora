@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Reserva</h1>
+        <h1 class="page-header">Filme</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -30,10 +30,10 @@
                                 <th>#</th>
                                 <th>Nome</th>
                                 <th>Descrição</th>
-                                <th>Foto</th>
+                                <th>Ano</th>
+                                <th>Genero</th>
                                 <th>Locadora</th>
-
-                                <th width="160px">Acao</th>
+                                <th>Reservar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,16 +44,18 @@
                                     <td>${filme.id}</td>
                                     <td>${filme.nome}</td>
                                     <td>${filme.descricao}</td>
-                                    <td>${filme.foto}</td>
-                                    <td>${locadora.nome}</td>
+                                    <td>${filme.ano}</td>
+                                    <td>${filme.genero}</td>
+                                    <td>${filme.nomeLocadora}</td>
                                     <td>
-                                        <a href="#" class="btnAlterar" id="${filme.id}">
-                                            <i class="fa fa-plus-square-o fa-fw"></i>Add
-                                        </a>
-                                        &nbsp;
-                                        <a href="#" class="btnExcluir" id="${filme.id}">
-                                            <i class="fa fa-search fa-fw"></i>Detalhe
-                                        </a>                        
+                                        <form name="combo">
+                                            <a href="#" class="btnExcluir" id="${filme.id}">
+                                                <input type="hidden" name="txtId" id="txtId" value="${filme.id}" >
+                                                <input type="hidden" name="txtObjeto" id="txtObjeto" value="reserva" >
+                                                <input type="hidden" name="txtMetodo" id="txtMetodo" value="salvar">
+                                                <label><input id="combo" name="combo" type="checkbox"></label>
+                                            </a>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -78,31 +80,20 @@
         $('#dataTables-funcionarios').dataTable();
     });
 
-    $(".btnAlterar").click(function() {
-        $("#conteudoForm").load("servlet", {
-            //variaveis de controle
-            txtObjeto: 'filme'
-            , txtMetodo: 'detalhe'
-                    //variaveis para o objeto
-            , txtId: this.id
-        }, function(responseTxt, statusTxt, xhr) {
-            if (statusTxt == "error")
-                alert("Error: " + xhr.status + ": " + xhr.statusText);
-        });
-    });
-
     $(".btnExcluir").click(function() {
-        if (confirm('Deseja realmente excluir o registro?')) {
+        if (confirm('Deseja reservar este filme?')) {
             $("#conteudoForm").load("servlet", {
                 //variaveis de controle
-                txtObjeto: 'filme'
-                , txtMetodo: 'deletar'
+                txtObjeto: 'reserva'
+                , txtMetodo: 'salvar'
                         //variaveis para o objeto
                 , txtId: this.id
             }, function(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "error")
                     alert("Error: " + xhr.status + ": " + xhr.statusText);
             });
+        } else {
+            document.combo.elements["combo"].checked = 0
         }
     });
 
