@@ -27,7 +27,7 @@
                     <div class="panel-body">
                         <form role="form" id="formAtual" name="formAtual">
                             <select id="lista" name="lista" style="width: 400px;">
-                                    <option id ="txtIdLocadora" name="txtIdLocadora" value="${filme.idLocadora}">${filme.idLocadora} - ${filme.nomeLocadora}</option>
+                                <option id ="txtIdLocadora" name="txtIdLocadora" value="${filme.idLocadora}">${filme.idLocadora} - ${filme.nomeLocadora}</option>
                             </select>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -58,6 +58,14 @@
                                 </div> 
                             </div>
                             <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Quantidade</label>
+                                        <input class="form-control" placeholder="Insira a quantidade" type="text" id="txtQuantidade" name="txtQuantidade" value="${filme.quantidade}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-12" align="right">
                                     <input type="hidden" name="txtId" id="txtId" value="${filme.id}" >
                                     <input type="hidden" name="txtObjeto" id="txtObjeto" value="filme" >
@@ -82,15 +90,14 @@
 
         });
 
-        $("#btnEnviar").click(function() {
+                $("#btnEnviar").click(function() {
             $("#conteudoForm").load("servlet", {
                 //variaveis de controle
                 txtObjeto: document.forms["formAtual"].elements["txtObjeto"].value
                 , txtMetodo: document.forms["formAtual"].elements["txtMetodo"].value
-                        //variaveis para o objeto locadora
-                , txtId: document.forms["formAtual"].elements["txtId"].value
-                , txtNome: document.forms["formAtual"].elements["txtNome"].value
-                , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
+            //variaveis para o objeto locadora
+                    , txtId: document.forms["formAtual"].elements["txtId"].value                 , txtNome: document.forms["formAtual"].elements["txtNome"].value
+        , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
                 , txtAno: document.forms["formAtual"].elements["txtAno"].value
                 , txtGenero: document.forms["formAtual"].elements["txtGenero"].value
                 , txtIdLocadora: document.forms["formAtual"].elements["lista"].value

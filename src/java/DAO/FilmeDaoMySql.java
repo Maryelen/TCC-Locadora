@@ -30,7 +30,7 @@ public class FilmeDaoMySql implements IFilmeDao {
 
         try {
             conn = Conexao.conectar();
-            String QUERY_INSERT = "insert into filme (idLocadora, nome, descricao, ano, genero)values(?, ?, ?, ?, ?)";
+            String QUERY_INSERT = "insert into filme (idLocadora, nome, descricao, ano, genero, quantidade)values(?, ?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, filme.getLocadora().getId());
@@ -38,6 +38,7 @@ public class FilmeDaoMySql implements IFilmeDao {
             stmt.setString(3, filme.getDescricao());
             stmt.setInt(4, filme.getAno());
             stmt.setString(5, filme.getGenero());
+            stmt.setInt(6, filme.getQuantidade());
 
             stmt.executeUpdate();
 
@@ -96,7 +97,7 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idFilme,idLocadora, nome, descricao, ano, genero from filme ";
+            String QUERY_DETALHE = "select idFilme,idLocadora, nome, descricao, ano, genero, quantidade from filme ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             rs = stmt.executeQuery();
@@ -114,6 +115,7 @@ public class FilmeDaoMySql implements IFilmeDao {
                 filme.setDescricao(rs.getString("descricao"));
                 filme.setAno(rs.getInt("Ano"));
                 filme.setGenero(rs.getString("genero"));
+                filme.setQuantidade(Integer.parseInt(rs.getString("quantidade")));
                 lista.add(filme);
             }
 
@@ -135,7 +137,7 @@ public class FilmeDaoMySql implements IFilmeDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idFilme, idLocadora, nome, descricao, ano, genero from filme where idfilme = ?";
+            String QUERY_DETALHE = "select idFilme, idLocadora, nome, descricao, ano, genero, quantidade from filme where idfilme = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             stmt.setInt(1, id);
@@ -156,7 +158,8 @@ public class FilmeDaoMySql implements IFilmeDao {
                 filme.setDescricao(rs.getString("descricao"));
                 filme.setAno(rs.getInt("ano"));
                 filme.setGenero(rs.getString("genero"));
-             
+                filme.setQuantidade(Integer.parseInt(rs.getString("quantidade")));
+
             }
 
             conn.close();
@@ -176,7 +179,7 @@ public class FilmeDaoMySql implements IFilmeDao {
             PreparedStatement stmt = null;
             Connection conn = Conexao.conectar();
             String QUERY_UPDATE = "update filme set idLocadora = ?, nome = ?, descricao = ?,"
-                    + " ano = ?, genero = ? where idFilme = ?";
+                    + " ano = ?, genero = ?, quantidade = ? where idFilme = ?";
 
             stmt = conn.prepareStatement(QUERY_UPDATE);
             stmt.setInt(1, filme.getLocadora().getId());
@@ -184,6 +187,41 @@ public class FilmeDaoMySql implements IFilmeDao {
             stmt.setString(3, filme.getDescricao());
             stmt.setInt(4, filme.getAno());
             stmt.setString(5, filme.getGenero());
+            stmt.setInt(6, filme.getQuantidade());
+
+            if (filme.getId() == null) {
+                stmt.setString(7, null);
+            } else {
+                stmt.setInt(7, filme.getId());
+            }
+
+            stmt.executeUpdate();
+            conn.close();
+
+            resultado = true;
+
+        } catch (SQLException ex) {
+
+            //ex.printStackTrace();
+            resultado = false;
+
+        } finally {
+
+            return resultado;
+        }
+    }
+
+    public boolean updateSituacao(Filme filme) {
+
+        boolean resultado = false;
+
+        try {
+            PreparedStatement stmt = null;
+            Connection conn = Conexao.conectar();
+            String QUERY_UPDATE = "update filme set situacao = ? where idFilme = ?";
+
+            stmt = conn.prepareStatement(QUERY_UPDATE);
+            stmt.setString(1, filme.getSituacao());
 
             if (filme.getId() == null) {
                 stmt.setString(6, null);

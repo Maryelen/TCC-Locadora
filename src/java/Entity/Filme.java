@@ -17,6 +17,24 @@ public class Filme {
     private String descricao;
     private int ano;
     private String genero;
+    private String situacao;
+    private Integer quantidade;
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
 
     public int getAno() {
         return ano;

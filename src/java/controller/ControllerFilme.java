@@ -95,7 +95,10 @@ public class ControllerFilme implements Controller {
             retorno.setGenero(pRequest.getParameter("txtGenero"));
         }
         
-        
+        if (pRequest.getParameter("txtQuantidade") != null) {
+            retorno.setQuantidade(Integer.parseInt(pRequest.getParameter("txtQuantidade")));
+        }
+
         return retorno;
     }
 
@@ -180,15 +183,17 @@ public class ControllerFilme implements Controller {
             List<Map> resultado = new ArrayList<Map>();
 
             for (Filme filme : lista) {
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("id", (filme.getId())+"");
-                map.put("nome", filme.getNome());
-                map.put("descricao", filme.getDescricao());
-                map.put("ano", filme.getAno()+"");
-                map.put("genero", filme.getGenero());
-                map.put("nomeLocadora", filme.getLocadora().getNome());
-                resultado.add(map);
-
+                if (!filme.getSituacao().equals("reservado")) {
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    map.put("id", (filme.getId()) + "");
+                    map.put("nome", filme.getNome());
+                    map.put("descricao", filme.getDescricao());
+                    map.put("ano", filme.getAno()+"");
+                    map.put("genero", filme.getGenero());
+                    map.put("quantidade", filme.getQuantidade().toString());
+                    map.put("nomeLocadora", filme.getLocadora().getNome());
+                    resultado.add(map);
+                }
             }
 
             pRequest.setAttribute("filmes", resultado);
@@ -217,9 +222,10 @@ public class ControllerFilme implements Controller {
             map.put("descricao", filme.getDescricao());
             map.put("ano", filme.getAno() + "");
             map.put("genero", filme.getGenero());
-            map.put("idLocadora", filme.getLocadora().getId()+"");
+            map.put("idLocadora", filme.getLocadora().getId() + "");
             map.put("nomeLocadora", filme.getLocadora().getNome());
-            
+            map.put("quantidade", filme.getQuantidade()+"");
+
             pRequest.setAttribute("filmes", map);
 
             RequestDispatcher rd = pRequest.getRequestDispatcher("/editarFilme.jsp");

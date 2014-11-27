@@ -84,7 +84,7 @@ public class ControllerReserva implements Controller {
         reserva.setFilme(retorno);
         reserva.setUsuario(usuario);
         reserva.setSituacao("Pendente");
-        reserva.setMotivo(" ");
+        reserva.setMotivo("");
         
         return reserva;
     }

@@ -59,6 +59,14 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Quantidade</label>
+                                <input class="form-control" placeholder="insira a quantidade" type="text" id="txtQuantidade" name="txtQuantidade">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12" align="right">
                             <input type="hidden" name="txtObjeto" id="txtObjeto" value="filme" >
                             <input type="hidden" name="txtMetodo" id="txtMetodo" value="salvar">
@@ -99,6 +107,7 @@
             , txtAno: document.forms["formAtual"].elements["txtAno"].value
             , txtGenero: document.forms["formAtual"].elements["txtGenero"].value
             , txtIdLocadora: document.forms["formAtual"].elements["lista"].value
+            , txtQuantidade: document.forms["formAtual"].elements["txtQuantidade"].value
         }, function(responseTxt, statusTxt, xhr) {
             if (statusTxt == "error")
                 alert("Error: " + xhr.status + ": " + xhr.statusText);

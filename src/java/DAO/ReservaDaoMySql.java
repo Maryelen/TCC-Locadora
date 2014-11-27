@@ -32,15 +32,16 @@ public class ReservaDaoMySql implements IReservaDao {
             conn = Conexao.conectar();
             String QUERY_INSERT = "insert into reserva (idUsuario, idFilme"
                     + ",situacao,dtReserva,dtCancelamento, dtConcluido, dtConfirmado, motivo)"
-                    + " values(?, ?, ?,CURRENT_DATE, ?, ?, ?, ?)";
+                    + " values(?, ?, ?, ?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, reserva.getUsuario().getId());
             stmt.setInt(2, reserva.getFilme().getId());
             stmt.setString(3, reserva.getSituacao());
-            stmt.setDate(5, (Date) reserva.getDtCancelado());
-            stmt.setDate(6, (Date) reserva.getDtConcluido());
-            stmt.setDate(7, (Date) reserva.getDtConfirmacao());
+           // stmt.setDate(4, reserva.getDtReserva());
+           // stmt.setDate(5, reserva.getDtCancelado());
+           // stmt.setDate(6, reserva.getDtConcluido());
+           // stmt.setDate(7, reserva.getDtConfirmacao());
             stmt.setString(8, reserva.getMotivo());
 
             stmt.executeUpdate();
@@ -48,6 +49,9 @@ public class ReservaDaoMySql implements IReservaDao {
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             resultado = rs.getInt(1);
+            
+            FilmeDaoMySql daoFilme = new FilmeDaoMySql();
+            daoFilme.updateSituacao(reserva.getFilme());
 
             conn.close();
 
@@ -200,7 +204,7 @@ public class ReservaDaoMySql implements IReservaDao {
             stmt.setDate(6, (Date) reserva.getDtConfirmacao());
             stmt.setDate(7, (Date) reserva.getDtReserva());
             stmt.setString(8, reserva.getMotivo());
-            
+
             if (reserva.getId() == null) {
                 stmt.setString(9, null);
             } else {
