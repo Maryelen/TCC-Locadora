@@ -30,9 +30,9 @@
                                 <th>#</th>
                                 <th>Nome</th>
                                 <th>Descrição</th>
-                                <th>Ano</th>
                                 <th>Genero</th>
                                 <th>Qnt disponivel</th>
+                                <th>Situação</th>
                                 <th>Locadora</th>
                                 <th>Reservar</th>
                             </tr>
@@ -45,9 +45,9 @@
                                     <td>${filme.id}</td>
                                     <td>${filme.nome}</td>
                                     <td>${filme.descricao}</td>
-                                    <td>${filme.ano}</td>
                                     <td>${filme.genero}</td>
                                     <td>${filme.quantidade}</td>
+                                    <td>${filme.situacao}</td>
                                     <td>${filme.nomeLocadora}</td>
                                     <td>
                                         <form name="combo">

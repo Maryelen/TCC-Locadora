@@ -31,18 +31,20 @@ public class ReservaDaoMySql implements IReservaDao {
         try {
             conn = Conexao.conectar();
             String QUERY_INSERT = "insert into reserva (idUsuario, idFilme"
-                    + ",situacao,dtReserva,dtCancelamento, dtConcluido, dtConfirmado, motivo)"
-                    + " values(?, ?, ?, ?, ?, ?, ?, ?)";
+                    + ",situacao"+
+                    //+ ",dtReserva,dtCancelamento, dtConcluido, dtConfirmado
+                    ", motivo)"
+                    + " values(?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, reserva.getUsuario().getId());
             stmt.setInt(2, reserva.getFilme().getId());
             stmt.setString(3, reserva.getSituacao());
-           // stmt.setDate(4, reserva.getDtReserva());
-           // stmt.setDate(5, reserva.getDtCancelado());
-           // stmt.setDate(6, reserva.getDtConcluido());
-           // stmt.setDate(7, reserva.getDtConfirmacao());
-            stmt.setString(8, reserva.getMotivo());
+//            stmt.setDate(4, reserva.getDtReserva());
+//            stmt.setDate(5, reserva.getDtCancelado());
+//            stmt.setDate(6, reserva.getDtConcluido());
+//            stmt.setDate(7, reserva.getDtConfirmacao());
+            stmt.setString(4, reserva.getMotivo());
 
             stmt.executeUpdate();
 
@@ -226,5 +228,34 @@ public class ReservaDaoMySql implements IReservaDao {
             return resultado;
         }
 
+    }
+     public Integer getByNaoReservado(int id) {
+
+        Connection conn = null;
+        Integer total = 0;
+        try {
+            conn = Conexao.conectar();
+
+            String QUERY_DETALHE = "select count(idFilme) from reserva where idFilme = ? "
+                    + "and ( situacao = 'reservado' or situacao = 'pendente')";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setInt(1, id);
+
+            ResultSet rs = null;
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                total = rs.getInt(1);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+        } finally {
+
+            return total;
+        }
     }
 }

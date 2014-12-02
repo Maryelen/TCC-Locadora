@@ -72,20 +72,20 @@ public class ControllerReserva implements Controller {
 
         Filme retorno = new Filme();
         FilmeDaoMySql dao = new FilmeDaoMySql();
-        
+
         if (pRequest.getParameter("txtId") != null) {
             retorno.setId(Integer.parseInt(pRequest.getParameter("txtId")));
         }
-        
+
         retorno = dao.getById(retorno.getId());
         Usuario usuario = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
-        
+
         Reserva reserva = new Reserva();
         reserva.setFilme(retorno);
         reserva.setUsuario(usuario);
         reserva.setSituacao("Pendente");
         reserva.setMotivo("");
-        
+
         return reserva;
     }
 
@@ -146,6 +146,7 @@ public class ControllerReserva implements Controller {
     public void listar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
         FilmeDaoMySql dao = new FilmeDaoMySql();
+        ReservaDaoMySql daoReserva = new ReservaDaoMySql();
         List<Filme> lista = dao.getAll();
 
         if (lista != null) {
@@ -153,14 +154,20 @@ public class ControllerReserva implements Controller {
             List<Map> resultado = new ArrayList<Map>();
 
             for (Filme filme : lista) {
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("id", (filme.getId()) + "");
-                map.put("nome", filme.getNome());
-                map.put("descricao", filme.getDescricao());
-                map.put("ano", filme.getAno()+"");
-                map.put("genero", filme.getGenero());
-                map.put("nomeLocadora", filme.getLocadora().getNome());
-                resultado.add(map);
+                int qnt = daoReserva.getByNaoReservado(filme.getId());
+                if(qnt < filme.getQuantidade())
+                {
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    map.put("id", (filme.getId()) + "");
+                    map.put("nome", filme.getNome());
+                    map.put("descricao", filme.getDescricao());
+                    map.put("ano", filme.getAno() + "");
+                    map.put("genero", filme.getGenero());
+                    map.put("nomeLocadora", filme.getLocadora().getNome());
+                    map.put("quantidade", (filme.getQuantidade() - qnt) + "");
+                    map.put("situacao", filme.getSituacao());
+                    resultado.add(map);
+                }
 
             }
 

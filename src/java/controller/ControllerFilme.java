@@ -98,7 +98,7 @@ public class ControllerFilme implements Controller {
         if (pRequest.getParameter("txtQuantidade") != null) {
             retorno.setQuantidade(Integer.parseInt(pRequest.getParameter("txtQuantidade")));
         }
-
+        retorno.setSituacao("Disponivel");
         return retorno;
     }
 

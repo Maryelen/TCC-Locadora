@@ -90,17 +90,18 @@
 
         });
 
-                $("#btnEnviar").click(function() {
+        $("#btnEnviar").click(function() {
             $("#conteudoForm").load("servlet", {
                 //variaveis de controle
                 txtObjeto: document.forms["formAtual"].elements["txtObjeto"].value
                 , txtMetodo: document.forms["formAtual"].elements["txtMetodo"].value
-            //variaveis para o objeto locadora
-                    , txtId: document.forms["formAtual"].elements["txtId"].value                 , txtNome: document.forms["formAtual"].elements["txtNome"].value
-        , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
+                        //variaveis para o objeto locadora
+                , txtId: document.forms["formAtual"].elements["txtId"].value, txtNome: document.forms["formAtual"].elements["txtNome"].value
+                , txtDescricao: document.forms["formAtual"].elements["txtDescricao"].value
                 , txtAno: document.forms["formAtual"].elements["txtAno"].value
                 , txtGenero: document.forms["formAtual"].elements["txtGenero"].value
                 , txtIdLocadora: document.forms["formAtual"].elements["lista"].value
+                , txtQuantidade: document.forms["formAtual"].elements["txtQuantidade"].value
             }, function(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "error")
                     alert("Error: " + xhr.status + ": " + xhr.statusText);
