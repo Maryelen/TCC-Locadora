@@ -48,9 +48,9 @@
                     <div class="sidebar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="/menu.jsp"><i class="fa fa-home fa-fw"></i> Principal </a>
+                                <a href="menu.jsp"><i class="fa fa-home fa-fw"></i> Principal </a>
                             </li>
-                             <li>
+                            <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Usuários <span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="#" class="linkForm" id="usuario"><i class="fa fa-files-o fa-fw"></i> Cadastrar</a></li>
@@ -85,7 +85,7 @@
                             </li>
                             <li>
                             <li><a href="#" class="linkLista" id="reserva"><i class="fa fa-files-o fa-fw"></i>Reserva</a></li>
-                            <li><a href="#" class="linkLista" id="minhas_reservas"><i class="fa fa-edit fa-fw"></i> Minhas Reservas <span class="fa arrow"></span></a></li>
+                            <li><a href="#" class="linkLista" id="minhas_reservas"><i class="fa fa-edit fa-fw"></i> Minhas Reservas</a></li>
                         </ul>
                         <!-- /#side-menu -->
                     </div>
@@ -129,7 +129,7 @@
             $("#conteudoForm").load("servlet", {
                 //variaveis de controle
                 txtObjeto: this.id
-                        , txtMetodo: 'principal'
+                , txtMetodo: 'principal'
             }, function(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "error")
                     alert("Error: " + xhr.status + ": " + xhr.statusText);
@@ -140,7 +140,7 @@
             $("#conteudoForm").load("servlet", {
                 //variaveis de controle
                 txtObjeto: this.id
-                        , txtMetodo: 'listar'
+                , txtMetodo: 'listar'
             }, function(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "error")
                     alert("Error: " + xhr.status + ": " + xhr.statusText);

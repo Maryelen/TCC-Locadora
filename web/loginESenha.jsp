@@ -37,24 +37,26 @@
                             <i class="fa fa-edit fa-fw"></i> login
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <form role="form" id="formAtual" name="formAtual">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
+                        <div class="panel-body"  align="center">
+                            <form role="form" id="formAtual" name="formAtual" class="col-lg-12">
+                                <div class="row"  align="center">
+                                    <div class="col-lg-12" align="center">
+                                        <div class="form-group" align="center">
                                             <label>Login</label>
                                             <input class="form-control" placeholder="Informe o login" type="text" id="txtLogin" name="txtLogin">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                </div>
+                                <div class="row" align="center">
+                                    <div class="col-lg-12" align="center">
                                         <div class="form-group">
                                             <label>Senha</label>
-                                            <input class="form-control" placeholder="Informe o senha" type="text" id="txtSenha" name="txtSenha">
+                                            <input class="form-control" placeholder="Informe o senha" type="password" id="txtSenha" name="txtSenha">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12" align="right">
+                                <div class="row" align="center">
+                                    <div class="col-lg-12" align="center">
                                         <input type="hidden" name="txtObjeto" id="txtObjeto" value="login" >
                                         <input type="hidden" name="txtMetodo" id="txtMetodo" value="validarAcesso">
                                         <button tabindex="5" type="button" class="btn btn-default" id="btnEnviar">Acessar</button>
@@ -66,7 +68,7 @@
                         <!-- /.panel-body -->
                     </div>
                 </div>
-                <div class="col-lg-3" ></div>
+                <div class="col-lg-6" ></div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->

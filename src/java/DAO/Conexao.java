@@ -19,7 +19,7 @@ public class Conexao {
   
     private static final String BANCO = "dbreserveaqui";
     private static final String USER = "root";
-    private static final String PASSWD = "root";
+    private static final String PASSWD = "";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
 
     private Conexao() {

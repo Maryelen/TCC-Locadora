@@ -17,7 +17,7 @@
         <!-- Page-Level Plugin CSS - Dashboard -->
         <link href="include/css/plugins/timeline/timeline.css" rel="stylesheet">
         <!-- SB Admin CSS - Include with every page -->
-        <link href="include/css/sb-admin.css" rel="stylesheet">
+        
 
         <!-- Fav and touch icons -->
         <link rel="shortcut icon" href="include/img/favicon.ico">
@@ -45,8 +45,8 @@
             </nav>
             <div id="page-wrapper">
                 <div class="row">
-                    <div id="conteudoForm">
-                        <image src="imagens/fundo.jpg"/>
+                    <div id="conteudoForm" align="center">
+                        <image src="imagens/cinema.jpg"/>
                     </div>
                 </div>
             </div>

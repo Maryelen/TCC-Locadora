@@ -59,10 +59,6 @@ public class servlet extends HttpServlet {
             }
 
         } else if (request.getParameter("txtMetodo").equals("principalCadastro")) {
-            Usuario retorno = (Usuario) request.getSession().getAttribute("usuarioLogin");
-       
-
-            request.setAttribute("tipo", retorno.getTipoUsuario());
             RequestDispatcher rd = request.getRequestDispatcher("/menu.jsp");
             rd.forward(request, response);
 
