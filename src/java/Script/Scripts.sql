@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `dbreserveaqui`.`reserva` (
   `idreserva` INT(11) NOT NULL AUTO_INCREMENT,
   `idusuario` INT(11) NOT NULL,
   `idfilme` INT(11) NOT NULL,
+  `locadora` INT(11) NOT NULL,
   `situacao` VARCHAR(50) NOT NULL,
   `dtreserva` DATE NULL DEFAULT NULL,
   `dtconfirmada` DATE NULL DEFAULT NULL,

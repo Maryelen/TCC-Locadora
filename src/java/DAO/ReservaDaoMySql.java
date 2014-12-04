@@ -5,6 +5,8 @@
  */
 package DAO;
 
+import Entity.Filme;
+import Entity.Locadora;
 import Entity.Reserva;
 import Interface.IReservaDao;
 import java.sql.Connection;
@@ -30,28 +32,29 @@ public class ReservaDaoMySql implements IReservaDao {
 
         try {
             conn = Conexao.conectar();
-            String QUERY_INSERT = "insert into reserva (idUsuario, idFilme"
-                    + ",situacao"+
-                    //+ ",dtReserva,dtCancelamento, dtConcluido, dtConfirmado
+            String QUERY_INSERT = "insert into reserva (idUsuario, idFilme, locadora"
+                    + ",situacao"
+                    + //+ ",dtReserva,dtCancelamento, dtConcluido, dtConfirmado
                     ", motivo)"
-                    + " values(?, ?, ?, ?)";
+                    + " values(?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, reserva.getUsuario().getId());
             stmt.setInt(2, reserva.getFilme().getId());
-            stmt.setString(3, reserva.getSituacao());
-//            stmt.setDate(4, reserva.getDtReserva());
+            stmt.setInt(3, reserva.getFilme().getLocadora().getId());
+            stmt.setString(4, reserva.getSituacao());
+          //stmt.setDate(4, reserva.getDtReserva());
 //            stmt.setDate(5, reserva.getDtCancelado());
 //            stmt.setDate(6, reserva.getDtConcluido());
 //            stmt.setDate(7, reserva.getDtConfirmacao());
-            stmt.setString(4, reserva.getMotivo());
+            stmt.setString(5, reserva.getMotivo());
 
             stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             resultado = rs.getInt(1);
-            
+
             FilmeDaoMySql daoFilme = new FilmeDaoMySql();
             daoFilme.updateSituacao(reserva.getFilme());
 
@@ -106,7 +109,7 @@ public class ReservaDaoMySql implements IReservaDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idReserva, idUsuario, idFilmeLocadora, situacao,"
+            String QUERY_DETALHE = "select idReserva, idUsuario, idFilme, locadora, situacao,"
                     + "dtReserva, dtConfirmado, dtConcluido, dtCancelado, motivo from reserva ";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
@@ -116,16 +119,21 @@ public class ReservaDaoMySql implements IReservaDao {
 
             while (rs.next()) {
                 Reserva reserva = new Reserva();
+                reserva.setFilme(new Filme());
+                reserva.setLocadora(new Locadora());
+
                 reserva.setId(rs.getInt("idReserva"));
                 UsuarioDaoMySql daoUsuario = new UsuarioDaoMySql();
                 reserva.setUsuario(daoUsuario.getById(rs.getInt("idUsuario")));
+                FilmeDaoMySql daoFilme = new FilmeDaoMySql();
+                reserva.setFilme(daoFilme.getById(rs.getInt("idFilme")));
                 LocadoraDaoMySql daoLocadora = new LocadoraDaoMySql();
-                reserva.setLocadora(daoLocadora.getById(rs.getInt("idLocadora")));
+                reserva.setLocadora(daoLocadora.getById(rs.getInt("locadora")));
                 reserva.setSituacao(rs.getString("situacao"));
-                reserva.setDtReserva(rs.getDate("dtReserva"));
-                reserva.setDtConfirmacao(rs.getDate("dtConfirmado"));
-                reserva.setDtConcluido(rs.getDate("dtConcluido"));
-                reserva.setDtCancelado(rs.getDate("dtCancelado"));
+//                reserva.setDtReserva(rs.getDate("dtReserva"));
+//                reserva.setDtConfirmacao(rs.getDate("dtConfirmado"));
+//                reserva.setDtConcluido(rs.getDate("dtConcluido"));
+//                reserva.setDtCancelado(rs.getDate("dtCancelado"));
                 reserva.setMotivo(rs.getString("motivo"));
 
                 lista.add(reserva);
@@ -149,9 +157,9 @@ public class ReservaDaoMySql implements IReservaDao {
         try {
             conn = Conexao.conectar();
 
-            String QUERY_DETALHE = "select idReserva, idUsuario, idFilmeLocadora, situacao,"
-                    + " dtReserva, dtConfirmado, dtConcluido, dtCancelado, motivo "
-                    + "from reserva where idUsuario = ?";
+            String QUERY_DETALHE = "select idReserva, idUsuario, idFilme, locadora, situacao,"
+                    + " dtReserva, dtConfirmado, dtConcluido, dtCancelado, motivo from reserva"
+                    + " where idReserva = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
             stmt.setInt(1, id);
@@ -162,17 +170,21 @@ public class ReservaDaoMySql implements IReservaDao {
 
             while (rs.next()) {
 
-                reserva = new Reserva();
+                reserva.setFilme(new Filme());
+                reserva.setLocadora(new Locadora());
+
                 reserva.setId(rs.getInt("idReserva"));
                 UsuarioDaoMySql daoUsuario = new UsuarioDaoMySql();
                 reserva.setUsuario(daoUsuario.getById(rs.getInt("idUsuario")));
+                FilmeDaoMySql daoFilme = new FilmeDaoMySql();
+                reserva.setFilme(daoFilme.getById(rs.getInt("idFilme")));
                 LocadoraDaoMySql daoLocadora = new LocadoraDaoMySql();
-                reserva.setLocadora(daoLocadora.getById(rs.getInt("idLocadora")));
+                reserva.setLocadora(daoLocadora.getById(rs.getInt("locadora")));
                 reserva.setSituacao(rs.getString("situacao"));
-                reserva.setDtReserva(rs.getDate("dtReserva"));
-                reserva.setDtConfirmacao(rs.getDate("dtConfirmado"));
-                reserva.setDtConcluido(rs.getDate("dtConcluido"));
-                reserva.setDtCancelado(rs.getDate("dtCancelado"));
+//                reserva.setDtReserva(rs.getDate("dtReserva"));
+//                reserva.setDtConfirmacao(rs.getDate("dtConfirmado"));
+//                reserva.setDtConcluido(rs.getDate("dtConcluido"));
+//                reserva.setDtCancelado(rs.getDate("dtCancelado"));
                 reserva.setMotivo(rs.getString("motivo"));
 
             }
@@ -184,6 +196,107 @@ public class ReservaDaoMySql implements IReservaDao {
 
             return reserva;
         }
+    }
+
+    public List<Reserva> getByIdUsuario(int id) {
+
+        Connection conn = null;
+        Reserva reserva = null;
+
+        List<Reserva> reservas = new ArrayList<>();
+        try {
+            conn = Conexao.conectar();
+
+            String QUERY_DETALHE = "select idReserva, idUsuario, idFilme, locadora, situacao,"
+                    + " dtReserva, dtConcluido, dtCancelado, motivo from reserva"
+                    + " where idUsuario = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setInt(1, id);
+
+            ResultSet rs = null;
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                reserva = new Reserva();
+                reserva.setFilme(new Filme());
+                reserva.setLocadora(new Locadora());
+
+                reserva.setId(rs.getInt("idReserva"));
+                UsuarioDaoMySql daoUsuario = new UsuarioDaoMySql();
+                reserva.setUsuario(daoUsuario.getById(rs.getInt("idUsuario")));
+                FilmeDaoMySql daoFilme = new FilmeDaoMySql();
+                reserva.setFilme(daoFilme.getById(rs.getInt("idFilme")));
+                LocadoraDaoMySql daoLocadora = new LocadoraDaoMySql();
+                reserva.setLocadora(daoLocadora.getById(rs.getInt("locadora")));
+                reserva.setSituacao(rs.getString("situacao"));
+//                reserva.setDtReserva(rs.getDate("dtReserva"));
+//                reserva.setDtConfirmacao(rs.getDate("dtConfirmado"));
+//                reserva.setDtConcluido(rs.getDate("dtConcluido"));
+//                reserva.setDtCancelado(rs.getDate("dtCancelado"));
+                reserva.setMotivo(rs.getString("motivo"));
+                reservas.add(reserva);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+        } finally {
+
+            return reservas;
+        }
+    }
+
+    public List<Reserva> getByIdLocadora(int id) {
+
+        Connection conn = null;
+        Reserva reserva = null;
+
+        List<Reserva> reservas = new ArrayList<>();
+        try {
+            conn = Conexao.conectar();
+
+            String QUERY_DETALHE = "select idReserva, idUsuario, idFilme, locadora, situacao,"
+                    + " dtReserva, dtConfirmado, dtConcluido, dtCancelado, motivo from reserva"
+                    + " where locadora = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setInt(1, id);
+
+            ResultSet rs = null;
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                reserva.setFilme(new Filme());
+                reserva.setLocadora(new Locadora());
+
+                reserva.setId(rs.getInt("idReserva"));
+                UsuarioDaoMySql daoUsuario = new UsuarioDaoMySql();
+                reserva.setUsuario(daoUsuario.getById(rs.getInt("idUsuario")));
+                FilmeDaoMySql daoFilme = new FilmeDaoMySql();
+                reserva.setFilme(daoFilme.getById(rs.getInt("idFilme")));
+                LocadoraDaoMySql daoLocadora = new LocadoraDaoMySql();
+                reserva.setLocadora(daoLocadora.getById(rs.getInt("locadora")));
+                reserva.setSituacao(rs.getString("situacao"));
+//                reserva.setDtReserva(rs.getDate("dtReserva"));
+//                reserva.setDtConfirmacao(rs.getDate("dtConfirmado"));
+//                reserva.setDtConcluido(rs.getDate("dtConcluido"));
+//                reserva.setDtCancelado(rs.getDate("dtCancelado"));
+                reserva.setMotivo(rs.getString("motivo"));
+                reservas.add(reserva);
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+        } finally {
+
+            return reservas;
+        }
+
     }
 
     public boolean update(Reserva reserva) {
@@ -229,7 +342,8 @@ public class ReservaDaoMySql implements IReservaDao {
         }
 
     }
-     public Integer getByNaoReservado(int id) {
+
+    public Integer getByNaoReservado(int id) {
 
         Connection conn = null;
         Integer total = 0;

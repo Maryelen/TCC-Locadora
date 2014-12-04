@@ -229,7 +229,6 @@ public class ControllerUsuario implements Controller {
         if (retorno != null) {
             pRequest.getSession().setAttribute("usuarioLogin", retorno);
             
-            
             mostraAlertMsg(pRequest, pResponse, "OK", "Olá, Seja bem vindo Sro "+retorno.getNome()+"!", "Logado", "usuario", "principalCadastro");
         } else {
             mostraAlertMsg(pRequest, pResponse, "ERRO", "Não foi possivel realizar o acesso.", " Login ou senha invalido", "usuario", "login");

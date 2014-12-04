@@ -1,3 +1,5 @@
+<%@page import="Entity.Reserva"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="pt-br">
 
@@ -30,7 +32,6 @@
     <body>
 
         <div id="wrapper">
-
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -43,35 +44,13 @@
                 </div>
                 <!-- /.navbar-header -->
 
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <a class="text-center" href="principal"><i class="fa fa-home fa-lg"></i>
-                        </a>                
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" id="detalheUsuario"><i class="fa fa-male fa-fw"></i> Meu Perfil</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="logoff"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-user -->
-                    </li>
-                    <!-- /.dropdown -->
-                </ul>
-                <!-- /.navbar-top-links -->
-
                 <div class="navbar-default navbar-static-side" role="navigation">
                     <div class="sidebar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="menu.jsp"><i class="fa fa-home fa-fw"></i> Principal </a>
+                                <a href="/menu.jsp"><i class="fa fa-home fa-fw"></i> Principal </a>
                             </li>
-                            <li>
+                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Usuários <span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="#" class="linkForm" id="usuario"><i class="fa fa-files-o fa-fw"></i> Cadastrar</a></li>
@@ -106,7 +85,7 @@
                             </li>
                             <li>
                             <li><a href="#" class="linkLista" id="reserva"><i class="fa fa-files-o fa-fw"></i>Reserva</a></li>
-                            </li>
+                            <li><a href="#" class="linkLista" id="minhas_reservas"><i class="fa fa-edit fa-fw"></i> Minhas Reservas <span class="fa arrow"></span></a></li>
                         </ul>
                         <!-- /#side-menu -->
                     </div>

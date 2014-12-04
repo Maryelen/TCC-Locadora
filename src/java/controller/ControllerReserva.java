@@ -71,6 +71,8 @@ public class ControllerReserva implements Controller {
     private Reserva requestForm(HttpServletRequest pRequest) {
 
         Filme retorno = new Filme();
+        retorno.setLocadora(new Locadora());
+        
         FilmeDaoMySql dao = new FilmeDaoMySql();
 
         if (pRequest.getParameter("txtId") != null) {
@@ -101,7 +103,9 @@ public class ControllerReserva implements Controller {
     public void salvar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
         ReservaDaoMySql dao = new ReservaDaoMySql();
+        
         Reserva reserva = requestForm(pRequest);
+        
 
         int retorno = dao.salvar(reserva);
 
@@ -155,8 +159,7 @@ public class ControllerReserva implements Controller {
 
             for (Filme filme : lista) {
                 int qnt = daoReserva.getByNaoReservado(filme.getId());
-                if(qnt < filme.getQuantidade())
-                {
+                if (qnt < filme.getQuantidade()) {
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("id", (filme.getId()) + "");
                     map.put("nome", filme.getNome());
@@ -186,7 +189,39 @@ public class ControllerReserva implements Controller {
     public void detalhe(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
         ReservaDaoMySql dao = new ReservaDaoMySql();
+        Usuario resultado = new Usuario();
+        resultado = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
+        
+        List<Reserva> reservas = new ArrayList<>();
+        reservas = dao.getByIdUsuario(resultado.getId());
 
+        List<Map> lista = new ArrayList<Map>();
+        
+        if (reservas != null) {
+            for (Reserva reserva : reservas) {
+
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("id", (reserva.getId()) + "");
+                map.put("nomeFilme", reserva.getFilme().getNome());
+                map.put("genero", reserva.getFilme().getGenero());
+                map.put("nomeLocadora", reserva.getLocadora().getNome());
+                map.put("situacao", reserva.getSituacao());
+                lista.add(map);
+            }
+            
+            pRequest.setAttribute("reservas", lista);
+            RequestDispatcher rd = pRequest.getRequestDispatcher("/minhasReservas.jsp");
+            rd.forward(pRequest, pResponse);
+
+        } else {
+            mostraAlertMsg(pRequest, pResponse, "ERRO", "Detalhe de Filme", "Erro ao localizar o registro, por favor, tente novamente!", "reserva", "principal");
+        }
+
+    }
+
+    public void getByReserva(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
+
+        ReservaDaoMySql dao = new ReservaDaoMySql();
         Reserva reserva = dao.getById(requestForm(pRequest).getId());
 
         if (reserva != null) {
