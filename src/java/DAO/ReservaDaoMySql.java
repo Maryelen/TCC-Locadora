@@ -247,6 +247,7 @@ public class ReservaDaoMySql implements IReservaDao {
             return reservas;
         }
     }
+    
 
     public List<Reserva> getByIdLocadora(int id) {
 
@@ -258,7 +259,7 @@ public class ReservaDaoMySql implements IReservaDao {
             conn = Conexao.conectar();
 
             String QUERY_DETALHE = "select idReserva, idUsuario, idFilme, locadora, situacao,"
-                    + " dtReserva, dtConfirmado, dtConcluido, dtCancelado, motivo from reserva"
+                    + " dtReserva, dtConcluido, dtCancelado, motivo from reserva"
                     + " where locadora = ?";
 
             PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);

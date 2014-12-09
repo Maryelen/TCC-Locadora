@@ -9,6 +9,7 @@ import DAO.FilmeDaoMySql;
 import DAO.LocadoraDaoMySql;
 import Entity.Filme;
 import Entity.Locadora;
+import Entity.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,21 +106,18 @@ public class ControllerFilme implements Controller {
     @Override
     public void principal(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
+        Usuario retorno = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
         LocadoraDaoMySql locadoraDao = new LocadoraDaoMySql();
-        List<Locadora> lista = locadoraDao.getAll();
+        Locadora locadora = locadoraDao.getById(retorno.getNome());
 
-        if (lista != null) {
+        if (locadora != null) {
 
             List<Map> resultado = new ArrayList<Map>();
-
-            for (Locadora locadora : lista) {
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("idLocadora", (locadora.getId()) + "");
                 map.put("nome", locadora.getNome());
                 map.put("descricao", locadora.getCnpj());
                 resultado.add(map);
-            }
-
             pRequest.setAttribute("locadoras", resultado);
 
             RequestDispatcher rd = pRequest.getRequestDispatcher("/cadastrarFilme.jsp");

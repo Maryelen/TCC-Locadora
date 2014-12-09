@@ -59,7 +59,17 @@ public class servlet extends HttpServlet {
             }
 
         } else if (request.getParameter("txtMetodo").equals("principalCadastro")) {
-            RequestDispatcher rd = request.getRequestDispatcher("/menu.jsp");
+            Usuario retorno = (Usuario) request.getSession().getAttribute("usuarioLogin");
+             RequestDispatcher rd = null;
+            
+            if (retorno.getTipoUsuario().equals("comum")) {
+                rd = request.getRequestDispatcher("/menu_Usuario.jsp");
+            } else if (retorno.getTipoUsuario().equals("adm")) {
+                rd = request.getRequestDispatcher("/menu.jsp");
+            } else {
+                rd = request.getRequestDispatcher("/menu_Locadora.jsp");
+            }
+           
             rd.forward(request, response);
 
         } else if (request.getParameter("txtMetodo").equals("login")) {

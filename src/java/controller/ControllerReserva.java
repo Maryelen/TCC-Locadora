@@ -6,6 +6,7 @@
 package controller;
 
 import DAO.FilmeDaoMySql;
+import DAO.LocadoraDaoMySql;
 import DAO.ReservaDaoMySql;
 import Entity.Filme;
 import Entity.Locadora;
@@ -72,7 +73,7 @@ public class ControllerReserva implements Controller {
 
         Filme retorno = new Filme();
         retorno.setLocadora(new Locadora());
-        
+
         FilmeDaoMySql dao = new FilmeDaoMySql();
 
         if (pRequest.getParameter("txtId") != null) {
@@ -103,9 +104,8 @@ public class ControllerReserva implements Controller {
     public void salvar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
         ReservaDaoMySql dao = new ReservaDaoMySql();
-        
+
         Reserva reserva = requestForm(pRequest);
-        
 
         int retorno = dao.salvar(reserva);
 
@@ -188,15 +188,21 @@ public class ControllerReserva implements Controller {
     @Override
     public void detalhe(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
+        LocadoraDaoMySql daoLoc = new LocadoraDaoMySql();
         ReservaDaoMySql dao = new ReservaDaoMySql();
-        Usuario resultado = new Usuario();
-        resultado = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
+        Usuario resultado =  (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
+        Locadora locadora = daoLoc.getById(resultado.getNome());
+        
         
         List<Reserva> reservas = new ArrayList<>();
+        if(resultado.getTipoUsuario().equals("comum")){
         reservas = dao.getByIdUsuario(resultado.getId());
+        }else{
+        reservas = dao.getByIdLocadora(locadora.getId());    
+        }
 
         List<Map> lista = new ArrayList<Map>();
-        
+
         if (reservas != null) {
             for (Reserva reserva : reservas) {
 
@@ -208,7 +214,7 @@ public class ControllerReserva implements Controller {
                 map.put("situacao", reserva.getSituacao());
                 lista.add(map);
             }
-            
+
             pRequest.setAttribute("reservas", lista);
             RequestDispatcher rd = pRequest.getRequestDispatcher("/minhasReservas.jsp");
             rd.forward(pRequest, pResponse);
@@ -223,6 +229,32 @@ public class ControllerReserva implements Controller {
 
         ReservaDaoMySql dao = new ReservaDaoMySql();
         Reserva reserva = dao.getById(requestForm(pRequest).getId());
+
+        if (reserva != null) {
+
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("id", (reserva.getId()) + "");
+            map.put("nomeFilme", reserva.getFilme().getNome());
+            map.put("nomeLocadora", reserva.getLocadora().getNome());
+            map.put("nomeUsuario", reserva.getUsuario().getNome());
+
+            pRequest.setAttribute("filme", map);
+
+            RequestDispatcher rd = pRequest.getRequestDispatcher("/editarFilme.jsp");
+            rd.forward(pRequest, pResponse);
+
+        } else {
+            mostraAlertMsg(pRequest, pResponse, "ERRO", "Detalhe de Filme", "Erro ao localizar o registro, por favor, tente novamente!", "filme", "principal");
+        }
+
+    }
+
+    public void getByReservaLocadora(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
+        Usuario retorno = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
+        ReservaDaoMySql dao = new ReservaDaoMySql();
+        LocadoraDaoMySql daoLoc = new LocadoraDaoMySql();
+        Locadora locadora = daoLoc.getById(retorno.getNome());
+        Reserva reserva = dao.getById(locadora.getId());
 
         if (reserva != null) {
 

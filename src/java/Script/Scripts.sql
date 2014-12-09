@@ -1,4 +1,4 @@
-<-- inclusão de dados -->
+-- inclusão de dados -->
 
 insert into usuario (idusuario,nome,login,senha,email,tipo) values (1,'José Henrique','usuario1','123','a@','comum');
 insert into usuario (idusuario,nome,login,senha,email,tipo) values (2,'Petro Paulo','usuario2','123', 'b@', 'adm');

@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Filme</h1>
+        <h1 class="page-header">Reserva</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -18,7 +18,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fa fa-edit fa-fw"></i> Lista de Filmes
+                <i class="fa fa-edit fa-fw"></i> Lista de Reservas
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

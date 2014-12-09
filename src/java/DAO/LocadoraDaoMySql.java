@@ -150,13 +150,62 @@ public class LocadoraDaoMySql implements ILocadoraDao {
 
     }
 
+    public Locadora getById(String locadoraString) {
+
+        Connection conn = null;
+        Locadora locadora = null;
+        try {
+            conn = Conexao.conectar();
+            
+
+            String QUERY_DETALHE = "select idLocadora "
+                    + ",nome, cnpj, rua, numero,complemento,bairro"
+                    + ", cidade, estado, cep, telefonecomercial, telefonecontato"
+                    + ", email, site from locadora where nome = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setString(1, locadoraString);
+
+            ResultSet rs = null;
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                locadora = new Locadora();
+                locadora.setId(rs.getInt("idLocadora"));
+                locadora.setNome(rs.getString("nome"));
+                locadora.setCnpj(rs.getString("cnpj"));
+                locadora.setRua(rs.getString("rua"));
+                locadora.setNumero(rs.getInt("numero"));
+                locadora.setComplemento(rs.getString("complemento"));
+                locadora.setBairro(rs.getString("bairro"));
+                locadora.setCidade(rs.getString("cidade"));
+                locadora.setEstado(rs.getString("estado"));
+                locadora.setCep(rs.getString("cep"));
+                locadora.setTelefoneComercial(rs.getString("telefonecomercial"));
+                locadora.setTelefoneContato(rs.getString("telefonecontato"));
+                locadora.setEmail(rs.getString("email"));
+                locadora.setSite(rs.getString("site"));
+
+            }
+
+            conn.close();
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+        } finally {
+
+            return locadora;
+        }
+    }
+
     public Locadora getById(int id) {
 
         Connection conn = null;
         Locadora locadora = null;
         try {
             conn = Conexao.conectar();
-
+            
 
             String QUERY_DETALHE = "select idLocadora "
                     + ",nome, cnpj, rua, numero,complemento,bairro"
@@ -198,7 +247,7 @@ public class LocadoraDaoMySql implements ILocadoraDao {
             return locadora;
         }
     }
-
+    
     public boolean update(Locadora locadora) {
 
         boolean resultado = false;

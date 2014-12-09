@@ -38,7 +38,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="http://localhost:8080/TCC-Locadora/loginESenha.jsp">Espaço do Usuário</a></li>
                             <li><a href="http://localhost:8080/TCC-Locadora/loginESenha.jsp">Espaço da Locadora</a></li>
-                            <li><a href="http://localhost:8080/TCC-Locadora/loginESenha.jsp">Espaço do Desenvolvedor</a></li>
+                            <li><a href="http://localhost:8080/TCC-Locadora/loginESenha.jsp">Espaço do Administrador</a></li>
                         </ul>
                     </div>
                 </div>
