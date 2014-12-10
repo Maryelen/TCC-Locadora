@@ -2,7 +2,7 @@
 
 insert into usuario (idusuario,nome,login,senha,email,tipo) values (1,'José Henrique','usuario1','123','a@','comum');
 insert into usuario (idusuario,nome,login,senha,email,tipo) values (2,'Petro Paulo','usuario2','123', 'b@', 'adm');
-insert into usuario (idusuario,nome,login,senha,email,tipo) values (3,'São Luiz','usuario3','123', 'c@', 'locadora');
+insert into usuario (idusuario,nome,login,senha,email,tipo) values (3,'São Luiz','usuario3','123', 'c@', 'Locadora 1');
 
 insert into locadora (idlocadora,nome,cnpj,rua,numero,complemento,bairro,
 cidade,estado,cep,telefoneComercial, telefoneContato, email, site) 
@@ -11,12 +11,12 @@ values (1,'Locadora 1','11111111111', 'rua A', 1, 'complemento 1', 'bairro 1',
 
 insert into locadora (idlocadora,nome,cnpj,rua,numero,complemento,bairro,
 cidade,estado,cep,telefoneComercial, telefoneContato, email, site) 
-values (1,'Locadora 2','11111111111', 'rua B', 2, 'complemento 2', 'bairro 2',
+values (2,'Locadora 2','11111111111', 'rua B', 2, 'complemento 2', 'bairro 2',
 'cidade 2', 'estado 2', 'cep 2', 'tel 1', 'tel 2', 'email 2', 'site 2');
 
 insert into locadora (idlocadora,nome,cnpj,rua,numero,complemento,bairro,
 cidade,estado,cep,telefoneComercial, telefoneContato, email, site) 
-values (1,'Locadora 3','11111111111', 'rua B', 3, 'complemento 3', 'bairro 3',
+values (3,'Locadora 3','11111111111', 'rua B', 3, 'complemento 3', 'bairro 3',
 'cidade 3', 'estado 3', 'cep 3', 'tel 1', 'tel 2', 'email 3', 'site 3');
 
 insert into filme (idFilme, idLocadora, nome, descricao, ano, genero, situacao, quantidade)
