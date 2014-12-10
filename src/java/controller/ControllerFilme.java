@@ -95,7 +95,7 @@ public class ControllerFilme implements Controller {
         if (pRequest.getParameter("txtAno") != null) {
             retorno.setGenero(pRequest.getParameter("txtGenero"));
         }
-        
+
         if (pRequest.getParameter("txtQuantidade") != null) {
             retorno.setQuantidade(Integer.parseInt(pRequest.getParameter("txtQuantidade")));
         }
@@ -108,16 +108,16 @@ public class ControllerFilme implements Controller {
 
         Usuario retorno = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
         LocadoraDaoMySql locadoraDao = new LocadoraDaoMySql();
-        Locadora locadora = locadoraDao.getById(retorno.getNome());
+        Locadora locadora = locadoraDao.getById(retorno.getTipoUsuario());
 
         if (locadora != null) {
 
             List<Map> resultado = new ArrayList<Map>();
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("idLocadora", (locadora.getId()) + "");
-                map.put("nome", locadora.getNome());
-                map.put("descricao", locadora.getCnpj());
-                resultado.add(map);
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("idLocadora", (locadora.getId()) + "");
+            map.put("nome", locadora.getNome());
+            map.put("descricao", locadora.getCnpj());
+            resultado.add(map);
             pRequest.setAttribute("locadoras", resultado);
 
             RequestDispatcher rd = pRequest.getRequestDispatcher("/cadastrarFilme.jsp");
@@ -175,22 +175,30 @@ public class ControllerFilme implements Controller {
 
         FilmeDaoMySql filmeDao = new FilmeDaoMySql();
         List<Filme> lista = filmeDao.getAll();
+        Usuario retorno = (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
+        LocadoraDaoMySql locadoraDao = new LocadoraDaoMySql();
+        Locadora locadora = locadoraDao.getById(retorno.getTipoUsuario());
 
+        if(retorno.getTipoUsuario() == "adm"){
+            locadora.setId(-1);
+        }
         if (lista != null) {
 
             List<Map> resultado = new ArrayList<Map>();
 
             for (Filme filme : lista) {
                 if (!filme.getSituacao().equals("reservado")) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("id", (filme.getId()) + "");
-                    map.put("nome", filme.getNome());
-                    map.put("descricao", filme.getDescricao());
-                    map.put("ano", filme.getAno()+"");
-                    map.put("genero", filme.getGenero());
-                    map.put("quantidade", filme.getQuantidade().toString());
-                    map.put("nomeLocadora", filme.getLocadora().getNome());
-                    resultado.add(map);
+                    if ((locadora.getId() == -1) || (locadora.getId() == filme.getLocadora().getId())) {
+                        HashMap<String, String> map = new HashMap<String, String>();
+                        map.put("id", (filme.getId()) + "");
+                        map.put("nome", filme.getNome());
+                        map.put("descricao", filme.getDescricao());
+                        map.put("ano", filme.getAno() + "");
+                        map.put("genero", filme.getGenero());
+                        map.put("quantidade", filme.getQuantidade().toString());
+                        map.put("nomeLocadora", filme.getLocadora().getNome());
+                        resultado.add(map);
+                    }
                 }
             }
 
@@ -222,7 +230,7 @@ public class ControllerFilme implements Controller {
             map.put("genero", filme.getGenero());
             map.put("idLocadora", filme.getLocadora().getId() + "");
             map.put("nomeLocadora", filme.getLocadora().getNome());
-            map.put("quantidade", filme.getQuantidade()+"");
+            map.put("quantidade", filme.getQuantidade() + "");
 
             pRequest.setAttribute("filmes", map);
 

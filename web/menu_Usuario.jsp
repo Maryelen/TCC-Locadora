@@ -52,6 +52,7 @@
                             </li>
                             <li><a href="#" class="linkLista" id="reserva"><i class="fa fa-files-o fa-fw"></i>Reserva</a></li>
                             <li><a href="#" class="linkLista" id="minhas_reservas"><i class="fa fa-edit fa-fw"></i> Minhas Reservas</a></li>
+                            <li><a href="index.jsp"><i class="fa fa-edit fa-fw"></i>Sair</a></li>
                         </ul>
                         <!-- /#side-menu -->
                     </div>

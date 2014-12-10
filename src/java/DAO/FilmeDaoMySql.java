@@ -131,6 +131,48 @@ public class FilmeDaoMySql implements IFilmeDao {
         }
 
     }
+    
+     public List<Filme> getByIdLocadora(int idLocadora) {
+        Connection conn = null;
+        ResultSet rs = null;
+        List<Filme> lista = null;
+        try {
+            conn = Conexao.conectar();
+
+            String QUERY_DETALHE = "select idFilme,idLocadora, nome, descricao, ano, genero, quantidade, situacao from filme where idLocadora = ? ";
+
+            PreparedStatement stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setInt(1, idLocadora);
+            rs = stmt.executeQuery();
+
+            lista = new ArrayList<Filme>();
+
+            while (rs.next()) {
+                Filme filme = new Filme();
+                filme.setLocadora(new Locadora());
+                LocadoraDaoMySql locDao = new LocadoraDaoMySql();
+
+                filme.setId(rs.getInt("idFilme"));
+                filme.setLocadora(locDao.getById(rs.getInt("idLocadora")));
+                filme.setNome(rs.getString("nome"));
+                filme.setDescricao(rs.getString("descricao"));
+                filme.setAno(rs.getInt("Ano"));
+                filme.setGenero(rs.getString("genero"));
+                filme.setQuantidade(Integer.parseInt(rs.getString("quantidade")));
+                filme.setSituacao(rs.getString("situacao"));
+                lista.add(filme);
+            }
+
+            conn.close();
+
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+        } finally {
+
+            return lista;
+        }
+
+    }
 
     public Filme getById(int id) {
 

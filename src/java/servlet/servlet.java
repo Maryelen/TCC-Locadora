@@ -50,6 +50,9 @@ public class servlet extends HttpServlet {
         } else if (request.getParameter("txtObjeto").equals("minhas_reservas")) {
             vObjeto = new ControllerReserva();
             vObjeto.detalhe(request, response);
+        } else if (request.getParameter("txtObjeto").equals("desistir")) {
+            vObjeto = new ControllerReserva();
+            vObjeto.deletar(request, response);
         }
 
         if (request.getParameter("txtMetodo").equals("principal")) {
@@ -60,8 +63,8 @@ public class servlet extends HttpServlet {
 
         } else if (request.getParameter("txtMetodo").equals("principalCadastro")) {
             Usuario retorno = (Usuario) request.getSession().getAttribute("usuarioLogin");
-             RequestDispatcher rd = null;
-            
+            RequestDispatcher rd = null;
+
             if (retorno.getTipoUsuario().equals("comum")) {
                 rd = request.getRequestDispatcher("/menu_Usuario.jsp");
             } else if (retorno.getTipoUsuario().equals("adm")) {
@@ -69,7 +72,7 @@ public class servlet extends HttpServlet {
             } else {
                 rd = request.getRequestDispatcher("/menu_Locadora.jsp");
             }
-           
+
             rd.forward(request, response);
 
         } else if (request.getParameter("txtMetodo").equals("login")) {

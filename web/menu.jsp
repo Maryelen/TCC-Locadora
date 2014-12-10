@@ -73,19 +73,9 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Filmes <span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="#" class="linkForm" id="filme"><i class="fa fa-files-o fa-fw"></i> Cadastrar</a></li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                                <ul class="nav nav-second-level">
-                                    <li><a href="#" class="linkLista" id="filme"><i class="fa fa-file-text-o fa-fw"></i> Listar </a></li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
                             <li><a href="#" class="linkLista" id="reserva"><i class="fa fa-files-o fa-fw"></i>Reserva</a></li>
-                            <li><a href="#" class="linkLista" id="minhas_reservas"><i class="fa fa-edit fa-fw"></i> Minhas Reservas</a></li>
+                            <li><a href="#" class="linkLista" id="minhas_reservas"><i class="fa fa-edit fa-fw"></i> Minhas Reservas -(MANUTENCAO)</a></li>
+                            <li><a href="index.jsp"><i class="fa fa-edit fa-fw"></i>Sair</a></li>
                         </ul>
                         <!-- /#side-menu -->
                     </div>

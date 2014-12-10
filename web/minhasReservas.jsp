@@ -45,7 +45,7 @@
                                     <td>${reserva.situacao}</td>
                                     <td>
                                         <a href="#" class="btnExcluir" id="${reserva.id}">
-                                            <i class="fa fa-trash-o fa-fw"></i>Excluir
+                                            <i class="fa fa-trash-o fa-fw"></i>Desistir
                                         </a>  
                                     </td>
                                 </tr>
@@ -71,20 +71,18 @@
         $('#dataTables-funcionarios').dataTable();
     });
 
-    $(".btnExcluir").click(function() {
-        if (confirm('Deseja reservar este filme?')) {
+        $(".btnExcluir").click(function() {
+        if (confirm('Deseja realmente excluir o registro?')) {
             $("#conteudoForm").load("servlet", {
                 //variaveis de controle
                 txtObjeto: 'reserva'
-                        , txtMetodo: 'salvar'
+                , txtMetodo: 'deletar'
                         //variaveis para o objeto
-                        , txtId: this.id
+                , txtId: this.id
             }, function(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "error")
                     alert("Error: " + xhr.status + ": " + xhr.statusText);
             });
-        } else {
-            document.combo.elements["combo"].checked = 0
         }
     });
 

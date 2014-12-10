@@ -192,7 +192,7 @@ public class LocadoraDaoMySql implements ILocadoraDao {
 
             conn.close();
         } catch (SQLException ex) {
-            //ex.printStackTrace();
+            locadora.setId(0);
         } finally {
 
             return locadora;

@@ -135,14 +135,16 @@ public class ControllerReserva implements Controller {
     public void deletar(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 
         ReservaDaoMySql dao = new ReservaDaoMySql();
-        Reserva reserva = requestForm(pRequest);
-
+        Reserva reserva = new Reserva();
+         if (pRequest.getParameter("txtId") != null) {
+            reserva.setId(Integer.parseInt(pRequest.getParameter("txtId")));
+        }
         boolean retorno = dao.deletar(reserva.getId());
 
         if (retorno) {
-            mostraAlertMsg(pRequest, pResponse, "OK", "Excluir de Filme", "Registro excluido com sucesso!", "filme", "listar");
+            mostraAlertMsg(pRequest, pResponse, "OK", "Excluir de Filme", "Registro excluido com sucesso!", "minhas_reservas", "listar");
         } else {
-            mostraAlertMsg(pRequest, pResponse, "ERRO", "Excluir de Filme", "Erro ao excluir o registro, por favor, tente novamente!", "filme", "listar");
+            mostraAlertMsg(pRequest, pResponse, "ERRO", "Excluir de Filme", "Erro ao excluir o registro, por favor, tente novamente!", "minhas_reservas", "listar");
         }
     }
 
@@ -191,7 +193,7 @@ public class ControllerReserva implements Controller {
         LocadoraDaoMySql daoLoc = new LocadoraDaoMySql();
         ReservaDaoMySql dao = new ReservaDaoMySql();
         Usuario resultado =  (Usuario) pRequest.getSession().getAttribute("usuarioLogin");
-        Locadora locadora = daoLoc.getById(resultado.getNome());
+        Locadora locadora = daoLoc.getById(resultado.getTipoUsuario());
         
         
         List<Reserva> reservas = new ArrayList<>();
